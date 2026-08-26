@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Old-School.Gamerx - Catálogo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Configuración para App Instalable (PWA) -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffaa00">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+    <!-- Encabezado con tu Logo y Menú -->
+    <header>
+        <a href="#" class="logo-link" id="nav-inicio">
+            <img src="img/logo.png" alt="Logo Old School" class="logo-img">
+        </a>
+        <nav>
+            <a href="#" id="link-inicio" class="activo">Inicio</a>
+            <a href="#catalogo" id="link-catalogo">Catálogo</a>
+            <a href="#faq" id="link-faq">Preguntas Frecuentes</a>
+        </nav>
+    </header>
+
+    <!-- SECCIÓN DE BIENVENIDA (INICIO) -->
+    <section id="seccion-inicio" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-contenido">
+            <h1>¡Bienvenido a Old-School Gamerx!</h1>
+            <p>Las mejores cuentas de Free Fire Veteranas, Súper Top y Económicas con garantía total.</p>
+            <a href="#catalogo" id="btn-ir-catalogo" class="btn-cta">Ver Catálogo de Cuentas ⚡</a>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE CATÁLOGO -->
+    <section id="catalogo" class="catalogo-container" style="display: none;">
+        <h2>Catálogo de cuentas en disponibilidad</h2>
+        
+        <!-- Botones de Categorías -->
+        <div class="categorias-filtro">
+            <button class="filtro-btn activo" data-filtro="todos">Todas</button>
+            <button class="filtro-btn" data-filtro="top">Súper Top ⚡</button>
+            <button class="filtro-btn" data-filtro="veteranas">Veteranas 🔥</button>
+        </div>
+        
+        <!-- Contenedor con las cuentas actualizadas -->
+        <div class="grid-cuentas" id="contenedor-tarjetas">
+            
+            <!-- Cuenta 1 -->
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA VETERANA #1" data-detalle="10 AL MAXIMO TOP, TRAJE DE LOS 10K DE DIAMANTES, FULL EVENTOS." data-precio="950.000 🇨🇴 / 310 🇺🇸 / 5.300 🇲🇽"><img src="img/foto1.jpg" alt="Foto 1"></div>
+            
+            <!-- Cuenta 2 -->
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA VETERANA #2" data-detalle="CAMISETA S10, DOBLE ANGELICAL CON ZAPATOS ASTROS, TIENE POSTURAS, ARSENAL MUY TOP." data-precio="550.000 🇨🇴 / 180 🇺🇸 / 3.100 🇲🇽"><img src="img/foto2.jpg" alt="Foto 2"></div>
+            
+            <!-- Cuenta 3 -->
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA VETERANA #3" data-detalle="GAMER CON CASI 8 AL MAXIMO, ANTIBOMBAS, CASCO HEROICO, PASE ANUBIS, HEROICO S8 CHOQUE BIONICO Y MUCHO MAS." data-precio="1.400.000 🇨🇴 / 440 🇺🇸 / 7.700 🇲🇽"><img src="img/foto3.jpg" alt="Foto 3"></div>
+            
+            <!-- Cuenta 4 -->
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA VETERANA #4" data-detalle="RAGNAROK CON DOS AL MAXIMO, MASCOTA PORING, ANGELICALES AZULES, COLABORACION JUJUTSU." data-precio="800.000 🇨🇴 / 250 🇺🇸 / 4.400 🇲🇽"><img src="img/foto4.jpg" alt="Foto 4"></div>
+            
+            <!-- Cuenta 5 -->
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA VETERANA #5" data-detalle="STEAMPUNK, REYES COMPLETOS UNA AL MAXIMO." data-precio="1.400.000 🇨🇴 / 445 🇺🇸 / 7.600 🇲🇽"><img src="img/foto5.jpg" alt="Foto 5"></div>
+            
+            <!-- Cuenta 6 -->
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA VETERANA #6" data-detalle="STEAMPUNK, REYES, CHOQUE BIONICO, ANTIBOMBAS, PANTERAS." data-precio="1.600.000 🇨🇴 / 505 🇺🇸 / 8.600 🇲🇽"><img src="img/foto6.jpg" alt="Foto 6"></div>
+            
+            <!-- Cuenta 7 -->
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA VETERANA #7" data-detalle="SUPER STEAMPUNK CON REYES Y GAMER MUY TOP, FULL EVOS." data-precio="2.800.000 🇨🇴 / 900 🇺🇸 / 15.350 🇲🇽"><img src="img/foto7.jpg" alt="Foto 7"></div>
+            
+            <!-- Cuenta 8 -->
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA VETERANA #8" data-detalle="STEAMPUNK CON ANUBIS, CASI 5 AL MAX, CASI 700 PECHOS MUY TOP." data-precio="1.350.000 🇨🇴 / 440 🇺🇸 / 7.300 🇲🇽"><img src="img/foto8.jpg" alt="Foto 8"></div>
+            
+            <!-- Cuenta 9 -->
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA VETERANA #9" data-detalle="SUPER CHAQUETA AZUL BETA, CON INCUBADORAS CARAS, ANGELICALES Y ASTROS CON CASI 8 AL MAXIMO." data-precio="1.450.000 🇨🇴 / 470 🇺🇸 / 8.000 🇲🇽"><img src="img/foto9.jpg" alt="Foto 9"></div>
+            
+            <!-- Cuenta 10 -->
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA VETERANA #10" data-detalle="SUPER REYES CON PIRATAS, FULL INCUBADORAS CARAS, 10 EVOS AL MAXIMO, FULL EVENTOS, MUY TOP EN TODOS LOS ASPETOS." data-precio="2.700.000 🇨🇴 / 870 🇺🇸 / 15.000 🇲🇽"><img src="img/foto10.jpg" alt="Foto 10"></div>
+            
+            <!-- Cuenta 11 -->
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA VETERANA #11" data-detalle="UN CARAMELO MUY ESCASO ! STEAMPUNK CON HEROICOS S4, S7, S8, S9, PRIME 8 TOP EN ARMAS, INCUBADORAS CARASA, EMOTES VETERANOS." data-precio="2.800.000 🇨🇴 / 920 🇺🇸 / 15.500 🇲🇽"><img src="img/foto11.jpg" alt="Foto 11"></div>
+            
+            <!-- Cuenta 12 -->
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA VETERANA #12" data-detalle="STEAM CON REYES Y GAMER, ANTIBOMBAS, EMOTE DE LAGARTIJA Y MOVIMIENTO DEL MAL, CASI 3 AL MAX." data-precio="1.700.000 🇨🇴 / 550 🇺🇸 / 9.400 🇲🇽"><img src="img/foto12.jpg" alt="Foto 12"></div>
+            
+            <!-- Cuenta 13 -->
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA VETERANA #13" data-detalle="STEAM CON HEROICO S7, 6 EVOS AL MAX, MAS DE 700 PECHOS, CHOQUE BIONICO, ANTIBOMBAS, REVOLUCION, TODOS LOS EMOTES VETERANOS." data-precio="1.480.000 🇨🇴 / 470 🇺🇸 / 8.100 🇲🇽"><img src="img/foto13.jpg" alt="Foto 13"></div>
+            
+            <!-- Cuenta 14 -->
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA VETERANA #14" data-detalle="ANGELICALES CON ASTROS, CUERNITOS DE NIÑA, TRIPLE ANGELICAL, 10 EVOS AL MAXIMO, CASI 2 AL MAXIMO." data-precio="530.000 🇨🇴 / 175 🇺🇸 / 3.000 🇲🇽"><img src="img/foto14.jpg" alt="Foto 14"></div>
+            
+            <!-- Cuenta 15 -->
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA VETERANA #15" data-detalle="CUENTICA SEMIVETERANA, CON PELITO BLANCO, 3 AL MAXIMO." data-precio="580.000 🇨🇴 / 190 🇺🇸 / 3.300 🇲🇽"><img src="img/foto15.jpg" alt="Foto 15"></div>
+            
+            <!-- Cuenta 16 -->
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA VETERANA #16" data-detalle="YING DORADO. ANGELICALES MORADOS, TRAGE DE NAGI." data-precio="220.000 🇨🇴 / 75 🇺🇸 / 1.200 🇲🇽"><img src="img/foto16.jpg" alt="Foto 16"></div>
+
+            <!-- Cuenta 17 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #17" data-detalle="ESPECTRO VIOLETA Y BUENAS EVOS." data-precio="240.000 🇨🇴 / 80 🇺🇸 / 1.350 🇲🇽"><img src="img/foto17.jpg" alt="Foto 17"></div>
+            
+            <!-- Cuenta 18 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #18" data-detalle="NORTE AMERICA 11 AL MAXIMO, DOBLE ANGELICAL, INCUBADORAS CARAS, MUY TOP." data-precio="950.000 🇨🇴 / 310 🇺🇸 / 5.200 🇲🇽"><img src="img/foto18.jpg" alt="Foto 18"></div>
+            
+            <!-- Cuenta 19 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #19" data-detalle="LLEGO ESTA CUENTICA CON PRIMEROS 7 PASES MENOS EL STEAMPUNK. MAS INFO POR WHATT (NO ES BARATA)." data-precio="CONSULTAR POR WHATSAPP 💬"><img src="img/foto19.jpg" alt="Foto 19"></div>
+            
+            <!-- Cuenta 20 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #20" data-detalle="CUENTA CHAKALITA DE NIÑA CON FULL ARSENAL DE ARMAS, + DE 700 PECHOS, INCUBADORAS CARAS DE ARMAS Y ROPA." data-precio="CONSULTAR POR WHATSAPP 💬"><img src="img/foto20.jpg" alt="Foto 20"></div>
+            
+            <!-- Cuenta 21 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #21" data-detalle="CASI 7 AL MAXIMO, ASTROS Y ANGELICALES MUY TOP." data-precio="900.000 🇨🇴 / 280 🇺🇸 / 4.900 🇲🇽"><img src="img/foto21.jpg" alt="Foto 21"></div>
+            
+            <!-- Cuenta 22 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #22" data-detalle="ANTIBOMBAS VHOQUE BIONICO, SCAR TITAN, CAMISETAS DE ORO DESDE LA S2." data-precio="580.000 🇨🇴 / 180 🇺🇸 / 3.200 🇲🇽"><img src="img/foto22.jpg" alt="Foto 22"></div>
+            
+            <!-- Cuenta 23 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #23" data-detalle="CASI 6 AL MAXIMO, PRIME 8, CRIMINAL MORADO, VERDE, COLAB CON NARUTO Y MAS." data-precio="800.000 🇨🇴 / 250 🇺🇸 / 4.400 🇲🇽"><img src="img/foto23.jpg" alt="Foto 23"></div>
+            
+            <!-- Cuenta 24 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #24" data-detalle="HUESITO CON YING DORADO, AZUL Y COLABORACION BLUELOCK." data-precio="240.000 🇨🇴 / 75 🇺🇸 / 1.400 🇲🇽"><img src="img/foto24.jpg" alt="Foto 24"></div>
+            
+            <!-- Cuenta 25 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #25" data-detalle="DISPONIBLE DESTRUCTOR, STEAMPUNK, PIRATAS Y GAMER, CHAQUETA ROJA, TRAJE 10K DIAMANTES." data-precio="2.200.000 🇨🇴 / 690 🇺🇸 / 12.200 🇲🇽"><img src="img/foto25.jpg" alt="Foto 25"></div>
+            
+            <!-- Cuenta 26 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #26" data-detalle="HUESITO CON 3 AL MAXIMO." data-precio="350.000 🇨🇴 / 110 🇺🇸 / 1.900 🇲🇽"><img src="img/foto26.jpg" alt="Foto 26"></div>
+            
+            <!-- Cuenta 27 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #27" data-detalle="NUEVA ESTA BEBE EXOTICA, TIENE TODOS LOS PASES DESDE EL STEAMPUNK, PREORDEN HIP2.0 RAGNAROK." data-precio="2.500.000 🇨🇴 / 780 🇺🇸 / 13.800 🇲🇽"><img src="img/foto27.jpg" alt="Foto 27"></div>
+            
+            <!-- Cuenta 28 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #28" data-detalle="CUENTA CON 4 AL MAX CON FULL COLABORACIONES." data-precio="550.000 🇨🇴 / 160 🇺🇸 / CONSULTAR 🇲🇽"><img src="img/foto28.jpg" alt="Foto 28"></div>
+            
+            <!-- Cuenta 29 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #29" data-detalle="LLEGO ESTA RAGNAROK A BUEN PRECIO, PASES SEMIVETERANOS, BUENOS EVENTOS Y COLABORACIONES, CASI UNA AL MAXIMO." data-precio="550.000 🇨🇴 / 170 🇺🇸 / 3.000 🇲🇽"><img src="img/foto29.jpg" alt="Foto 29"></div>
+            
+            <!-- Cuenta 30 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #30" data-detalle="RAGNAROK ECONOMICA." data-precio="400.000 🇨🇴 / 130 🇺🇸 / CONSULTAR 🇲🇽"><img src="img/foto30.jpg" alt="Foto 30"></div>
+            
+            <!-- Cuenta 31 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #31" data-detalle="¿LES INTERESA ESTA BEBE VETERANA? MAS INFO AL WHATS." data-precio="CONSULTAR POR WHATSAPP 💬"><img src="img/foto31.jpg" alt="Foto 31"></div>
+            
+            <!-- Cuenta 32 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #32" data-detalle="VUELVE ESTA CHULADA, EX INFLUENCER MUY TOP, BIONICO AL ACTUAL 7 AL MAXIMO, PARED PREORDEN Y GORRO PREORDEN, HEROICO DESDE S8." data-precio="2.400.000 🇨🇴 / 750 🇺🇸 / 13.200 🇲🇽"><img src="img/foto32.jpg" alt="Foto 32"></div>
+
+            <!-- Cuenta 33 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #33" data-detalle="BUEN PRECIO, PARA LOS AMANTES DE LAS FULL EVOS AL MAXIMO, 18 AL MAXIMO, COLABORACION CON BLUE LOCK, FULL EVENTOS, COLABORACION CON NARUTO." data-precio="1.780.000 🇨🇴 / 550 🇺🇸 / 9.700 🇲🇽"><img src="img/foto33.jpg" alt="Foto 33"></div>
+            
+            <!-- Cuenta 34 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #34" data-detalle="DISPONIBLE SUPER ANTIBOMBAS CON FULL COLABORACIONES, CASI 9 AL MAX, MOVIMIENTO DEL MAL, COLABORACION BLUELOCK." data-precio="1.850.000 🇨🇴 / 570 🇺🇸 / 9.200 🇲🇽"><img src="img/foto34.jpg" alt="Foto 34"></div>
+            
+            <!-- Cuenta 35 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #35" data-detalle="HUESITO CON 1 AL MAXIMO PARA NO EMPEZAR DE 0." data-precio="160.000 🇨🇴 / 50 🇺🇸 / 900 🇲🇽"><img src="img/foto36.jpg" alt="Foto 36"></div>
+            
+            <!-- Cuenta 36 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #36" data-detalle="STEAM CON REYES, CHOQUE BIONICO, ANTIBOMBAS, MOVIMIENTO DEL MAL, HEROICO DESDE LA S7 EN ADELANTE." data-precio="2.000.000 🇨🇴 / 600 🇺🇸 / 11.000 🇲🇽"><img src="img/foto38.jpg" alt="Foto 38"></div>
+            
+            <!-- Cuenta 37 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #37" data-detalle="PASE DRAGONES, PANTERAS, ANUBIS, 3 EVOS AL MAXIMO." data-precio="580.000 🇨🇴 / 170 🇺🇸 / 3.100 🇲🇽"><img src="img/foto39.jpg" alt="Foto 39"></div>
+            
+            <!-- Cuenta 38 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #38" data-detalle="ANTIBOMBAS, CASI DOS AL MAXIMO, ZAPATOS AZULES EXCLUSIVOS." data-precio="500.000 🇨🇴 / 150 🇺🇸 / 2.700 🇲🇽"><img src="img/foto40.jpg" alt="Foto 40"></div>
+            
+            <!-- Cuenta 39 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #39" data-detalle="DESTRUCTOR (TRAJE DE MUJER) PASE ANTIBOMBAS, CHOQUE BIONICO, CAMISETAS ORO DESDE LA S2 EN ADELANTE." data-precio="550.000 🇨🇴 / 165 🇺🇸 / 2.950 🇲🇽"><img src="img/foto41.jpg" alt="Foto 41"></div>
+            
+            <!-- Cuenta 40 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #40" data-detalle="RAGNAROK CON ANTIBOMBAS, SHORT EXCLUSIVO DE NIÑA, PASE PANTERAS, DRAGONES, HEROICO DESDE LA S8." data-precio="950.000 🇨🇴 / 280 🇺🇸 / 5.000 🇲🇽"><img src="img/foto42.jpg" alt="Foto 42"></div>
+            
+            <!-- Cuenta 41 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #41" data-detalle="ANTIBOMBAS CON PARED PREORDEN, CHOQUE BIONICO, CAMISAS ORO." data-precio="430.000 🇨🇴 / 130 🇺🇸 / 2.300 🇲🇽"><img src="img/foto43.jpg" alt="Foto 43"></div>
+            
+            <!-- Cuenta 42 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #42" data-detalle="HUESITO PARA NO EMPEZAR DE 0." data-precio="250.000 🇨🇴 / 78 🇺🇸 / 1.300 🇲🇽"><img src="img/foto44.jpg" alt="Foto 44"></div>
+            
+            <!-- Cuenta 43 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #43" data-detalle="SAKURITA PARA EMPEZAR A DARLE CARIÑO." data-precio="3.600.000 🇨🇴 / 1.050 🇺🇸 / 18.400 🇲🇽"><img src="img/foto45.jpg" alt="Foto 45"></div>
+            
+            <!-- Cuenta 44 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #44" data-detalle="GORRO PREORDEN YING DE NIÑA." data-precio="400.000 🇨🇴 / 120 🇺🇸 / 2.100 🇲🇽"><img src="img/foto46.jpg" alt="Foto 46"></div>
+            
+            <!-- Cuenta 45 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #45" data-detalle="CUENTA DISPONIBLE, MAS INFORMACION AL WHATSAPP." data-precio="CONSULTAR 💬"><img src="img/foto47.jpg" alt="Foto 47"></div>
+            
+            <!-- Cuenta 46 -->
+            <div class="card" data-categoria="top" data-titulo="CUENTA SÚPER TOP #46" data-detalle="CUENTA EXCLUSIVA DISPONIBLE, FULL DETALLES POR INTERNO." data-precio="CONSULTAR 💬"><img src="img/foto48.jpg" alt="Foto 48"></div>
+
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE MÉTODOS DE PAGO -->
+    <section id="metodos-pago" class="pago-container">
+        <h2>Métodos de Pago Disponibles 💳</h2>
+        <p class="pago-sub">¡Transacciones rápidas, seguras y con garantía total en Old-School.Gamerx!</p>
+        
+        <div class="grid-pagos">
+            <div class="pago-card">
+                <div class="pago-icono">🇨🇴</div>
+                <h3>Colombia</h3>
+                <p>Nequi / Daviplata / Bancolombia / Efectivo</p>
+            </div>
+            
+            <div class="pago-card">
+                <div class="pago-icono">🇺🇸</div>
+                <h3>Internacional / USA</h3>
+                <p>Binance (USDT) / Zelle / PayPal</p>
+            </div>
+            
+            <div class="pago-card">
+                <div class="pago-icono">🇲🇽</div>
+                <h3>México</h3>
+                <p>Transferencia SPEI / OXXO / Binance</p>
+            </div>
+        </div>
+        
+        <div class="pago-aviso">
+            <p>💡 ¿Usas otro método o tienes dudas? Escríbenos directamente al botón de compra de cualquier cuenta o al WhatsApp para coordinar.</p>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE PREGUNTAS FRECUENTES (FAQ) -->
+    <section id="faq" class="faq-container">
+        <h2>Preguntas Frecuentes ❓</h2>
+        <p class="faq-sub">Todo lo que necesitas saber antes de comprar tu cuenta con nosotros.</p>
+
+        <div class="acordeon-faq">
+            <div class="faq-item">
+                <button class="faq-pregunta">
+                    <span>1. ¿Cómo es el proceso de compra y entrega?</span>
+                    <span class="faq-icono">+</span>
+                </button>
+                <div class="faq-respuesta">
+                    <p>Una vez confirmes tu pago por WhatsApp, te hacemos la entrega inmediata de los datos de acceso (correo y contraseña). Te guiamos paso a paso por llamada o mensaje para que cambies el correo de recuperación, clave y asegures la cuenta al 100% a tu nombre.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-pregunta">
+                    <span>2. ¿Las cuentas tienen garantía de no recuperación?</span>
+                    <span class="faq-icono">+</span>
+                </button>
+                <div class="faq-respuesta">
+                    <p>¡Sí, totalmente! En Old-School.Gamerx todas las cuentas son verificadas antes de publicarse. Ofrecemos garantía de por vida contra recuperaciones, asegurando que tu compra sea 100% segura y libre de riesgos.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-pregunta">
+                    <span>3. ¿Qué vinculo o método de inicio de sesión tienen las cuentas?</span>
+                    <span class="faq-icono">+</span>
+                </button>
+                <div class="faq-respuesta">
+                    <p>Manejamos cuentas vinculadas principalmente a Google o Facebook. En el chat de WhatsApp te especificamos exactamente la vinculación de la cuenta que te interese para realizar la migración completa a tus datos.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-pregunta">
+                    <span>4. ¿Puedo dar una cuenta como parte de pago o hacer un cambio?</span>
+                    <span class="faq-icono">+</span>
+                </button>
+                <div class="faq-respuesta">
+                    <p>Aceptamos cambios únicamente bajo revisión previa. Si tienes una cuenta de tu interés, escríbenos al WhatsApp enviando las fotos o video de tu cuenta para valorarla y decirte si aplica para retoma o cambio.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-pregunta">
+                    <span>5. ¿Cuánto tiempo tarda la entrega después de pagar?</span>
+                    <span class="faq-icono">+</span>
+                </button>
+                <div class="faq-respuesta">
+                    <p>El proceso es casi inmediato. Tan pronto como validemos el comprobante de transferencia, el proceso de entrega y aseguramiento toma de 5 a 15 minutos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VENTANA FLOTANTE (MODAL PARA VER DETALLES) -->
+    <div id="miModal" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar-modal">&times;</span>
+            <img id="modal-img" src="" alt="Cuenta Detalle">
+            <h3 id="modal-titulo">Título</h3>
+            <p id="modal-detalle">Detalle</p>
+            <p id="modal-precio">Precio</p>
+            <a id="modal-btn-whatsapp" href="#" target="_blank" class="btn-comprar">Comprar por WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer id="contacto">
+        <p>&copy; 2026 Old-School.Gamerx. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Script de Funcionalidad -->
+    <script>
+        const seccionInicio = document.getElementById('seccion-inicio');
+        const seccionCatalogo = document.getElementById('catalogo');
+        
+        const linkInicio = document.getElementById('link-inicio');
+        const navInicio = document.getElementById('nav-inicio');
+        const linkCatalogo = document.getElementById('link-catalogo');
+        const btnIrCatalogo = document.getElementById('btn-ir-catalogo');
+        const linkFaq = document.getElementById('link-faq');
+
+        function irAInicio(e) {
+            e.preventDefault();
+            seccionCatalogo.style.display = 'none';
+            seccionInicio.style.display = 'flex';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function irACatalogo(e) {
+            e.preventDefault();
+            seccionInicio.style.display = 'none';
+            seccionCatalogo.style.display = 'block';
+            seccionCatalogo.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        linkInicio.addEventListener('click', irAInicio);
+        navInicio.addEventListener('click', irAInicio);
+        
+        linkCatalogo.addEventListener('click', irACatalogo);
+        btnIrCatalogo.addEventListener('click', irACatalogo);
+
+        linkFaq.addEventListener('click', (e) => {
+            e.preventDefault();
+            seccionInicio.style.display = 'none';
+            seccionCatalogo.style.display = 'block';
+            document.getElementById('faq').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Filtros de categorías
+        const filtros = document.querySelectorAll('.filtro-btn');
+        const tarjetas = document.getElementsByClassName('card');
+
+        filtros.forEach(boton => {
+            boton.addEventListener('click', () => {
+                document.querySelector('.filtro-btn.activo').classList.remove('activo');
+                boton.classList.add('activo');
+                const filtro = boton.getAttribute('data-filtro');
+
+                Array.from(tarjetas).forEach(tarjeta => {
+                    if (filtro === 'todos' || tarjeta.getAttribute('data-categoria') === filtro) {
+                        tarjeta.style.display = 'block';
+                    } else {
+                        tarjeta.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lógica del Modal
+        const modal = document.getElementById('miModal');
+        const spanCerrar = document.querySelector('.cerrar-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalDetalle = document.getElementById('modal-detalle');
+        const modalPrecio = document.getElementById('modal-precio');
+        const modalBtnWp = document.getElementById('modal-btn-whatsapp');
+
+        document.getElementById('contenedor-tarjetas').addEventListener('click', (e) => {
+            const card = e.target.closest('.card');
+            if (!card) return;
+
+            modal.style.display = 'flex';
+            
+            const imgSrc = card.querySelector('img').getAttribute('src');
+            const titulo = card.getAttribute('data-titulo');
+            const detalle = card.getAttribute('data-detalle');
+            const precio = card.getAttribute('data-precio');
+
+            modalImg.src = imgSrc;
+            document.getElementById('modal-titulo').textContent = titulo;
+            modalDetalle.textContent = detalle;
+            modalPrecio.textContent = precio;
+
+            const numeroWp = "573222416889";
+            
+            // Construye automáticamente el enlace web absoluto de la foto en internet
+            const urlImagenAbsoluta = new URL(imgSrc, window.location.href).href;
+
+            // Mensaje optimizado para WhatsApp con el link de la foto incluido
+            const textoMensaje = `¡Hola Old-School! Me interesa la *${titulo}* que cuesta *${precio}*.\n\n📸 Ver foto de la cuenta:\n${urlImagenAbsoluta}\n\n¿Está disponible para concretar la compra?`;
+            
+            modalBtnWp.href = `https://wa.me/${numeroWp}?text=${encodeURIComponent(textoMensaje)}`;
+        });
+
+        spanCerrar.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Lógica Interactiva de Acordeón para el FAQ
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const pregunta = item.querySelector('.faq-pregunta');
+            pregunta.addEventListener('click', () => {
+                const abierto = item.classList.contains('activo');
+                faqItems.forEach(i => i.classList.remove('activo'));
+                if (!abierto) {
+                    item.classList.add('activo');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
