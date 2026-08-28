@@ -338,7 +338,6 @@
 
         // Filtros de categorías
         const filtros = document.querySelectorAll('.filtro-btn');
-        const tarjetas = document.getElementsByClassName('card');
 
         filtros.forEach(boton => {
             boton.addEventListener('click', () => {
@@ -346,7 +345,8 @@
                 boton.classList.add('activo');
                 const filtro = boton.getAttribute('data-filtro');
 
-                Array.from(tarjetas).forEach(tarjeta => {
+                const tarjetasActuales = document.getElementsByClassName('card');
+                Array.from(tarjetasActuales).forEach(tarjeta => {
                     if (filtro === 'todos' || tarjeta.getAttribute('data-categoria') === filtro) {
                         tarjeta.style.display = 'block';
                     } else {
@@ -381,11 +381,7 @@
             modalPrecio.textContent = precio;
 
             const numeroWp = "573222416889";
-            
-            // Construye automáticamente el enlace web absoluto de la foto en internet
             const urlImagenAbsoluta = new URL(imgSrc, window.location.href).href;
-
-            // Mensaje optimizado para WhatsApp con el link de la foto incluido
             const textoMensaje = `¡Hola Old-School! Me interesa la *${titulo}* que cuesta *${precio}*.\n\n📸 Ver foto de la cuenta:\n${urlImagenAbsoluta}\n\n¿Está disponible para concretar la compra?`;
             
             modalBtnWp.href = `https://wa.me/${numeroWp}?text=${encodeURIComponent(textoMensaje)}`;
