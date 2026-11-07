@@ -396,9 +396,9 @@
             document.getElementById('faq').scrollIntoView({ behavior: 'smooth' });
         });
 
-        // Generar números del sorteo (1 al 50) de forma interactiva
+        // Generar números del sorteo (1 al 50) de forma interactiva con el número oficial
         const gridNumeros = document.getElementById('cuadricula-numeros');
-        const numeroWp = "573222416889";
+        const numeroWp = "573103720162";
 
         for (let i = 1; i <= 50; i++) {
             const btn = document.createElement('button');
@@ -431,7 +431,7 @@
             });
         });
 
-        // Lógica del Modal
+        // Lógica del Modal con el número oficial
         const modal = document.getElementById('miModal');
         const spanCerrar = document.querySelector('.cerrar-modal');
         const modalImg = document.getElementById('modal-img');
