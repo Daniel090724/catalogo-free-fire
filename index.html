@@ -13,6 +13,50 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    
+    <style>
+        /* Estilos adicionales para la sección de sorteo */
+        .sorteo-container {
+            padding: 40px 20px;
+            background: #111;
+            text-align: center;
+            border-top: 2px solid #ffaa00;
+            border-bottom: 2px solid #ffaa00;
+            margin: 40px 0;
+        }
+        .sorteo-container h2 {
+            color: #ffaa00;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .sorteo-container p {
+            color: #ccc;
+            margin-bottom: 25px;
+        }
+        .grid-numeros {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+            gap: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .num-btn {
+            background: #222;
+            color: #fff;
+            border: 1px solid #ffaa00;
+            padding: 12px 0;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .num-btn:hover {
+            background: #ffaa00;
+            color: #000;
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
 
@@ -24,6 +68,7 @@
         <nav>
             <a href="#" id="link-inicio" class="activo">Inicio</a>
             <a href="#catalogo" id="link-catalogo">Catálogo</a>
+            <a href="#sorteo" id="link-sorteo">Sorteo 🎲</a>
             <a href="#faq" id="link-faq">Preguntas Frecuentes</a>
         </nav>
     </header>
@@ -49,51 +94,59 @@
             <button class="filtro-btn" data-filtro="veteranas">Veteranas 🔥</button>
         </div>
         
-        <!-- Contenedor optimizado y actualizado -->
+        <!-- Contenedor con las 21 cuentas nuevas -->
         <div class="grid-cuentas" id="contenedor-tarjetas">
-            <div class="card" data-categoria="top" data-titulo="STEAM CON 12 AL MÁXIMO" data-detalle="STEAM CON 12 AL MÁXIMO, CASI 1000 PECHOS, TRIPLE ANGELICAL, FULL ROPA Y EVENTOS 🔥" data-precio="2'550.000 🇨🇴 | 830$ 🇺🇸 | 14000 🇲🇽"><img src="img/foto1.jpg" alt="Foto 1"></div>
-            
-            <div class="card" data-categoria="top" data-titulo="ANGELICALES MORADOS" data-detalle="4 EVOS AL MÁXIMO, ANGELICALES MORADOS PARA NO EMPEZAR DE 0" data-precio="360.000 🇨🇴 | 120$ 🇺🇸 | 2000 🇲🇽"><img src="img/foto4.jpg" alt="Foto 4"></div>
-            
-            <div class="card" data-categoria="top" data-titulo="HERMOSA GAMER Y PIRATAS" data-detalle="HERMOSA GAMER Y PIRATAS 👾🏴‍☠️! QUIÉN LLEVA??? CUERNITOS DORADOS DE NIÑA Y NIÑO, 2 EVOS AL MAX, PASE GAMER Y PIRATAS, CAMISAS DE ORO DESDE LA S2, ERÓICO DE LA S8 EN ADELANTE Y MUCHO MÁS 🔥🔥!" data-precio="900.000 🇨🇴 | 300$ 🇺🇸 | 5.200 🇲🇽"><img src="img/foto7.jpg" alt="Foto 7"></div>
-            
-            <div class="card" data-categoria="top" data-titulo="PIRATAS, STEAM Y GAMER" data-detalle="PIRATAS, STEAM Y GAMER, BUEN ARSENAL DE ARMAS, HEROICO DESDE LA S8 EN ADELANTE 🔥" data-precio="1'350.000 🇨🇴 | 440$ 🇺🇸/🇪🇨 | 7550 🇲🇽"><img src="img/foto11.jpg" alt="Foto 11"></div>
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA EXCLUSIVA 7 PRIMEROS PASES" data-detalle="CUENTITA PARA ALGÚN CLIENTE QUE LE GUSTA LO EXCLUSIVO, 7 PRIMEROS PASES COMPLETOS 🔥 ACEPTO CUENTAS POR PARTE DE PAGO 😼" data-precio="Consultar por WhatsApp"><img src="img/foto1.jpg" alt="Foto 1"></div>
 
-            <div class="card" data-categoria="top" data-titulo="11 AL MÁXIMO" data-detalle="LLEGANDO 11 AL MÁXIMO A BUEN PRECIO!! 🔥💸" data-precio="900.000 🇨🇴 | 295$ 🇺🇸 | 5000 🇲🇽"><img src="img/foto15.jpg" alt="Foto 15"></div>
+            <div class="card" data-categoria="top" data-titulo="SÚPER CUENTA 2 PRIMEROS PASES" data-detalle="LLEVEN ESTA SÚPER CUENTA CON 2 DE LOS PRIMEROS 8 PASES DEL JUEGO, GAMER Y CHOQUE BIÓNICO 👾💥! CASI 800 PECHOS, MIXTA, COLABO BLUELOCK, ANGELICALES ROJOS, 6 EVOS AL MÁX, PRIME 8 Y MUCHO MÁS ❕❕" data-precio="1'250.000 🇨🇴 | 390$ 🇺🇸 | 7.200 🇲🇽"><img src="img/foto2.jpg" alt="Foto 2"></div>
 
-            <div class="card" data-categoria="veteranas" data-titulo="RAGNAROK ACCESIBLE" data-detalle="RAGNAROK ACCESIBLE 🔥 COLAB RAGNAROK CON ENTRADAS, CASI DOS AL MÁXIMO, BUENAS EVOS 🔥" data-precio="620.000 🇨🇴 | 195$ 🇺🇸 | 3300 🇲🇽"><img src="img/foto19.jpg" alt="Foto 19"></div>
+            <div class="card" data-categoria="top" data-titulo="SAKURITA CON 23K DIAMANTES" data-detalle="DISPONIBLE SAKURITA CON MÁS DE 23K DE DIAMANTES, PRIME 8, CHAQUETA ROJA, FULL EVENTOS 🔥" data-precio="4'400.000 🇨🇴 | 1380$ 🇺🇸 | 25800 🇲🇽"><img src="img/foto3.jpg" alt="Foto 3"></div>
 
-            <div class="card" data-categoria="veteranas" data-titulo="RAGNAROK CAMISAS HEROICAS" data-detalle="RAGNAROK CON CAMISAS HEROICAS, PANTERAS, ANTIBOMBAS 🔥" data-precio="900.000 🇨🇴 | 280$ 🇺🇸 | 4850 🇲🇽"><img src="img/foto21.jpg" alt="Foto 21"></div>
+            <div class="card" data-categoria="top" data-titulo="VETERANA ANTIBOMBAS Y SHORT" data-detalle="LLEGANDO VETERANA ANTIBOMBAS, SHORT EXCLUSIVO, PRIME 8, 8 AÑOS MUY TOP EN TODOS LOS SENTIDOS 🔥😎" data-precio="900.000 🇨🇴 | 290$ 🇺🇸 | 5400 🇲🇽"><img src="img/foto4.jpg" alt="Foto 4"></div>
 
-            <div class="card" data-categoria="top" data-titulo="GORRO PREORDEN Y ANTIBOMBAS" data-detalle="GORRO PREORDEN CON ANTIBOMBAS, PRIME 8, SHORT EXCLUSIVOOO 🔥" data-precio="1'200.000 🇨🇴 | 380$ 🇺🇸 | 6600 🇲🇽"><img src="img/foto22.jpg" alt="Foto 22"></div>
+            <div class="card" data-categoria="top" data-titulo="CUENTITA INSANA BLUELOCK" data-detalle="CUENTITA INSANA, COLABORACIÓN BLUELOCK, EVOS Y MÁS 🔥" data-precio="260.000 🇨🇴 | 82$ 🇺🇸 | 1500 🇲🇽"><img src="img/foto5.jpg" alt="Foto 5"></div>
 
-            <div class="card" data-categoria="top" data-titulo="MIXTA 10 AL MÁXIMO" data-detalle="MIXTA 10 AL MÁXIMO FULL EVENTOS, FULL TOP EN ARMAS Y ROPA 🔥" data-precio="1'300.000 🇨🇴 | 410$ 🇺🇸 | 6900 🇲🇽"><img src="img/foto23.jpg" alt="Foto 23"></div>
+            <div class="card" data-categoria="top" data-titulo="HERMOSA CUENTA ROPA INSANA" data-detalle="HERMOSA CUENTA CON ROPA INSANA 🔥! LOS MEJORES ANGELICALES DE JUEGO 💙, CAMISETA DE BRAZIL, CUERNITOS AZULES DE NIÑO Y NIÑA, 450 PECHOS, 7 EVOS A BUEN NIVEL, ENTRADAS Y MUCHO MÁS ❕" data-precio="350.000 🇨🇴 | 110$ 🇺🇸 | 2.000 🇲🇽"><img src="img/foto6.jpg" alt="Foto 6"></div>
 
-            <div class="card" data-categoria="top" data-titulo="DESTRUCTOR Y REYES" data-detalle="DESTRUCTOR, REYES CON CHAQUETA BETA, SÚPER TOP 🔥" data-precio="2'000.000 🇨🇴 | 650$ 🇺🇸 | 11000 🇲🇽"><img src="img/foto24.jpg" alt="Foto 24"></div>
+            <div class="card" data-categoria="veteranas" data-titulo="BEBÉ PARA NO EMPEZAR DE 0" data-detalle="HERMOSA BEBÉ PARA NO EMPEZAR DE 0 ❌ CUERNITOS AZULES, ANGELICALES AMARILLOS DE NIÑO Y NIÑA, 1 EVO AL 5, SACO PUMA Y MUCHO MÁS ❗️" data-precio="190.000 🇨🇴 | 65$ 🇺🇸 | 1.100 🇲🇽"><img src="img/foto7.jpg" alt="Foto 7"></div>
 
-            <div class="card" data-categoria="top" data-titulo="STEAM CAMISA HEROICO" data-detalle="STEAM CON CAMISA HEROICO SÚPER TOP 🔥. HEROICO S4, S7 🔥🦅" data-precio="2'700.000 🇨🇴 | 850$ 🇺🇸 | 14.500 🇲🇽"><img src="img/foto25.jpg" alt="Foto 25"></div>
+            <div class="card" data-categoria="top" data-titulo="HIPHOP SÚPER TOP" data-detalle="DISPONIBLE HIPHOP SÚPER TOP, GAMER, INCUBADORAS CARAS, PRIME 8, 5 CRIMINALES, 5 ANGELICALES, CHOQUE BIÓNICO Y ANTIBOMBAS 🔥" data-precio="Consultar por WhatsApp"><img src="img/foto8.jpg" alt="Foto 8"></div>
 
-            <div class="card" data-categoria="veteranas" data-titulo="DESTRUCTOR INCOMPLETO" data-detalle="DESTRUCTOR INCOMPLETO, ANTIBOMBAS Y CHOQUE BIONICO" data-precio="390.000 🇨🇴 | 125$ 🇺🇸 | 2200 🇲🇽"><img src="img/foto26.jpg" alt="Foto 26"></div>
+            <div class="card" data-categoria="veteranas" data-titulo="MOVIMIENTO DEL MAL SEMIVETERANA" data-detalle="MOVIMIENTO DEL MAL, SEMIVETERANA 🔥😎" data-precio="190.000 🇨🇴 | 60$ 🇺🇸"><img src="img/foto9.jpg" alt="Foto 9"></div>
 
-            <div class="card" data-categoria="top" data-titulo="10 AL MÁXIMO PRIME 8" data-detalle="10 AL MÁXIMO, PRIME 8 TRAJE 10K DE DIAMANTES, FULL ARMAS" data-precio="900.000 🇨🇴 | 300$ 🇺🇸 | 5100 🇲🇽"><img src="img/foto27.jpg" alt="Foto 27"></div>
+            <div class="card" data-categoria="top" data-titulo="REYES CON PARED EXCLUSIVA" data-detalle="DISPONIBLE REYES CON LA PARED MÁS EXCLUSIVA DEL JUEGO, ANTIBOMBAS, MOVIMIENTO DEL MAL, CERCA DE PRIME 8 😎🔥" data-precio="Consultar por WhatsApp"><img src="img/foto10.jpg" alt="Foto 10"></div>
 
-            <div class="card" data-categoria="veteranas" data-titulo="RAGNAROK MOVIMIENTO DEL MAL" data-detalle="RAGNAROK CON MOVIMIENTO DEL MAL 🔥" data-precio="650.000 🇨🇴 | 220$ 🇺🇸 | 3800 🇲🇽"><img src="img/foto28.jpg" alt="Foto 28"></div>
+            <div class="card" data-categoria="top" data-titulo="MIXTA CON POSTURA PRIME 7" data-detalle="MIXTA CON POSTURA, BUENAS INCUBADORAS, CUERNOS DORADOS, PRIME 7 🔥😎" data-precio="350.000 🇨🇴 | 115$ 🇺🇸 | 2150 🇲🇽"><img src="img/foto11.jpg" alt="Foto 11"></div>
 
-            <div class="card" data-categoria="top" data-titulo="STEAM FULL PREORDENES" data-detalle="STEAM CON FULL PREORDENES, PRIME 8 MUY TOPP, PARED BLANCA, PARED ROJA, ANTIBOMBAS CON PREORDEN, GORRITO HIP2.0 🔥😮‍💨" data-precio="2'400.000 🇨🇴 | 765$ 🇺🇸 | 13.000 🇲🇽"><img src="img/foto29.jpg" alt="Foto 29"></div>
+            <div class="card" data-categoria="top" data-titulo="ANGELICALES UNA AL MÁXIMO" data-detalle="ANGELICALES CON UNA AL MÁXIMO 🔥" data-precio="270.000 🇨🇴 | 88$ 🇺🇸 | 1600 🇲🇽"><img src="img/foto12.jpg" alt="Foto 12"></div>
 
-            <div class="card" data-categoria="top" data-titulo="8 AÑOS ID 8 DÍGITOS" data-detalle="8 AÑOS, ID DE 8 DÍGITOS, UNA AL MÁXIMO, BUENAS EVOS 🔥" data-precio="270.000 🇨🇴 | 85$ 🇺🇸 | 1500 🇲🇽"><img src="img/foto35.jpg" alt="Foto 35"></div>
+            <div class="card" data-categoria="top" data-titulo="PRIME 8 SEMIVETERANA" data-detalle="PRIME 8 SEMIVETERANA, HEROICO S11, CASCO HEROICO, 9 AL MÁXIMO, POSTURAS, 14 ENTRADAS, FULL COLABORACIONES 🔥" data-precio="1'100.000 🇨🇴 | 350$ 🇺🇸 | 6500 🇲🇽"><img src="img/foto13.jpg" alt="Foto 13"></div>
 
-            <div class="card" data-categoria="top" data-titulo="PRIME 8 MIXTA" data-detalle="DISPONIBLE PRIME 8 MIXTA MELAAAA, +600 PECHOS, 20 EVOLUTIVAS, FULL INCOBADORAS CARAS, FULL EVENTOS, DOBLE POSTURA" data-precio="750.000 🇨🇴 | 240$ 🇺🇸 | 4100 🇲🇽"><img src="img/foto37.jpg" alt="Foto 37"></div>
+            <div class="card" data-categoria="veteranas" data-titulo="STEAM PASE DRAGONES" data-detalle="STEAM ABANDONADA CON PASE DRAGONES 🔥" data-precio="630.000 🇨🇴 | 200$ 🇺🇸 | 3700 🇲🇽"><img src="img/foto14.jpg" alt="Foto 14"></div>
 
-            <div class="card" data-categoria="top" data-titulo="6 AL MÁXIMO PRIME 8" data-detalle="DISPONIBLE 6 AL MÁXIMO, MUYYY CERCA DE PRIME 8, TRAJE DE 10K 💎, CUERNITOS DORADOS DE NIÑAAAA CON POSTURAS 🔥" data-precio="600.000 🇨🇴 | 200$ 🇺🇸 | 3400 🇲🇽"><img src="img/foto50.jpg" alt="Foto 50"></div>
+            <div class="card" data-categoria="veteranas" data-titulo="HUESITO BARBA DE VIEJO" data-detalle="HUESITO CON BARBA DE VIEJO, 3 EVOLUTIVAS AL NIVEL 6 🔥😎" data-precio="300.000 🇨🇴 | 100$ 🇺🇸 | 1800 🇲🇽"><img src="img/foto15.jpg" alt="Foto 15"></div>
 
-            <div class="card" data-categoria="top" data-titulo="CHAQUETA BETA Y ANTIBOMBAS" data-detalle="DISPONIBLE CHAQUETA BETA, ANTIBOMBAS; CASI 6 +AL MÁXIMO, CERCA A PRIME 8, +700 PECHOS" data-precio="1'250.000 🇨🇴 | 395$ 🇺🇸 | 6800 🇲🇽"><img src="img/foto40.jpg" alt="Foto 40"></div>
+            <div class="card" data-categoria="top" data-titulo="MIXTA 10 AL MÁXIMO PRIME 8" data-detalle="MIXTA 10 AL MÁXIMO, PRIME 8 FULL EVENTOS Y FULL INCUBADORAS CARAS 🔥😎" data-precio="1'300.000 🇨🇴 | 415$ 🇺🇸 | 7700 🇲🇽"><img src="img/foto16.jpg" alt="Foto 16"></div>
 
-            <div class="card" data-categoria="top" data-titulo="PASES SEMIVETERANOS Y NIVEL 80" data-detalle="PASES SEMIVETERANOS, PARED BLANCA, CASCO HEROICO, PRIME 8, NIVEL 80, MOVIMIENTO DEL MAL, PANTERAS 🔥" data-precio="1'250.000 🇨🇴 | 395$ 🇺🇸 | 6800 🇲🇽"><img src="img/foto56.jpg" alt="Foto 56"></div>
+            <div class="card" data-categoria="top" data-titulo="DESTRUCTOR CHAQUETA BETA" data-detalle="DESTRUCTOR, REYES CON CHAQUETA BETA, SÚPER TOP 🔥" data-precio="2'000.000 🇨🇴 | 650$ 🇺🇸 | 11000 🇲🇽"><img src="img/foto17.jpg" alt="Foto 17"></div>
 
-            <div class="card" data-categoria="top" data-titulo="PRIME 8 15 EVOLUTIVAS" data-detalle="DISPONIBLE PRIME 8, CON FULL COLABORACIONES, POSTURA, PASES SEMIVETERANOS, 15 EVOLUTIVAS, FULL TOP 🔥" data-precio="630.000 🇨🇴 | 200$ 🇺🇸 | 3450 🇲🇽"><img src="img/foto57.jpg" alt="Foto 57"></div>
+            <div class="card" data-categoria="top" data-titulo="STEAM CAMISA HEROICO" data-detalle="STEAM CON CAMISA HEROICO SÚPER TOP 🔥. HEROICO S4, S7 🔥🦅" data-precio="2'700.000 🇨🇴 | 850$ 🇺🇸 | 14.500 🇲🇽"><img src="img/foto18.jpg" alt="Foto 18"></div>
 
-            <div class="card" data-categoria="top" data-titulo="ANTIBOMBAS Y 8 AÑOS" data-detalle="ANTIBOMBAS, CASCO HEROICO FULL EVOLUTIVAS, +800 PECHOS, 8 AÑOS FULL TOP EN TODOS LOS ASPECTOS 🔥" data-precio="1'350.000 🇨🇴 | 430$ 🇺🇸 | 7400 🇲🇽"><img src="img/foto58.jpg" alt="Foto 58"></div>
+            <div class="card" data-categoria="veteranas" data-titulo="VETERANA RAGNAROK TOP" data-detalle="LLEGANDO VETERANA CON COLABORACIÓN RAGNAROK, MOVIMIENTO DEL MAL, CHOQUE BIÓNICO, CASCO HEROICO, HEROICO DESDE LA S8, MUY TOP" data-precio="1'650.000 🇨🇴 | 520$ 🇺🇸 | 9600 🇲🇽"><img src="img/foto19.jpg" alt="Foto 19"></div>
+
+            <div class="card" data-categoria="top" data-titulo="CHAKALITA FULL TOP PRIME 8" data-detalle="DISPONIBLE CHAKALITA FULL TOP, PRIME 8 TRIPLE ANGELICAL, FULL INCUBADORAS CARAS Y FULL EVENTOS, CASI 8 AL MÁXIMO, CRIMINALES Y MUCHO MÁS 🔥🦅" data-precio="1'450.000 🇨🇴 | 470$ 🇺🇸 | 8700 🇲🇽"><img src="img/foto20.jpg" alt="Foto 20"></div>
+
+            <div class="card" data-categoria="top" data-titulo="GAMER INSANA PRIME 8" data-detalle="LLEGANDO ESTÁ GAMER INSANA PRIME 8 CON PARED BLANCA DE PREORDEN, 700 PECHOS, INCUBADORAS CARAS, POSTURAS, ANTIBOMBAS MUY TOP 🔥🫡" data-precio="1'350.000 🇨🇴 | 440$ 🇺🇸 | 8100 🇲🇽"><img src="img/foto21.jpg" alt="Foto 21"></div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE SORTEO / RIFA INTERACTIVA -->
+    <section id="sorteo" class="sorteo-container">
+        <h2>¡Gran Sorteo / Rifa de Cuenta Old-School! 🎲🔥</h2>
+        <p>Elige tu número de la suerte (del 1 al 50) y escríbenos al WhatsApp para apartarlo de inmediato.</p>
+        
+        <div class="grid-numeros" id="cuadricula-numeros">
+            <!-- Los números se generan dinámicamente con JavaScript -->
         </div>
     </section>
 
@@ -211,6 +264,7 @@
         const navInicio = document.getElementById('nav-inicio');
         const linkCatalogo = document.getElementById('link-catalogo');
         const btnIrCatalogo = document.getElementById('btn-ir-catalogo');
+        const linkSorteo = document.getElementById('link-sorteo');
         const linkFaq = document.getElementById('link-faq');
 
         function irAInicio(e) {
@@ -233,12 +287,34 @@
         linkCatalogo.addEventListener('click', irACatalogo);
         btnIrCatalogo.addEventListener('click', irACatalogo);
 
+        linkSorteo.addEventListener('click', (e) => {
+            e.preventDefault();
+            seccionInicio.style.display = 'none';
+            seccionCatalogo.style.display = 'block';
+            document.getElementById('sorteo').scrollIntoView({ behavior: 'smooth' });
+        });
+
         linkFaq.addEventListener('click', (e) => {
             e.preventDefault();
             seccionInicio.style.display = 'none';
             seccionCatalogo.style.display = 'block';
             document.getElementById('faq').scrollIntoView({ behavior: 'smooth' });
         });
+
+        // Generar números del sorteo (1 al 50) de forma automática
+        const gridNumeros = document.getElementById('cuadricula-numeros');
+        const numeroWp = "573222416889";
+
+        for (let i = 1; i <= 50; i++) {
+            const btn = document.createElement('button');
+            btn.className = 'num-btn';
+            btn.textContent = i;
+            btn.addEventListener('click', () => {
+                const mensaje = `¡Hola Old-School! Quiero apartar el *número ${i}* para el sorteo de la cuenta 🎲🔥. ¿Cómo hago el pago?`;
+                window.open(`https://wa.me/${numeroWp}?text=${encodeURIComponent(mensaje)}`, '_blank');
+            });
+            gridNumeros.appendChild(btn);
+        }
 
         // Filtros de categorías
         const filtros = document.querySelectorAll('.filtro-btn');
@@ -284,7 +360,6 @@
             modalDetalle.textContent = detalle;
             modalPrecio.textContent = precio;
 
-            const numeroWp = "573222416889";
             const urlImagenAbsoluta = new URL(imgSrc, window.location.href).href;
             const textoMensaje = `¡Hola Old-School! Me interesa la *${titulo}* que cuesta *${precio}*.\n\n📸 Ver foto de la cuenta:\n${urlImagenAbsoluta}\n\n¿Está disponible para concretar la compra?`;
             
@@ -309,7 +384,7 @@
             pregunta.addEventListener('click', () => {
                 const abierto = item.classList.contains('activo');
                 faqItems.forEach(i => i.classList.remove('activo'));
-                if (!abierto) {
+                if (-!abierto) {
                     item.classList.add('activo');
                 }
             });
