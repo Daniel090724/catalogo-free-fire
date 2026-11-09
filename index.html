@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Old-School.Gamerx - Catálogo & Sorteo de Sobres</title>
+    <title>Old-School.Gamerx - Catálogo & Sorteo</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -15,6 +15,19 @@
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
     <style>
+        /* Corrección para centrar perfectamente el texto de bienvenida */
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .hero-contenido {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
         /* Estilos generales para manejo de vistas / pestañas */
         .vista-seccion {
             display: none;
@@ -23,7 +36,7 @@
             display: block;
         }
 
-        /* Estilos Pro para la sección de Sobres Misteriosos con Logo */
+        /* Estilos Pro para la sección de Sobres Misteriosos */
         .sorteo-section {
             padding: 50px 20px;
             background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
@@ -68,58 +81,106 @@
             box-shadow: 0 4px 10px rgba(255, 170, 0, 0.4);
         }
 
+        /* Layout con la foto de la cuenta del sorteo + Cuadrícula de Sobres */
+        .sorteo-contenido-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .sorteo-img-card {
+            flex: 1 1 350px;
+            max-width: 400px;
+            background: #111;
+            border: 2px solid #ffaa00;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
+        }
+
+        .sorteo-img-card img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .sorteo-img-info {
+            padding: 15px;
+            background: #181818;
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .sorteo-grid-container {
+            flex: 1 1 450px;
+            max-width: 600px;
+            background: #111;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+
+        .sorteo-grid-container h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
         /* Cuadrícula de Sobres Misteriosos */
         .grid-sobres {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+            gap: 12px;
+            max-height: 480px;
+            overflow-y: auto;
+            padding-right: 5px;
         }
 
         .sobre-card {
             background: #151515;
             border: 2px solid #ffaa00;
-            border-radius: 12px;
-            padding: 15px;
+            border-radius: 10px;
+            padding: 10px 5px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-            position: relative;
-            overflow: hidden;
         }
 
         .sobre-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             background: #222;
-            box-shadow: 0 8px 25px rgba(255, 170, 0, 0.3);
+            box-shadow: 0 6px 20px rgba(255, 170, 0, 0.3);
         }
 
         .sobre-logo {
-            width: 60px;
-            height: 60px;
+            width: 40px;
+            height: 40px;
             object-fit: contain;
-            margin: 10px auto;
+            margin: 5px auto;
             display: block;
-            filter: drop-shadow(0 0 5px rgba(255,170,0,0.5));
+            filter: drop-shadow(0 0 4px rgba(255,170,0,0.5));
         }
 
         .sobre-numero {
             color: #ffaa00;
             font-weight: 700;
-            font-size: 1.1rem;
-            margin-top: 5px;
+            font-size: 0.95rem;
+            margin-top: 3px;
         }
 
         .sobre-estado {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: #aaa;
-            margin-top: 5px;
+            margin-top: 3px;
             background: #222;
-            padding: 3px 6px;
-            border-radius: 4px;
+            padding: 2px 4px;
+            border-radius: 3px;
         }
     </style>
 </head>
@@ -138,7 +199,7 @@
         </nav>
     </header>
 
-    <!-- VISTA 1: SECCIÓN DE BIENVENIDA / INICIO -->
+    <!-- VISTA 1: SECCIÓN DE BIENVENIDA / INICIO (TÍTULO CENTRADO) -->
     <section id="seccion-inicio" class="vista-seccion activa hero">
         <div class="hero-overlay"></div>
         <div class="hero-contenido">
@@ -205,16 +266,28 @@
         </div>
     </section>
 
-    <!-- VISTA 3: SECCIÓN DE SORTEO DE SOBRES MISTERIOSOS -->
+    <!-- VISTA 3: SECCIÓN DE SORTEO DE SOBRES MISTERIOSOS CON LA FOTO DE LA CUENTA -->
     <section id="sorteo" class="vista-seccion sorteo-section">
         <div class="sorteo-banner">
             <h2>🃏 Sorteo Oficial: Sobres Misteriosos Old-School ⚡</h2>
-            <p>¡Elige tu sobre sorpresa! Todos los sobres contienen premios asegurados (cuentas, diamantes o beneficios exclusivos). Los sobres se abrirán oficialmente el <strong>24 de diciembre</strong>. ¡Selecciona tu sobre y apártalo por WhatsApp antes de que te lo ganen!</p>
+            <p>¡Participa por esta increíble cuenta en sorteo! Todos los sobres contienen premios asegurados. Los sobres se abrirán oficialmente el <strong>24 de diciembre</strong>. ¡Selecciona tu sobre y apártalo por WhatsApp!</p>
             <div class="sorteo-precio-ticket">🔒 Sobres Sellados hasta el 24 de Diciembre</div>
         </div>
 
-        <div class="grid-sobres" id="cuadricula-sobres">
-            <!-- Los sobres del 1 al 50 con tu logo se generan aquí automáticamente -->
+        <div class="sorteo-contenido-flex">
+            <!-- Foto de la cuenta que se sortea -->
+            <div class="sorteo-img-card">
+                <img src="img/sorteo-cuenta.jpg" alt="Cuenta en Sorteo">
+                <div class="sorteo-img-info">🔥 ¡Cuenta en Sorteo Oficial! 🔥</div>
+            </div>
+
+            <!-- Cuadrícula con los Sobres con tu Logo -->
+            <div class="sorteo-grid-container">
+                <h3>👇 Elige tu sobre misterioso:</h3>
+                <div class="grid-sobres" id="cuadricula-sobres">
+                    <!-- Los sobres del 1 al 50 con el logo se generan aquí -->
+                </div>
+            </div>
         </div>
     </section>
 
@@ -323,9 +396,8 @@
         <p>&copy; 2026 Old-School.Gamerx. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Script de Funcionalidad y Navegación por Pestañas -->
+    <!-- Script de Funcionalidad y Pestañas -->
     <script>
-        // Lógica de Pestañas
         const vistas = document.querySelectorAll('.vista-seccion');
         const linkInicio = document.getElementById('link-inicio');
         const navInicio = document.getElementById('nav-inicio');
@@ -350,14 +422,13 @@
 
         linkFaq.addEventListener('click', (e) => { 
             e.preventDefault(); 
-            // Si quieres que el FAQ se muestre bajo el catálogo o en su propia vista, lo llevamos al catálogo
             cambiarVista('catalogo');
             setTimeout(() => {
                 document.getElementById('faq').scrollIntoView({ behavior: 'smooth' });
             }, 100);
         });
 
-        // Generar Sobres Misteriosos Interactivos con tu Logo (1 al 50)
+        // Generar los 50 Sobres Misteriosos Interactivos con el Logo de la Empresa
         const gridSobres = document.getElementById('cuadricula-sobres');
         const numeroWp = "573103720162";
 
@@ -366,8 +437,8 @@
             sobre.className = 'sobre-card';
             sobre.innerHTML = `
                 <img src="img/logo.png" alt="Logo Old School" class="sobre-logo">
-                <div class="sobre-numero">Sobre #${i}</div>
-                <div class="sobre-estado">🔒 Sellado (24 Dic)</div>
+                <div class="sobre-numero">#${i}</div>
+                <div class="sobre-estado">🔒 Sellado</div>
             `;
             sobre.addEventListener('click', () => {
                 const mensaje = `¡Hola Old-School! 🃏 Me interesa apartar el *Sobre Misterioso #${i}* para el sorteo del 24 de diciembre. ¿Cómo hago el pago para asegurarlo?`;
@@ -396,7 +467,7 @@
             });
         });
 
-        // Lógica del Modal de Cuentas
+        // Lógica del Modal
         const modal = document.getElementById('miModal');
         const spanCerrar = document.querySelector('.cerrar-modal');
         const modalImg = document.getElementById('modal-img');
@@ -421,7 +492,7 @@
             modalPrecio.textContent = precio;
 
             const urlImagenAbsoluta = new URL(imgSrc, window.location.href).href;
-            const textoMensaje = `¡Hola Old-School! Me interesa la *${titulo}* que cuesta *${precio}*.\n\n📸 Ver foto de la cuenta:\n${urlImagenAbsolual || urlImagenAbsoluta}\n\n¿Está disponible para concretar la compra?`;
+            const textoMensaje = `¡Hola Old-School! Me interesa la *${titulo}* que cuesta *${precio}*.\n\n📸 Ver foto de la cuenta:\n${urlImagenAbsoluta}\n\n¿Está disponible para concretar la compra?`;
             
             modalBtnWp.href = `https://wa.me/${numeroWp}?text=${encodeURIComponent(textoMensaje)}`;
         });
