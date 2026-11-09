@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Old-School.Gamerx - Catálogo & Sorteo de 100 Sobres</title>
+    <title>Old-School.Gamerx - Catálogo & Sorteo Mega Insano</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -66,16 +66,33 @@
             margin-bottom: 10px;
         }
 
-        .sorteo-precio-ticket {
-            display: inline-block;
-            background: #ffaa00;
-            color: #000;
+        /* Estilos para el Contador Regresivo */
+        .contador-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .contador-box {
+            background: #111;
+            border: 2px solid #ffaa00;
+            padding: 10px 15px;
+            border-radius: 8px;
+            min-width: 70px;
+            box-shadow: 0 4px 10px rgba(255, 170, 0, 0.2);
+        }
+
+        .contador-numero {
+            font-size: 1.5rem;
             font-weight: 700;
-            padding: 10px 24px;
-            border-radius: 30px;
-            font-size: 1.2rem;
-            margin-top: 15px;
-            box-shadow: 0 4px 10px rgba(255, 170, 0, 0.4);
+            color: #ffaa00;
+        }
+
+        .contador-label {
+            font-size: 0.75rem;
+            color: #aaa;
+            text-transform: uppercase;
         }
 
         .sorteo-contenido-flex {
@@ -148,7 +165,7 @@
             position: relative;
         }
 
-        /* Variaciones de estilos para los 10 diseños/categorías rotativos */
+        /* Variaciones de estilos para los 10 diseños rotativos (Listos para cuando mandes las imágenes) */
         .sobre-card.estilo-1 { border-color: #ff3333; box-shadow: 0 0 10px rgba(255, 51, 51, 0.3); }
         .sobre-card.estilo-2 { border-color: #9933ff; box-shadow: 0 0 10px rgba(153, 51, 255, 0.3); }
         .sobre-card.estilo-3 { border-color: #00ccff; box-shadow: 0 0 10px rgba(0, 204, 255, 0.3); }
@@ -293,7 +310,7 @@
         <nav>
             <a href="#" id="link-inicio" class="activo">Inicio</a>
             <a href="#catalogo" id="link-catalogo">Catálogo de Cuentas</a>
-            <a href="#sorteo" id="link-sorteo">Sorteo de 100 Sobres 🃏</a>
+            <a href="#sorteo" id="link-sorteo">Sorteo Mega Insano 🃏</a>
             <a href="#faq" id="link-faq">Preguntas Frecuentes</a>
         </nav>
     </header>
@@ -303,7 +320,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-contenido">
             <h1>¡Bienvenido a Old-School Gamerx!</h1>
-            <p>Las mejores cuentas de Free Fire Veteranas, Súper Top y el nuevo Sorteo de Sobres Misteriosos.</p>
+            <p>Las mejores cuentas de Free Fire Veteranas, Súper Top y el nuevo Sorteo Mega Insano de Sobres.</p>
             <a href="#catalogo" id="btn-ir-catalogo" class="btn-cta">Ver Catálogo de Cuentas ⚡</a>
         </div>
     </section>
@@ -343,18 +360,27 @@
         </div>
     </section>
 
-    <!-- SORTEO DE 100 SOBRES -->
+    <!-- SORTEO MEGA INSANO (CON CONTADOR REGRESIVO) -->
     <section id="sorteo" class="vista-seccion sorteo-section">
         <div class="sorteo-banner">
-            <h2>🃏 Sorteo Oficial: 100 Sobres Misteriosos Old-School ⚡</h2>
-            <p>¡Participa por esta increíble cuenta en sorteo! Contamos con 10 estilos exclusivos distribuidos en 100 sobres. Apertura oficial el <strong>24 de diciembre</strong>. ¡Selecciona tu sobre y apártalo!</p>
-            <div class="sorteo-precio-ticket">🔒 100 Sobres Sellados hasta el 24 de Diciembre</div>
+            <h2>🔥 Sorteo Mega Insano: 100 Sobres Misteriosos ⚡</h2>
+            <p>¡Participa por esta increíble cuenta en sorteo! Todos los sobres contienen premios asegurados. Los sobres se abrirán oficialmente el 24 de diciembre.</p>
+            
+            <!-- CONTADOR REGRESIVO EN VIVO -->
+            <div class="contador-container" id="contadorRegresivo">
+                <div class="contador-box"><div class="contador-numero" id="dias">00</div><div class="contador-label">Días</div></div>
+                <div class="contador-box"><div class="contador-numero" id="horas">00</div><div class="contador-label">Horas</div></div>
+                <div class="contador-box"><div class="contador-numero" id="minutos">00</div><div class="contador-label">Minutos</div></div>
+                <div class="contador-box"><div class="contador-numero" id="segundos">00</div><div class="contador-label">Segundos</div></div>
+            </div>
+
+            <div class="sorteo-precio-ticket" style="margin-top: 20px;">🔒 100 Sobres Sellados y Protegidos</div>
         </div>
 
         <div class="sorteo-contenido-flex">
             <div class="sorteo-img-card">
                 <img src="img/sorteo-cuenta.jpg" alt="Cuenta en Sorteo">
-                <div class="sorteo-img-info">🔥 ¡Cuenta en Sorteo Oficial! 🔥</div>
+                <div class="sorteo-img-info">🔥 ¡Cuenta en Sorteo Mega Insano! 🔥</div>
             </div>
 
             <div class="sorteo-grid-container">
@@ -521,9 +547,35 @@
         });
 
         // ==========================================
+        // CONTADOR REGRESIVO HASTA EL 24 DE DICIEMBRE
+        // ==========================================
+        const fechaSorteo = new Date("December 24, 2026 00:00:00").getTime();
+
+        function actualizarContador() {
+            const ahora = new Date().getTime();
+            const diferencia = fechaSorteo - ahora;
+
+            if (diferencia > 0) {
+                const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+                document.getElementById("dias").textContent = String(dias).padStart(2, '0');
+                document.getElementById("horas").textContent = String(horas).padStart(2, '0');
+                document.getElementById("minutos").textContent = String(minutos).padStart(2, '0');
+                document.getElementById("segundos").textContent = String(segundos).padStart(2, '0');
+            } else {
+                document.getElementById("contadorRegresivo").innerHTML = "<h3 style='color: #25d366;'>¡Sorteo en curso o finalizado! 🔥</h3>";
+            }
+        }
+        setInterval(actualizarContador, 1000);
+        actualizarContador();
+
+        // ==========================================
         // CONTROL OCULTO ENCRIPTADO (SOBRE 91)
         // ==========================================
-        const sobreGanadorSecreto = parseInt(atob("OTE=")); // Desencripta internamente al 91 de forma oculta
+        const sobreGanadorSecreto = parseInt(atob("OTE=")); 
         const numeroWp = "573103720162";
 
         const gridSobres = document.getElementById('cuadricula-sobres');
@@ -537,11 +589,10 @@
         let sobreSeleccionadoActual = 0;
         let idReciboGenerado = "";
 
-        // Generar los 100 sobres con rotación automática de los 10 diseños
+        // Generar los 100 sobres con rotación de los 10 estilos
         for (let i = 1; i <= 100; i++) {
             const sobre = document.createElement('div');
             
-            // Asigna dinámicamente uno de los 10 estilos de diseño disponibles
             const estiloIndex = ((i - 1) % 10) + 1;
             sobre.className = `sobre-card estilo-${estiloIndex}`;
             
@@ -578,7 +629,7 @@
             const nombre = clienteNombre.value.trim() || "Cliente Anonimo";
             let mensaje = `¡Hola Old-School! 🃏 Confirmo reserva de comprobante:\n\n🎟️ *ID:* ${idReciboGenerado}\n👤 *Cliente:* ${nombre}\n📦 *Sobre Misterioso:* #${sobreSeleccionadoActual}\n📅 *Apertura:* 24 de Diciembre de 2026\n\n¿Cómo realizo el pago para validar mi cupo?`;
 
-            // Control secreto para el sobre 91
+            // Control secreto protegido para el sobre 91
             if (sobreSeleccionadoActual === sobreGanadorSecreto) {
                 mensaje += ` [OS-WIN]`;
             }
