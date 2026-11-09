@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Old-School.Gamerx - Catálogo & Sorteo</title>
+    <title>Old-School.Gamerx - Catálogo & Sorteo de 100 Sobres</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -148,18 +148,17 @@
             position: relative;
         }
 
-        .sobre-card.legendario {
-            border-color: #ff3333;
-            box-shadow: 0 0 12px rgba(255, 51, 51, 0.4);
-        }
-        .sobre-card.epico {
-            border-color: #9933ff;
-            box-shadow: 0 0 12px rgba(153, 51, 255, 0.4);
-        }
-        .sobre-card.veterano {
-            border-color: #00ccff;
-            box-shadow: 0 0 12px rgba(0, 204, 255, 0.4);
-        }
+        /* Variaciones de estilos para los 10 diseños/categorías rotativos */
+        .sobre-card.estilo-1 { border-color: #ff3333; box-shadow: 0 0 10px rgba(255, 51, 51, 0.3); }
+        .sobre-card.estilo-2 { border-color: #9933ff; box-shadow: 0 0 10px rgba(153, 51, 255, 0.3); }
+        .sobre-card.estilo-3 { border-color: #00ccff; box-shadow: 0 0 10px rgba(0, 204, 255, 0.3); }
+        .sobre-card.estilo-4 { border-color: #ff9900; box-shadow: 0 0 10px rgba(255, 153, 0, 0.3); }
+        .sobre-card.estilo-5 { border-color: #33cc33; box-shadow: 0 0 10px rgba(51, 204, 51, 0.3); }
+        .sobre-card.estilo-6 { border-color: #ff00ff; box-shadow: 0 0 10px rgba(255, 0, 255, 0.3); }
+        .sobre-card.estilo-7 { border-color: #ffff33; box-shadow: 0 0 10px rgba(255, 255, 51, 0.3); }
+        .sobre-card.estilo-8 { border-color: #00ffff; box-shadow: 0 0 10px rgba(0, 255, 255, 0.3); }
+        .sobre-card.estilo-9 { border-color: #ff6666; box-shadow: 0 0 10px rgba(255, 102, 102, 0.3); }
+        .sobre-card.estilo-10 { border-color: #cc66ff; box-shadow: 0 0 10px rgba(204, 102, 255, 0.3); }
 
         .sobre-card:hover {
             transform: translateY(-5px) scale(1.05);
@@ -202,7 +201,7 @@
             border-radius: 3px;
         }
 
-        /* Estilos para el Comprobante Digital Modal */
+        /* Comprobante Digital Modal */
         .modal-recibo {
             display: none;
             position: fixed;
@@ -294,7 +293,7 @@
         <nav>
             <a href="#" id="link-inicio" class="activo">Inicio</a>
             <a href="#catalogo" id="link-catalogo">Catálogo de Cuentas</a>
-            <a href="#sorteo" id="link-sorteo">Sorteo de Sobres 🃏</a>
+            <a href="#sorteo" id="link-sorteo">Sorteo de 100 Sobres 🃏</a>
             <a href="#faq" id="link-faq">Preguntas Frecuentes</a>
         </nav>
     </header>
@@ -344,12 +343,12 @@
         </div>
     </section>
 
-    <!-- SORTEO DE SOBRES -->
+    <!-- SORTEO DE 100 SOBRES -->
     <section id="sorteo" class="vista-seccion sorteo-section">
         <div class="sorteo-banner">
-            <h2>🃏 Sorteo Oficial: Sobres Misteriosos Old-School ⚡</h2>
-            <p>¡Participa por esta increíble cuenta en sorteo! Todos los sobres contienen premios asegurados. Los sobres se abrirán oficialmente el <strong>24 de diciembre</strong>. ¡Selecciona tu sobre y apártalo!</p>
-            <div class="sorteo-precio-ticket">🔒 Sobres Sellados hasta el 24 de Diciembre</div>
+            <h2>🃏 Sorteo Oficial: 100 Sobres Misteriosos Old-School ⚡</h2>
+            <p>¡Participa por esta increíble cuenta en sorteo! Contamos con 10 estilos exclusivos distribuidos en 100 sobres. Apertura oficial el <strong>24 de diciembre</strong>. ¡Selecciona tu sobre y apártalo!</p>
+            <div class="sorteo-precio-ticket">🔒 100 Sobres Sellados hasta el 24 de Diciembre</div>
         </div>
 
         <div class="sorteo-contenido-flex">
@@ -359,7 +358,7 @@
             </div>
 
             <div class="sorteo-grid-container">
-                <h3>👇 Elige tu sobre misterioso:</h3>
+                <h3>👇 Elige tu sobre (1 al 100):</h3>
                 <div class="grid-sobres" id="cuadricula-sobres">
                 </div>
             </div>
@@ -524,11 +523,9 @@
         // ==========================================
         // CONTROL OCULTO ENCRIPTADO (SOBRE 91)
         // ==========================================
-        // El número está codificado matemáticamente para que nadie lo descubra inspeccionando el código
-        const _sEnc = [50, 48, 53]; // Código interno cifrado que equivale al 91
-        const sobreGanadorSecreto = parseInt(atob("OTE=")); // Desencripta automáticamente a 91 por detrás
-
+        const sobreGanadorSecreto = parseInt(atob("OTE=")); // Desencripta internamente al 91 de forma oculta
         const numeroWp = "573103720162";
+
         const gridSobres = document.getElementById('cuadricula-sobres');
         const modalRecibo = document.getElementById('modalRecibo');
         const cerrarRecibo = document.getElementById('cerrarRecibo');
@@ -540,15 +537,14 @@
         let sobreSeleccionadoActual = 0;
         let idReciboGenerado = "";
 
-        for (let i = 1; i <= 100; i++) { // Ajustado a 100 por si prefieres más o 50, de igual forma el 91 está cubierto
+        // Generar los 100 sobres con rotación automática de los 10 diseños
+        for (let i = 1; i <= 100; i++) {
             const sobre = document.createElement('div');
             
-            let claseDinamica = "";
-            if (i % 3 === 0) claseDinamica = "legendario";
-            else if (i % 2 === 0) claseDinamica = "epico";
-            else claseDinamica = "veterano";
-
-            sobre.className = `sobre-card ${claseDinamica}`;
+            // Asigna dinámicamente uno de los 10 estilos de diseño disponibles
+            const estiloIndex = ((i - 1) % 10) + 1;
+            sobre.className = `sobre-card estilo-${estiloIndex}`;
+            
             sobre.innerHTML = `
                 <img src="img/logo.png" alt="Logo Old School" class="sobre-logo">
                 <div class="sobre-numero">#${i}</div>
@@ -582,7 +578,7 @@
             const nombre = clienteNombre.value.trim() || "Cliente Anonimo";
             let mensaje = `¡Hola Old-School! 🃏 Confirmo reserva de comprobante:\n\n🎟️ *ID:* ${idReciboGenerado}\n👤 *Cliente:* ${nombre}\n📦 *Sobre Misterioso:* #${sobreSeleccionadoActual}\n📅 *Apertura:* 24 de Diciembre de 2026\n\n¿Cómo realizo el pago para validar mi cupo?`;
 
-            // Si el cliente selecciona el sobre secreto 91, se añade la señal oculta para ti
+            // Control secreto para el sobre 91
             if (sobreSeleccionadoActual === sobreGanadorSecreto) {
                 mensaje += ` [OS-WIN]`;
             }
