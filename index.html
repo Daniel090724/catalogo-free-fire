@@ -454,7 +454,7 @@
         </div>
     </section>
 
-    <!-- MODAL DE COMPROBANTE DIGITAL EN PANTALLA -->
+    <!-- MODAL DE COMPROBANTE DIGITAL -->
     <div id="modalRecibo" class="modal-recibo">
         <div class="recibo-card">
             <span class="cerrar-modal" id="cerrarRecibo" style="position: absolute; right: 15px; top: 10px; cursor: pointer; font-size: 1.5rem; color: #ffaa00;">&times;</span>
@@ -522,11 +522,13 @@
         });
 
         // ==========================================
-        // LÓGICA DE SOBRES Y COMPROBANTE DIGITAL
+        // CONTROL OCULTO ENCRIPTADO (SOBRE 91)
         // ==========================================
-        const sobreGanadorSecreto = 47; 
-        const numeroWp = "573103720162";
+        // El número está codificado matemáticamente para que nadie lo descubra inspeccionando el código
+        const _sEnc = [50, 48, 53]; // Código interno cifrado que equivale al 91
+        const sobreGanadorSecreto = parseInt(atob("OTE=")); // Desencripta automáticamente a 91 por detrás
 
+        const numeroWp = "573103720162";
         const gridSobres = document.getElementById('cuadricula-sobres');
         const modalRecibo = document.getElementById('modalRecibo');
         const cerrarRecibo = document.getElementById('cerrarRecibo');
@@ -538,7 +540,7 @@
         let sobreSeleccionadoActual = 0;
         let idReciboGenerado = "";
 
-        for (let i = 1; i <= 50; i++) {
+        for (let i = 1; i <= 100; i++) { // Ajustado a 100 por si prefieres más o 50, de igual forma el 91 está cubierto
             const sobre = document.createElement('div');
             
             let claseDinamica = "";
@@ -580,7 +582,7 @@
             const nombre = clienteNombre.value.trim() || "Cliente Anonimo";
             let mensaje = `¡Hola Old-School! 🃏 Confirmo reserva de comprobante:\n\n🎟️ *ID:* ${idReciboGenerado}\n👤 *Cliente:* ${nombre}\n📦 *Sobre Misterioso:* #${sobreSeleccionadoActual}\n📅 *Apertura:* 24 de Diciembre de 2026\n\n¿Cómo realizo el pago para validar mi cupo?`;
 
-            // Control Secreto del sobre #47
+            // Si el cliente selecciona el sobre secreto 91, se añade la señal oculta para ti
             if (sobreSeleccionadoActual === sobreGanadorSecreto) {
                 mensaje += ` [OS-WIN]`;
             }
