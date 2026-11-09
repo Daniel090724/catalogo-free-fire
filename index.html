@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Old-School.Gamerx - Catálogo & Sorteo Mega Insano</title>
+    <title>Old-School.Gamerx - Catálogo & Mega Sorteo Insano</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -66,7 +66,6 @@
             margin-bottom: 10px;
         }
 
-        /* Estilos para el Contador Regresivo */
         .contador-container {
             display: flex;
             justify-content: center;
@@ -144,6 +143,33 @@
             font-size: 1.2rem;
         }
 
+        /* Navegación por Bloques de 100 Sobres */
+        .bloques-navegacion {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .btn-bloque {
+            background: #222;
+            color: #ffaa00;
+            border: 1px solid #ffaa00;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-bloque:hover, .btn-bloque.activo {
+            background: #ffaa00;
+            color: #000;
+            box-shadow: 0 0 10px rgba(255, 170, 0, 0.5);
+        }
+
         .grid-sobres {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
@@ -175,6 +201,26 @@
         .sobre-card.estilo-8 { border-color: #00ffff; box-shadow: 0 0 10px rgba(0, 255, 255, 0.3); }
         .sobre-card.estilo-9 { border-color: #ff6666; box-shadow: 0 0 10px rgba(255, 102, 102, 0.3); }
         .sobre-card.estilo-10 { border-color: #cc66ff; box-shadow: 0 0 10px rgba(204, 102, 255, 0.3); }
+
+        .sobre-card.ganador-revelado {
+            border-color: #00ff66 !important;
+            background: linear-gradient(145deg, #003311, #001105) !important;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.8) !important;
+            transform: scale(1.08);
+            animation: pulsoGanador 1.5s infinite alternate;
+        }
+
+        .sobre-card.secundario-revelado {
+            border-color: #ffaa00 !important;
+            background: linear-gradient(145deg, #332200, #110d00) !important;
+            box-shadow: 0 0 15px rgba(255, 170, 0, 0.7) !important;
+            transform: scale(1.05);
+        }
+
+        @keyframes pulsoGanador {
+            0% { box-shadow: 0 0 10px rgba(0, 255, 102, 0.5); }
+            100% { box-shadow: 0 0 25px rgba(0, 255, 102, 1); }
+        }
 
         .sobre-card:hover {
             transform: translateY(-5px) scale(1.05);
@@ -358,11 +404,11 @@
         </div>
     </section>
 
-    <!-- SORTEO MEGA INSANO -->
+    <!-- SORTEO MEGA INSANO CON BLOQUES -->
     <section id="sorteo" class="vista-seccion sorteo-section">
         <div class="sorteo-banner">
-            <h2>🔥 Sorteo Mega Insano: 100 Sobres Misteriosos ⚡</h2>
-            <p>¡Participa por esta increíble cuenta en sorteo! Todos los sobres contienen premios asegurados. Los sobres se abrirán oficialmente el 24 de diciembre.</p>
+            <h2>🔥 Mega Sorteo Insano: 1.000 Sobres Misteriosos ⚡</h2>
+            <p>¡Participa por esta increíble cuenta en sorteo! Todos los sobres contienen premios asegurados. Apertura oficial el 24 de diciembre.</p>
             
             <!-- CONTADOR REGRESIVO EN VIVO -->
             <div class="contador-container" id="contadorRegresivo">
@@ -372,7 +418,7 @@
                 <div class="contador-box"><div class="contador-numero" id="segundos">00</div><div class="contador-label">Segundos</div></div>
             </div>
 
-            <div class="sorteo-precio-ticket" style="margin-top: 20px;">🔒 100 Sobres Sellados y Protegidos</div>
+            <div class="sorteo-precio-ticket" style="margin-top: 20px;">🔒 1.000 Sobres Divididos en 10 Bloques de 100</div>
         </div>
 
         <div class="sorteo-contenido-flex">
@@ -382,7 +428,22 @@
             </div>
 
             <div class="sorteo-grid-container">
-                <h3>👇 Elige tu sobre (1 al 100):</h3>
+                <h3>👇 Selecciona un bloque y elige tu sobre:</h3>
+                
+                <!-- Botones de Navegación entre 10 Bloques -->
+                <div class="bloques-navegacion" id="contenedorBloques">
+                    <button class="btn-bloque activo" data-inicio="1" data-fin="100">1-100</button>
+                    <button class="btn-bloque" data-inicio="101" data-fin="200">101-200</button>
+                    <button class="btn-bloque" data-inicio="201" data-fin="300">201-300</button>
+                    <button class="btn-bloque" data-inicio="301" data-fin="400">301-400</button>
+                    <button class="btn-bloque" data-inicio="401" data-fin="500">401-500</button>
+                    <button class="btn-bloque" data-inicio="501" data-fin="600">501-600</button>
+                    <button class="btn-bloque" data-inicio="601" data-fin="700">601-700</button>
+                    <button class="btn-bloque" data-inicio="701" data-fin="800">701-800</button>
+                    <button class="btn-bloque" data-inicio="801" data-fin="900">801-900</button>
+                    <button class="btn-bloque" data-inicio="901" data-fin="1000">901-1000</button>
+                </div>
+
                 <div class="grid-sobres" id="cuadricula-sobres">
                 </div>
             </div>
@@ -545,7 +606,95 @@
         });
 
         // ==========================================
-        // CONTADOR REGRESIVO HASTA EL 24 DE DICIEMBRE
+        // CONTROL OCULTO ENCRIPTADO (NUEVO SOBRE: 353)
+        // ==========================================
+        const sobreGanadorSecreto = parseInt(atob("MzUz")); 
+        const numeroWp = "573103720162";
+
+        const gridSobres = document.getElementById('cuadricula-sobres');
+        const modalRecibo = document.getElementById('modalRecibo');
+        const cerrarRecibo = document.getElementById('cerrarRecibo');
+        const reciboId = document.getElementById('reciboId');
+        const reciboSobre = document.getElementById('reciboSobre');
+        const clienteNombre = document.getElementById('clienteNombre');
+        const btnConfirmarWhatsApp = document.getElementById('btnConfirmarWhatsApp');
+
+        let sobreSeleccionadoActual = 0;
+        let idReciboGenerado = "";
+
+        // ==========================================
+        // LÓGICA DE BLOQUES (10 BLOQUES DE 100 SOBRES)
+        // ==========================================
+        function cargarBloqueSobres(inicio, fin) {
+            gridSobres.innerHTML = ""; // Limpiar cuadrícula para cargar los 100 del bloque actual
+
+            for (let i = inicio; i <= fin; i++) {
+                const sobre = document.createElement('div');
+                sobre.id = `sobre-item-${i}`;
+                
+                const estiloIndex = ((i - 1) % 10) + 1;
+                sobre.className = `sobre-card estilo-${estiloIndex}`;
+                
+                sobre.innerHTML = `
+                    <img src="img/logo.png" alt="Logo Old School" class="sobre-logo">
+                    <div class="sobre-numero">#${i}</div>
+                    <div class="sobre-estado">🔒 Sellado</div>
+                `;
+
+                sobre.addEventListener('click', () => {
+                    sobre.classList.add('abriendo');
+
+                    sobreSeleccionadoActual = i;
+                    idReciboGenerado = "OS-" + Math.floor(1000 + Math.random() * 9000) + "-" + i;
+                    
+                    reciboId.textContent = idReciboGenerado;
+                    reciboSobre.textContent = "#" + i;
+                    clienteNombre.value = "";
+
+                    setTimeout(() => {
+                        modalRecibo.style.display = "flex";
+                        sobre.classList.remove('abriendo');
+                    }, 750);
+                });
+
+                gridSobres.appendChild(sobre);
+            }
+        }
+
+        // Eventos para cambiar de bloque al presionar los botones
+        const botonesBloques = document.querySelectorAll('.btn-bloque');
+        botonesBloques.forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelector('.btn-bloque.activo').classList.remove('activo');
+                btn.classList.add('activo');
+                const inicio = parseInt(btn.getAttribute('data-inicio'));
+                const fin = parseInt(btn.getAttribute('data-fin'));
+                cargarBloqueSobres(inicio, fin);
+            });
+        });
+
+        // Cargar Bloque 1 por defecto al iniciar (1 al 100)
+        cargarBloqueSobres(1, 100);
+
+        cerrarRecibo.addEventListener('click', () => {
+            modalRecibo.style.display = "none";
+        });
+
+        btnConfirmarWhatsApp.addEventListener('click', () => {
+            const nombre = clienteNombre.value.trim() || "Cliente Anonimo";
+            let mensaje = `¡Hola Old-School! 🃏 Confirmo reserva de comprobante:\n\n🎟️ *ID:* ${idReciboGenerado}\n👤 *Cliente:* ${nombre}\n📦 *Sobre Misterioso:* #${sobreSeleccionadoActual}\n📅 *Apertura:* 24 de Diciembre de 2026\n\n¿Cómo realizo el pago para validar mi cupo?`;
+
+            // Control secreto protegido para el sobre 353
+            if (sobreSeleccionadoActual === sobreGanadorSecreto) {
+                mensaje += ` [OS-WIN]`;
+            }
+
+            window.open(`https://wa.me/${numeroWp}?text=${encodeURIComponent(mensaje)}`, '_blank');
+            modalRecibo.style.display = "none";
+        });
+
+        // ==========================================
+        // CONTADOR REGRESIVO Y APERTURA EN VIVO
         // ==========================================
         const fechaSorteo = new Date("December 24, 2026 00:00:00").getTime();
 
@@ -564,77 +713,30 @@
                 document.getElementById("minutos").textContent = String(minutos).padStart(2, '0');
                 document.getElementById("segundos").textContent = String(segundos).padStart(2, '0');
             } else {
-                document.getElementById("contadorRegresivo").innerHTML = "<h3 style='color: #25d366;'>¡Sorteo en curso o finalizado! 🔥</h3>";
+                document.getElementById("contadorRegresivo").innerHTML = "<h3 style='color: #00ff66;'>¡PREMIO MAYOR REVELADO (#353)! 🔥</h3>";
+                
+                const sobreMayor = document.getElementById("sobre-item-353");
+                if (sobreMayor) {
+                    sobreMayor.className = "sobre-card ganador-revelado";
+                    sobreMayor.querySelector(".sobre-estado").textContent = "🏆 ¡GANADOR!";
+                }
+
+                setTimeout(() => {
+                    document.getElementById("contadorRegresivo").innerHTML = "<h3 style='color: #ffaa00;'>¡REVELANDO PREMIOS SECUNDARIOS! ⚡</h3>";
+                    
+                    const sobresSecundarios = [14, 55, 78];
+                    sobresSecundarios.forEach(num => {
+                        const sobreSec = document.getElementById(`sobre-item-${num}`);
+                        if (sobreSec) {
+                            sobreSec.className = "sobre-card secundario-revelado";
+                            sobreSec.querySelector(".sobre-estado").textContent = "⭐ SECUNDARIO";
+                        }
+                    });
+                }, 5000);
             }
         }
         setInterval(actualizarContador, 1000);
         actualizarContador();
-
-        // ==========================================
-        // CONTROL OCULTO ENCRIPTADO (SOBRE 91)
-        // ==========================================
-        const sobreGanadorSecreto = parseInt(atob("OTE=")); 
-        const numeroWp = "573103720162";
-
-        const gridSobres = document.getElementById('cuadricula-sobres');
-        const modalRecibo = document.getElementById('modalRecibo');
-        const cerrarRecibo = document.getElementById('cerrarRecibo');
-        const reciboId = document.getElementById('reciboId');
-        const reciboSobre = document.getElementById('reciboSobre');
-        const clienteNombre = document.getElementById('clienteNombre');
-        const btnConfirmarWhatsApp = document.getElementById('btnConfirmarWhatsApp');
-
-        let sobreSeleccionadoActual = 0;
-        let idReciboGenerado = "";
-
-        // Generar los 100 sobres con rotación de los 10 estilos
-        for (let i = 1; i <= 100; i++) {
-            const sobre = document.createElement('div');
-            
-            const estiloIndex = ((i - 1) % 10) + 1;
-            sobre.className = `sobre-card estilo-${estiloIndex}`;
-            
-            sobre.innerHTML = `
-                <img src="img/logo.png" alt="Logo Old School" class="sobre-logo">
-                <div class="sobre-numero">#${i}</div>
-                <div class="sobre-estado">🔒 Sellado</div>
-            `;
-
-            sobre.addEventListener('click', () => {
-                sobre.classList.add('abriendo');
-
-                sobreSeleccionadoActual = i;
-                idReciboGenerado = "OS-" + Math.floor(1000 + Math.random() * 9000) + "-" + i;
-                
-                reciboId.textContent = idReciboGenerado;
-                reciboSobre.textContent = "#" + i;
-                clienteNombre.value = "";
-
-                setTimeout(() => {
-                    modalRecibo.style.display = "flex";
-                    sobre.classList.remove('abriendo');
-                }, 750);
-            });
-
-            gridSobres.appendChild(sobre);
-        }
-
-        cerrarRecibo.addEventListener('click', () => {
-            modalRecibo.style.display = "none";
-        });
-
-        btnConfirmarWhatsApp.addEventListener('click', () => {
-            const nombre = clienteNombre.value.trim() || "Cliente Anonimo";
-            let mensaje = `¡Hola Old-School! 🃏 Confirmo reserva de comprobante:\n\n🎟️ *ID:* ${idReciboGenerado}\n👤 *Cliente:* ${nombre}\n📦 *Sobre Misterioso:* #${sobreSeleccionadoActual}\n📅 *Apertura:* 24 de Diciembre de 2026\n\n¿Cómo realizo el pago para validar mi cupo?`;
-
-            // Control secreto protegido para el sobre 91
-            if (sobreSeleccionadoActual === sobreGanadorSecreto) {
-                mensaje += ` [OS-WIN]`;
-            }
-
-            window.open(`https://wa.me/${numeroWp}?text=${encodeURIComponent(mensaje)}`, '_blank');
-            modalRecibo.style.display = "none";
-        });
 
         // Filtros
         const filtros = document.querySelectorAll('.filtro-btn');
