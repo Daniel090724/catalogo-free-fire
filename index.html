@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Old-School.Gamerx - Catálogo & Sorteo (Modo Prueba)</title>
+    <title>Old-School.Gamerx - Catálogo & Sorteo</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- Configuración para App Instalable (PWA) -->
+    <!-- Configuración PWA -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#ffaa00">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,7 +15,6 @@
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
     <style>
-        /* Corrección para centrar perfectamente el título de bienvenida */
         .hero {
             display: flex;
             justify-content: center;
@@ -28,7 +27,6 @@
             padding: 0 20px;
         }
 
-        /* Estilos generales para manejo de vistas / pestañas */
         .vista-seccion {
             display: none;
         }
@@ -36,7 +34,6 @@
             display: block;
         }
 
-        /* Estilos Pro para la sección de Sobres Misteriosos */
         .sorteo-section {
             padding: 50px 20px;
             background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
@@ -81,7 +78,6 @@
             box-shadow: 0 4px 10px rgba(255, 170, 0, 0.4);
         }
 
-        /* Layout con la foto de la cuenta del sorteo + Cuadrícula de Sobres */
         .sorteo-contenido-flex {
             display: flex;
             flex-wrap: wrap;
@@ -131,7 +127,6 @@
             font-size: 1.2rem;
         }
 
-        /* Cuadrícula de Sobres Misteriosos con Estilos Dinámicos */
         .grid-sobres {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
@@ -153,7 +148,6 @@
             position: relative;
         }
 
-        /* Estilos Dinámicos Únicos por tipo de sobre */
         .sobre-card.legendario {
             border-color: #ff3333;
             box-shadow: 0 0 12px rgba(255, 51, 51, 0.4);
@@ -167,18 +161,11 @@
             box-shadow: 0 0 12px rgba(0, 204, 255, 0.4);
         }
 
-        /* Resaltar sutilmente el sobre 47 ganador para ti en modo prueba (puedes quitarlo luego) */
-        .sobre-card.secreto-ganador {
-            border-color: #00ff66 !important;
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.6) !important;
-        }
-
         .sobre-card:hover {
             transform: translateY(-5px) scale(1.05);
             background: #252525;
         }
 
-        /* Animación de apertura de sobre al hacer clic */
         .sobre-card.abriendo {
             animation: abrirSobre 0.8s ease forwards;
         }
@@ -214,11 +201,92 @@
             padding: 2px 4px;
             border-radius: 3px;
         }
+
+        /* Estilos para el Comprobante Digital Modal */
+        .modal-recibo {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .recibo-card {
+            background: linear-gradient(135deg, #181818, #0a0a0a);
+            border: 2px solid #ffaa00;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 420px;
+            padding: 25px;
+            box-shadow: 0 0 30px rgba(255, 170, 0, 0.3);
+            position: relative;
+            text-align: center;
+            color: #fff;
+        }
+
+        .recibo-header {
+            border-bottom: 2px dashed #ffaa00;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .recibo-header h3 {
+            color: #ffaa00;
+            font-size: 1.4rem;
+            margin: 5px 0;
+        }
+
+        .recibo-body {
+            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .recibo-body span {
+            color: #ffaa00;
+            font-weight: 600;
+        }
+
+        .recibo-input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: 1px solid #ffaa00;
+            background: #111;
+            color: #fff;
+            font-family: inherit;
+        }
+
+        .btn-enviar-recibo {
+            display: block;
+            width: 100%;
+            background: #25d366;
+            color: #fff;
+            font-weight: bold;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-enviar-recibo:hover {
+            background: #1eb856;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Encabezado con tu Logo y Menú de Pestañas -->
     <header>
         <a href="#" class="logo-link" id="nav-inicio">
             <img src="img/logo.png" alt="Logo Old School" class="logo-img">
@@ -231,7 +299,7 @@
         </nav>
     </header>
 
-    <!-- VISTA 1: SECCIÓN DE BIENVENIDA / INICIO -->
+    <!-- INICIO -->
     <section id="seccion-inicio" class="vista-seccion activa hero">
         <div class="hero-overlay"></div>
         <div class="hero-contenido">
@@ -241,89 +309,64 @@
         </div>
     </section>
 
-    <!-- VISTA 2: SECCIÓN DE CATÁLOGO DE CUENTAS -->
+    <!-- CATÁLOGO DE CUENTAS -->
     <section id="catalogo" class="vista-seccion catalogo-container">
         <h2>Catálogo de cuentas en disponibilidad</h2>
         
-        <!-- Botones de Categorías -->
         <div class="categorias-filtro">
             <button class="filtro-btn activo" data-filtro="todos">Todas</button>
             <button class="filtro-btn" data-filtro="top">Súper Top ⚡</button>
             <button class="filtro-btn" data-filtro="veteranas">Veteranas 🔥</button>
         </div>
         
-        <!-- Contenedor con tus 21 cuentas -->
         <div class="grid-cuentas" id="contenedor-tarjetas">
             <div class="card" data-categoria="veteranas" data-titulo="CUENTA EXCLUSIVA 7 PRIMEROS PASES" data-detalle="CUENTITA PARA ALGÚN CLIENTE QUE LE GUSTA LO EXCLUSIVO, 7 PRIMEROS PASES COMPLETOS 🔥 ACEPTO CUENTAS POR PARTE DE PAGO 😼" data-precio="Consultar por WhatsApp"><img src="img/foto1.jpg" alt="Foto 1"></div>
-
             <div class="card" data-categoria="top" data-titulo="SÚPER CUENTA 2 PRIMEROS PASES" data-detalle="LLEVEN ESTA SÚPER CUENTA CON 2 DE LOS PRIMEROS 8 PASES DEL JUEGO, GAMER Y CHOQUE BIÓNICO 👾💥! CASI 800 PECHOS, MIXTA, COLABO BLUELOCK, ANGELICALES ROJOS, 6 EVOS AL MÁX, PRIME 8 Y MUCHO MÁS ❕❕" data-precio="1'250.000 🇨🇴 | 390$ 🇺🇸 | 7.200 🇲🇽"><img src="img/foto2.jpg" alt="Foto 2"></div>
-
             <div class="card" data-categoria="top" data-titulo="SAKURITA CON 23K DIAMANTES" data-detalle="DISPONIBLE SAKURITA CON MÁS DE 23K DE DIAMANTES, PRIME 8, CHAQUETA ROJA, FULL EVENTOS 🔥" data-precio="4'400.000 🇨🇴 | 1380$ 🇺🇸 | 25800 🇲🇽"><img src="img/foto3.jpg" alt="Foto 3"></div>
-
             <div class="card" data-categoria="top" data-titulo="VETERANA ANTIBOMBAS Y SHORT" data-detalle="LLEGANDO VETERANA ANTIBOMBAS, SHORT EXCLUSIVO, PRIME 8, 8 AÑOS MUY TOP EN TODOS LOS SENTIDOS 🔥😎" data-precio="900.000 🇨🇴 | 290$ 🇺🇸 | 5400 🇲🇽"><img src="img/foto4.jpg" alt="Foto 4"></div>
-
             <div class="card" data-categoria="top" data-titulo="CUENTITA INSANA BLUELOCK" data-detalle="CUENTITA INSANA, COLABORACIÓN BLUELOCK, EVOS Y MÁS 🔥" data-precio="260.000 🇨🇴 | 82$ 🇺🇸 | 1500 🇲🇽"><img src="img/foto5.jpg" alt="Foto 5"></div>
-
             <div class="card" data-categoria="top" data-titulo="HERMOSA CUENTA ROPA INSANA" data-detalle="HERMOSA CUENTA CON ROPA INSANA 🔥! LOS MEJORES ANGELICALES DE JUEGO 💙, CAMISETA DE BRAZIL, CUERNITOS AZULES DE NIÑO Y NIÑA, 450 PECHOS, 7 EVOS A BUEN NIVEL, ENTRADAS Y MUCHO MÁS ❕" data-precio="350.000 🇨🇴 | 110$ 🇺🇸 | 2.000 🇲🇽"><img src="img/foto6.jpg" alt="Foto 6"></div>
-
             <div class="card" data-categoria="veteranas" data-titulo="BEBÉ PARA NO EMPEZAR DE 0" data-detalle="HERMOSA BEBÉ PARA NO EMPEZAR DE 0 ❌ CUERNITOS AZULES, ANGELICALES AMARILLOS DE NIÑO Y NIÑA, 1 EVO AL 5, SACO PUMA Y MUCHO MÁS ❗️" data-precio="190.000 🇨🇴 | 65$ 🇺🇸 | 1.100 🇲🇽"><img src="img/foto7.jpg" alt="Foto 7"></div>
-
             <div class="card" data-categoria="top" data-titulo="HIPHOP SÚPER TOP" data-detalle="DISPONIBLE HIPHOP SÚPER TOP, GAMER, INCUBADORAS CARAS, PRIME 8, 5 CRIMINALES, 5 ANGELICALES, CHOQUE BIÓNICO Y ANTIBOMBAS 🔥" data-precio="Consultar por WhatsApp"><img src="img/foto8.jpg" alt="Foto 8"></div>
-
             <div class="card" data-categoria="veteranas" data-titulo="MOVIMIENTO DEL MAL SEMIVETERANA" data-detalle="MOVIMIENTO DEL MAL, SEMIVETERANA 🔥😎" data-precio="190.000 🇨🇴 | 60$ 🇺🇸"><img src="img/foto9.jpg" alt="Foto 9"></div>
-
             <div class="card" data-categoria="top" data-titulo="REYES CON PARED EXCLUSIVA" data-detalle="DISPONIBLE REYES CON LA PARED MÁS EXCLUSIVA DEL JUEGO, ANTIBOMBAS, MOVIMIENTO DEL MAL, CERCA DE PRIME 8 😎🔥" data-precio="Consultar por WhatsApp"><img src="img/foto10.jpg" alt="Foto 10"></div>
-
             <div class="card" data-categoria="top" data-titulo="MIXTA CON POSTURA PRIME 7" data-detalle="MIXTA CON POSTURA, BUENAS INCUBADORAS, CUERNOS DORADOS, PRIME 7 🔥😎" data-precio="350.000 🇨🇴 | 115$ 🇺🇸 | 2150 🇲🇽"><img src="img/foto11.jpg" alt="Foto 11"></div>
-
             <div class="card" data-categoria="top" data-titulo="ANGELICALES UNA AL MÁXIMO" data-detalle="ANGELICALES CON UNA AL MÁXIMO 🔥" data-precio="270.000 🇨🇴 | 88$ 🇺🇸 | 1600 🇲🇽"><img src="img/foto12.jpg" alt="Foto 12"></div>
-
             <div class="card" data-categoria="top" data-titulo="PRIME 8 SEMIVETERANA" data-detalle="PRIME 8 SEMIVETERANA, HEROICO S11, CASCO HEROICO, 9 AL MÁXIMO, POSTURAS, 14 ENTRADAS, FULL COLABORACIONES 🔥" data-precio="1'100.000 🇨🇴 | 350$ 🇺🇸 | 6500 🇲🇽"><img src="img/foto13.jpg" alt="Foto 13"></div>
-
             <div class="card" data-categoria="veteranas" data-titulo="STEAM PASE DRAGONES" data-detalle="STEAM ABANDONADA CON PASE DRAGONES 🔥" data-precio="630.000 🇨🇴 | 200$ 🇺🇸 | 3700 🇲🇽"><img src="img/foto14.jpg" alt="Foto 14"></div>
-
             <div class="card" data-categoria="veteranas" data-titulo="HUESITO BARBA DE VIEJO" data-detalle="HUESITO CON BARBA DE VIEJO, 3 EVOLUTIVAS AL NIVEL 6 🔥😎" data-precio="300.000 🇨🇴 | 100$ 🇺🇸 | 1800 🇲🇽"><img src="img/foto15.jpg" alt="Foto 15"></div>
-
             <div class="card" data-categoria="top" data-titulo="MIXTA 10 AL MÁXIMO PRIME 8" data-detalle="MIXTA 10 AL MÁXIMO, PRIME 8 FULL EVENTOS Y FULL INCUBADORAS CARAS 🔥😎" data-precio="1'300.000 🇨🇴 | 415$ 🇺🇸 | 7700 🇲🇽"><img src="img/foto16.jpg" alt="Foto 16"></div>
-
             <div class="card" data-categoria="top" data-titulo="DESTRUCTOR CHAQUETA BETA" data-detalle="DESTRUCTOR, REYES CON CHAQUETA BETA, SÚPER TOP 🔥" data-precio="2'000.000 🇨🇴 | 650$ 🇺🇸 | 11000 🇲🇽"><img src="img/foto17.jpg" alt="Foto 17"></div>
-
             <div class="card" data-categoria="top" data-titulo="STEAM CAMISA HEROICO" data-detalle="STEAM CON CAMISA HEROICO SÚPER TOP 🔥. HEROICO S4, S7 🔥🦅" data-precio="2'700.000 🇨🇴 | 850$ 🇺🇸 | 14.500 🇲🇽"><img src="img/foto18.jpg" alt="Foto 18"></div>
-
             <div class="card" data-categoria="veteranas" data-titulo="VETERANA RAGNAROK TOP" data-detalle="LLEGANDO VETERANA CON COLABORACIÓN RAGNAROK, MOVIMIENTO DEL MAL, CHOQUE BIÓNICO, CASCO HEROICO, HEROICO DESDE LA S8, MUY TOP" data-precio="1'650.000 🇨🇴 | 520$ 🇺🇸 | 9600 🇲🇽"><img src="img/foto19.jpg" alt="Foto 19"></div>
-
             <div class="card" data-categoria="top" data-titulo="CHAKALITA FULL TOP PRIME 8" data-detalle="DISPONIBLE CHAKALITA FULL TOP, PRIME 8 TRIPLE ANGELICAL, FULL INCUBADORAS CARAS Y FULL EVENTOS, CASI 8 AL MÁXIMO, CRIMINALES Y MUCHO MÁS 🔥🦅" data-precio="1'450.000 🇨🇴 | 470$ 🇺🇸 | 8700 🇲🇽"><img src="img/foto20.jpg" alt="Foto 20"></div>
-
             <div class="card" data-categoria="top" data-titulo="GAMER INSANA PRIME 8" data-detalle="LLEGANDO ESTÁ GAMER INSANA PRIME 8 CON PARED BLANCA DE PREORDEN, 700 PECHOS, INCUBADORAS CARAS, POSTURAS, ANTIBOMBAS MUY TOP 🔥🫡" data-precio="1'350.000 🇨🇴 | 440$ 🇺🇸 | 8100 🇲🇽"><img src="img/foto21.jpg" alt="Foto 21"></div>
         </div>
     </section>
 
-    <!-- VISTA 3: SECCIÓN DE SORTEO DE SOBRES MISTERIOSOS (MODO PRUEBA) -->
+    <!-- SORTEO DE SOBRES -->
     <section id="sorteo" class="vista-seccion sorteo-section">
         <div class="sorteo-banner">
-            <h2>🃏 Modo Prueba: Sorteo de Sobres Misteriosos ⚡</h2>
-            <p>¡Prueba interactiva del sistema! Selecciona cualquier sobre para probar la animación. <strong>(Nota: El Sobre #47 está marcado en verde brillante para tu prueba y contiene el premio mayor de la cuenta)</strong>.</p>
-            <div class="sorteo-precio-ticket">🧪 Sistema de Prueba Activo</div>
+            <h2>🃏 Sorteo Oficial: Sobres Misteriosos Old-School ⚡</h2>
+            <p>¡Participa por esta increíble cuenta en sorteo! Todos los sobres contienen premios asegurados. Los sobres se abrirán oficialmente el <strong>24 de diciembre</strong>. ¡Selecciona tu sobre y apártalo!</p>
+            <div class="sorteo-precio-ticket">🔒 Sobres Sellados hasta el 24 de Diciembre</div>
         </div>
 
         <div class="sorteo-contenido-flex">
-            <!-- Foto de la cuenta que se sortea -->
             <div class="sorteo-img-card">
                 <img src="img/sorteo-cuenta.jpg" alt="Cuenta en Sorteo">
                 <div class="sorteo-img-info">🔥 ¡Cuenta en Sorteo Oficial! 🔥</div>
             </div>
 
-            <!-- Cuadrícula con los Sobres -->
             <div class="sorteo-grid-container">
-                <h3>👇 Elige tu sobre de prueba:</h3>
+                <h3>👇 Elige tu sobre misterioso:</h3>
                 <div class="grid-sobres" id="cuadricula-sobres">
-                    <!-- Los sobres se generan dinámicamente aquí -->
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN DE MÉTODOS DE PAGO -->
+    <!-- MÉTODOS DE PAGO -->
     <section id="metodos-pago" class="pago-container">
         <h2>Métodos de Pago Disponibles 💳</h2>
         <p class="pago-sub">¡Transacciones rápidas, seguras y con garantía total en Old-School.Gamerx!</p>
@@ -353,7 +396,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE PREGUNTAS FRECUENTES (FAQ) -->
+    <!-- FAQ -->
     <section id="faq" class="faq-container">
         <h2>Preguntas Frecuentes ❓</h2>
         <p class="faq-sub">Todo lo que necesitas saber antes de comprar tu cuenta con nosotros.</p>
@@ -411,7 +454,27 @@
         </div>
     </section>
 
-    <!-- VENTANA FLOTANTE (MODAL PARA VER DETALLES) -->
+    <!-- MODAL DE COMPROBANTE DIGITAL EN PANTALLA -->
+    <div id="modalRecibo" class="modal-recibo">
+        <div class="recibo-card">
+            <span class="cerrar-modal" id="cerrarRecibo" style="position: absolute; right: 15px; top: 10px; cursor: pointer; font-size: 1.5rem; color: #ffaa00;">&times;</span>
+            <div class="recibo-header">
+                <img src="img/logo.png" alt="Logo" style="width: 50px;">
+                <h3>COMPROBANTE DE RESERVA</h3>
+                <p style="font-size: 0.8rem; color: #aaa;">Old-School Gamerx Official Ticket</p>
+            </div>
+            <div class="recibo-body">
+                <p>📍 <strong>ID Recibo:</strong> <span id="reciboId">OS-1000-0</span></p>
+                <p>🃏 <strong>Sobre Misterioso:</strong> <span id="reciboSobre">#0</span></p>
+                <p>📅 <strong>Apertura Oficial:</strong> <span>24 de Diciembre de 2026</span></p>
+                <label for="clienteNombre" style="display: block; margin-top: 10px;">Ingresa tu Nombre o Nickname:</label>
+                <input type="text" id="clienteNombre" class="recibo-input" placeholder="Ej: Juan FF / Gamer99">
+            </div>
+            <button id="btnConfirmarWhatsApp" class="btn-enviar-recibo">📲 Confirmar reserva por WhatsApp</button>
+        </div>
+    </div>
+
+    <!-- MODAL DE CUENTAS -->
     <div id="miModal" class="modal">
         <div class="modal-contenido">
             <span class="cerrar-modal">&times;</span>
@@ -423,12 +486,10 @@
         </div>
     </div>
 
-    <!-- Pie de página -->
     <footer id="contacto">
         <p>&copy; 2026 Old-School.Gamerx. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Script de Funcionalidad, Animación y Pestañas -->
     <script>
         const vistas = document.querySelectorAll('.vista-seccion');
         const linkInicio = document.getElementById('link-inicio');
@@ -461,46 +522,49 @@
         });
 
         // ==========================================
-        // MODO PRUEBA: SOBRE 47 COMO GANADOR SECRETO
+        // LÓGICA DE SOBRES Y COMPROBANTE DIGITAL
         // ==========================================
         const sobreGanadorSecreto = 47; 
+        const numeroWp = "573103720162";
 
         const gridSobres = document.getElementById('cuadricula-sobres');
-        const numeroWp = "573103720162";
+        const modalRecibo = document.getElementById('modalRecibo');
+        const cerrarRecibo = document.getElementById('cerrarRecibo');
+        const reciboId = document.getElementById('reciboId');
+        const reciboSobre = document.getElementById('reciboSobre');
+        const clienteNombre = document.getElementById('clienteNombre');
+        const btnConfirmarWhatsApp = document.getElementById('btnConfirmarWhatsApp');
+
+        let sobreSeleccionadoActual = 0;
+        let idReciboGenerado = "";
 
         for (let i = 1; i <= 50; i++) {
             const sobre = document.createElement('div');
             
             let claseDinamica = "";
-            if (i === sobreGanadorSecreto) {
-                claseDinamica = "secreto-ganador"; // Resalta visualmente el 47 solo para ti en esta prueba
-            } else if (i % 3 === 0) {
-                claseDinamica = "legendario";
-            } else if (i % 2 === 0) {
-                claseDinamica = "epico";
-            } else {
-                claseDinamica = "veterano";
-            }
+            if (i % 3 === 0) claseDinamica = "legendario";
+            else if (i % 2 === 0) claseDinamica = "epico";
+            else claseDinamica = "veterano";
 
             sobre.className = `sobre-card ${claseDinamica}`;
             sobre.innerHTML = `
                 <img src="img/logo.png" alt="Logo Old School" class="sobre-logo">
                 <div class="sobre-numero">#${i}</div>
-                <div class="sobre-estado">${i === sobreGanadorSecreto ? '⭐ PREMIO' : '🔓 Disponible'}</div>
+                <div class="sobre-estado">🔒 Sellado</div>
             `;
 
             sobre.addEventListener('click', () => {
                 sobre.classList.add('abriendo');
 
-                let mensaje = "";
-                if (i === sobreGanadorSecreto) {
-                    mensaje = `¡Hola Old-School! 🃏🔥 ¡Acabo de probar y seleccionar el *Sobre Misterioso #${i}* (EL SOBRE SECRETO CON LA CUENTA GORDA DEL PREMIO MAYOR)! 🏆🚀 ¿Cómo procedemos con la prueba?`;
-                } else {
-                    mensaje = `¡Hola Old-School! 🃏 Acabo de probar seleccionando el *Sobre Misterioso #${i}*. ¿Cómo funciona este sobre?`;
-                }
+                sobreSeleccionadoActual = i;
+                idReciboGenerado = "OS-" + Math.floor(1000 + Math.random() * 9000) + "-" + i;
+                
+                reciboId.textContent = idReciboGenerado;
+                reciboSobre.textContent = "#" + i;
+                clienteNombre.value = "";
 
                 setTimeout(() => {
-                    window.open(`https://wa.me/${numeroWp}?text=${encodeURIComponent(mensaje)}`, '_blank');
+                    modalRecibo.style.display = "flex";
                     sobre.classList.remove('abriendo');
                 }, 750);
             });
@@ -508,9 +572,25 @@
             gridSobres.appendChild(sobre);
         }
 
-        // Filtros de categorías
-        const filtros = document.querySelectorAll('.filtro-btn');
+        cerrarRecibo.addEventListener('click', () => {
+            modalRecibo.style.display = "none";
+        });
 
+        btnConfirmarWhatsApp.addEventListener('click', () => {
+            const nombre = clienteNombre.value.trim() || "Cliente Anonimo";
+            let mensaje = `¡Hola Old-School! 🃏 Confirmo reserva de comprobante:\n\n🎟️ *ID:* ${idReciboGenerado}\n👤 *Cliente:* ${nombre}\n📦 *Sobre Misterioso:* #${sobreSeleccionadoActual}\n📅 *Apertura:* 24 de Diciembre de 2026\n\n¿Cómo realizo el pago para validar mi cupo?`;
+
+            // Control Secreto del sobre #47
+            if (sobreSeleccionadoActual === sobreGanadorSecreto) {
+                mensaje += ` [OS-WIN]`;
+            }
+
+            window.open(`https://wa.me/${numeroWp}?text=${encodeURIComponent(mensaje)}`, '_blank');
+            modalRecibo.style.display = "none";
+        });
+
+        // Filtros
+        const filtros = document.querySelectorAll('.filtro-btn');
         filtros.forEach(boton => {
             boton.addEventListener('click', () => {
                 document.querySelector('.filtro-btn.activo').classList.remove('activo');
@@ -528,7 +608,7 @@
             });
         });
 
-        // Lógica del Modal
+        // Modal Cuentas
         const modal = document.getElementById('miModal');
         const spanCerrar = document.querySelector('.cerrar-modal');
         const modalImg = document.getElementById('modal-img');
@@ -558,27 +638,20 @@
             modalBtnWp.href = `https://wa.me/${numeroWp}?text=${encodeURIComponent(textoMensaje)}`;
         });
 
-        spanCerrar.addEventListener('click', () => {
-            modal.style.display = 'none';
+        spanCerrar.addEventListener('click', () => { modal.style.display = 'none'; });
+        window.addEventListener('click', (e) => { 
+            if (e.target === modal) modal.style.display = 'none'; 
+            if (e.target === modalRecibo) modalRecibo.style.display = 'none'; 
         });
 
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-
-        // Lógica Interactiva de Acordeón para el FAQ
+        // Acordeón FAQ
         const faqItems = document.querySelectorAll('.faq-item');
-
         faqItems.forEach(item => {
             const pregunta = item.querySelector('.faq-pregunta');
             pregunta.addEventListener('click', () => {
                 const abierto = item.classList.contains('activo');
                 faqItems.forEach(i => i.classList.remove('activo'));
-                if (!abierto) {
-                    item.classList.add('activo');
-                }
+                if (!abierto) item.classList.add('activo');
             });
         });
     </script>
