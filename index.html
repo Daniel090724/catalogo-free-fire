@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Old-School.Gamerx - Catálogo & Sorteo</title>
+    <title>Old-School.Gamerx - Catálogo & Sorteo (Modo Prueba)</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -15,7 +15,7 @@
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
     <style>
-        /* Corrección para centrar perfectamente el texto de bienvenida */
+        /* Corrección para centrar perfectamente el título de bienvenida */
         .hero {
             display: flex;
             justify-content: center;
@@ -131,7 +131,7 @@
             font-size: 1.2rem;
         }
 
-        /* Cuadrícula de Sobres Misteriosos */
+        /* Cuadrícula de Sobres Misteriosos con Estilos Dinámicos */
         .grid-sobres {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
@@ -142,7 +142,7 @@
         }
 
         .sobre-card {
-            background: #151515;
+            background: linear-gradient(145deg, #181818, #0f0f0f);
             border: 2px solid #ffaa00;
             border-radius: 10px;
             padding: 10px 5px;
@@ -150,12 +150,44 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            position: relative;
+        }
+
+        /* Estilos Dinámicos Únicos por tipo de sobre */
+        .sobre-card.legendario {
+            border-color: #ff3333;
+            box-shadow: 0 0 12px rgba(255, 51, 51, 0.4);
+        }
+        .sobre-card.epico {
+            border-color: #9933ff;
+            box-shadow: 0 0 12px rgba(153, 51, 255, 0.4);
+        }
+        .sobre-card.veterano {
+            border-color: #00ccff;
+            box-shadow: 0 0 12px rgba(0, 204, 255, 0.4);
+        }
+
+        /* Resaltar sutilmente el sobre 47 ganador para ti en modo prueba (puedes quitarlo luego) */
+        .sobre-card.secreto-ganador {
+            border-color: #00ff66 !important;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.6) !important;
         }
 
         .sobre-card:hover {
-            transform: translateY(-4px);
-            background: #222;
-            box-shadow: 0 6px 20px rgba(255, 170, 0, 0.3);
+            transform: translateY(-5px) scale(1.05);
+            background: #252525;
+        }
+
+        /* Animación de apertura de sobre al hacer clic */
+        .sobre-card.abriendo {
+            animation: abrirSobre 0.8s ease forwards;
+        }
+
+        @keyframes abrirSobre {
+            0% { transform: scale(1) rotate(0deg); filter: brightness(1); }
+            30% { transform: scale(1.2) rotate(-5deg); filter: brightness(1.5); }
+            60% { transform: scale(1.3) rotate(5deg); filter: brightness(2); }
+            100% { transform: scale(0) rotate(0deg); opacity: 0; }
         }
 
         .sobre-logo {
@@ -199,7 +231,7 @@
         </nav>
     </header>
 
-    <!-- VISTA 1: SECCIÓN DE BIENVENIDA / INICIO (TÍTULO CENTRADO) -->
+    <!-- VISTA 1: SECCIÓN DE BIENVENIDA / INICIO -->
     <section id="seccion-inicio" class="vista-seccion activa hero">
         <div class="hero-overlay"></div>
         <div class="hero-contenido">
@@ -266,12 +298,12 @@
         </div>
     </section>
 
-    <!-- VISTA 3: SECCIÓN DE SORTEO DE SOBRES MISTERIOSOS CON LA FOTO DE LA CUENTA -->
+    <!-- VISTA 3: SECCIÓN DE SORTEO DE SOBRES MISTERIOSOS (MODO PRUEBA) -->
     <section id="sorteo" class="vista-seccion sorteo-section">
         <div class="sorteo-banner">
-            <h2>🃏 Sorteo Oficial: Sobres Misteriosos Old-School ⚡</h2>
-            <p>¡Participa por esta increíble cuenta en sorteo! Todos los sobres contienen premios asegurados. Los sobres se abrirán oficialmente el <strong>24 de diciembre</strong>. ¡Selecciona tu sobre y apártalo por WhatsApp!</p>
-            <div class="sorteo-precio-ticket">🔒 Sobres Sellados hasta el 24 de Diciembre</div>
+            <h2>🃏 Modo Prueba: Sorteo de Sobres Misteriosos ⚡</h2>
+            <p>¡Prueba interactiva del sistema! Selecciona cualquier sobre para probar la animación. <strong>(Nota: El Sobre #47 está marcado en verde brillante para tu prueba y contiene el premio mayor de la cuenta)</strong>.</p>
+            <div class="sorteo-precio-ticket">🧪 Sistema de Prueba Activo</div>
         </div>
 
         <div class="sorteo-contenido-flex">
@@ -281,11 +313,11 @@
                 <div class="sorteo-img-info">🔥 ¡Cuenta en Sorteo Oficial! 🔥</div>
             </div>
 
-            <!-- Cuadrícula con los Sobres con tu Logo -->
+            <!-- Cuadrícula con los Sobres -->
             <div class="sorteo-grid-container">
-                <h3>👇 Elige tu sobre misterioso:</h3>
+                <h3>👇 Elige tu sobre de prueba:</h3>
                 <div class="grid-sobres" id="cuadricula-sobres">
-                    <!-- Los sobres del 1 al 50 con el logo se generan aquí -->
+                    <!-- Los sobres se generan dinámicamente aquí -->
                 </div>
             </div>
         </div>
@@ -396,7 +428,7 @@
         <p>&copy; 2026 Old-School.Gamerx. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Script de Funcionalidad y Pestañas -->
+    <!-- Script de Funcionalidad, Animación y Pestañas -->
     <script>
         const vistas = document.querySelectorAll('.vista-seccion');
         const linkInicio = document.getElementById('link-inicio');
@@ -428,22 +460,51 @@
             }, 100);
         });
 
-        // Generar los 50 Sobres Misteriosos Interactivos con el Logo de la Empresa
+        // ==========================================
+        // MODO PRUEBA: SOBRE 47 COMO GANADOR SECRETO
+        // ==========================================
+        const sobreGanadorSecreto = 47; 
+
         const gridSobres = document.getElementById('cuadricula-sobres');
         const numeroWp = "573103720162";
 
         for (let i = 1; i <= 50; i++) {
             const sobre = document.createElement('div');
-            sobre.className = 'sobre-card';
+            
+            let claseDinamica = "";
+            if (i === sobreGanadorSecreto) {
+                claseDinamica = "secreto-ganador"; // Resalta visualmente el 47 solo para ti en esta prueba
+            } else if (i % 3 === 0) {
+                claseDinamica = "legendario";
+            } else if (i % 2 === 0) {
+                claseDinamica = "epico";
+            } else {
+                claseDinamica = "veterano";
+            }
+
+            sobre.className = `sobre-card ${claseDinamica}`;
             sobre.innerHTML = `
                 <img src="img/logo.png" alt="Logo Old School" class="sobre-logo">
                 <div class="sobre-numero">#${i}</div>
-                <div class="sobre-estado">🔒 Sellado</div>
+                <div class="sobre-estado">${i === sobreGanadorSecreto ? '⭐ PREMIO' : '🔓 Disponible'}</div>
             `;
+
             sobre.addEventListener('click', () => {
-                const mensaje = `¡Hola Old-School! 🃏 Me interesa apartar el *Sobre Misterioso #${i}* para el sorteo del 24 de diciembre. ¿Cómo hago el pago para asegurarlo?`;
-                window.open(`https://wa.me/${numeroWp}?text=${encodeURIComponent(mensaje)}`, '_blank');
+                sobre.classList.add('abriendo');
+
+                let mensaje = "";
+                if (i === sobreGanadorSecreto) {
+                    mensaje = `¡Hola Old-School! 🃏🔥 ¡Acabo de probar y seleccionar el *Sobre Misterioso #${i}* (EL SOBRE SECRETO CON LA CUENTA GORDA DEL PREMIO MAYOR)! 🏆🚀 ¿Cómo procedemos con la prueba?`;
+                } else {
+                    mensaje = `¡Hola Old-School! 🃏 Acabo de probar seleccionando el *Sobre Misterioso #${i}*. ¿Cómo funciona este sobre?`;
+                }
+
+                setTimeout(() => {
+                    window.open(`https://wa.me/${numeroWp}?text=${encodeURIComponent(mensaje)}`, '_blank');
+                    sobre.classList.remove('abriendo');
+                }, 750);
             });
+
             gridSobres.appendChild(sobre);
         }
 
