@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Old-School.Gamerx - Catálogo & Sorteo</title>
+    <title>Old-School.Gamerx - Catálogo & Sorteo de Sobres</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -15,13 +15,19 @@
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
     <style>
-        /* Estilos Pro para la sección del Sorteo */
+        /* Estilos generales para manejo de vistas / pestañas */
+        .vista-seccion {
+            display: none;
+        }
+        .vista-seccion.activa {
+            display: block;
+        }
+
+        /* Estilos Pro para la sección de Sobres Misteriosos con Logo */
         .sorteo-section {
-            padding: 60px 20px;
+            padding: 50px 20px;
             background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
-            border-top: 3px solid #ffaa00;
-            border-bottom: 3px solid #ffaa00;
-            margin: 50px 0;
+            min-height: 80vh;
             text-align: center;
         }
 
@@ -62,109 +68,88 @@
             box-shadow: 0 4px 10px rgba(255, 170, 0, 0.4);
         }
 
-        /* Layout con Imagen de la Cuenta + Cuadrícula */
-        .sorteo-contenido-flex {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-            align-items: flex-start;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .sorteo-img-card {
-            flex: 1 1 350px;
-            max-width: 450px;
-            background: #111;
-            border: 2px solid #ffaa00;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
-        }
-
-        .sorteo-img-card img {
-            width: 100%;
-            display: block;
-            object-fit: cover;
-        }
-
-        .sorteo-img-info {
-            padding: 15px;
-            background: #181818;
-            color: #fff;
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        .sorteo-grid-container {
-            flex: 1 1 450px;
-            max-width: 600px;
-            background: #111;
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid #333;
-        }
-
-        .sorteo-grid-container h3 {
-            color: #fff;
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-        }
-
-        .grid-numeros {
+        /* Cuadrícula de Sobres Misteriosos */
+        .grid-sobres {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
-        .num-btn {
-            background: #1a1a1a;
-            color: #ffaa00;
+        .sobre-card {
+            background: #151515;
             border: 2px solid #ffaa00;
-            padding: 12px 0;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 8px;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            position: relative;
+            overflow: hidden;
         }
 
-        .num-btn:hover {
-            background: #ffaa00;
-            color: #000;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 170, 0, 0.4);
+        .sobre-card:hover {
+            transform: translateY(-5px);
+            background: #222;
+            box-shadow: 0 8px 25px rgba(255, 170, 0, 0.3);
+        }
+
+        .sobre-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin: 10px auto;
+            display: block;
+            filter: drop-shadow(0 0 5px rgba(255,170,0,0.5));
+        }
+
+        .sobre-numero {
+            color: #ffaa00;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 5px;
+        }
+
+        .sobre-estado {
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-top: 5px;
+            background: #222;
+            padding: 3px 6px;
+            border-radius: 4px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Encabezado con tu Logo y Menú -->
+    <!-- Encabezado con tu Logo y Menú de Pestañas -->
     <header>
         <a href="#" class="logo-link" id="nav-inicio">
             <img src="img/logo.png" alt="Logo Old School" class="logo-img">
         </a>
         <nav>
             <a href="#" id="link-inicio" class="activo">Inicio</a>
-            <a href="#catalogo" id="link-catalogo">Catálogo</a>
-            <a href="#sorteo" id="link-sorteo">Sorteo 🎲</a>
+            <a href="#catalogo" id="link-catalogo">Catálogo de Cuentas</a>
+            <a href="#sorteo" id="link-sorteo">Sorteo de Sobres 🃏</a>
             <a href="#faq" id="link-faq">Preguntas Frecuentes</a>
         </nav>
     </header>
 
-    <!-- SECCIÓN DE BIENVENIDA (INICIO) -->
-    <section id="seccion-inicio" class="hero">
+    <!-- VISTA 1: SECCIÓN DE BIENVENIDA / INICIO -->
+    <section id="seccion-inicio" class="vista-seccion activa hero">
         <div class="hero-overlay"></div>
         <div class="hero-contenido">
             <h1>¡Bienvenido a Old-School Gamerx!</h1>
-            <p>Las mejores cuentas de Free Fire Veteranas, Súper Top y Económicas con garantía total.</p>
+            <p>Las mejores cuentas de Free Fire Veteranas, Súper Top y el nuevo Sorteo de Sobres Misteriosos.</p>
             <a href="#catalogo" id="btn-ir-catalogo" class="btn-cta">Ver Catálogo de Cuentas ⚡</a>
         </div>
     </section>
 
-    <!-- SECCIÓN DE CATÁLOGO -->
-    <section id="catalogo" class="catalogo-container" style="display: none;">
+    <!-- VISTA 2: SECCIÓN DE CATÁLOGO DE CUENTAS -->
+    <section id="catalogo" class="vista-seccion catalogo-container">
         <h2>Catálogo de cuentas en disponibilidad</h2>
         
         <!-- Botones de Categorías -->
@@ -220,28 +205,16 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE SORTEO / RIFA INTERACTIVA -->
-    <section id="sorteo" class="sorteo-section">
+    <!-- VISTA 3: SECCIÓN DE SORTEO DE SOBRES MISTERIOSOS -->
+    <section id="sorteo" class="vista-seccion sorteo-section">
         <div class="sorteo-banner">
-            <h2>🎲 ¡Gran Sorteo Oficial Old-School! ⚡</h2>
-            <p>¡Participa por esta increíble cuenta repleta de armamento evolutivo al máximo, trajes exclusivos y pases veteranos! Selecciona tu número de la suerte (1-50) para apartarlo al instante.</p>
-            <div class="sorteo-precio-ticket">🎟️ Valor por número: ¡Pregúntanos por WhatsApp!</div>
+            <h2>🃏 Sorteo Oficial: Sobres Misteriosos Old-School ⚡</h2>
+            <p>¡Elige tu sobre sorpresa! Todos los sobres contienen premios asegurados (cuentas, diamantes o beneficios exclusivos). Los sobres se abrirán oficialmente el <strong>24 de diciembre</strong>. ¡Selecciona tu sobre y apártalo por WhatsApp antes de que te lo ganen!</p>
+            <div class="sorteo-precio-ticket">🔒 Sobres Sellados hasta el 24 de Diciembre</div>
         </div>
 
-        <div class="sorteo-contenido-flex">
-            <!-- Muestra la foto de la cuenta en sorteo -->
-            <div class="sorteo-img-card">
-                <img src="img/sorteo-cuenta.jpg" alt="Cuenta en Sorteo">
-                <div class="sorteo-img-info">🔥 ¡Cuenta Chetada a Sortear! 🔥</div>
-            </div>
-
-            <!-- Cuadrícula con los 50 Números -->
-            <div class="sorteo-grid-container">
-                <h3>👇 Elige tu número para apartar:</h3>
-                <div class="grid-numeros" id="cuadricula-numeros">
-                    <!-- Los números del 1 al 50 se generan con JavaScript -->
-                </div>
-            </div>
+        <div class="grid-sobres" id="cuadricula-sobres">
+            <!-- Los sobres del 1 al 50 con tu logo se generan aquí automáticamente -->
         </div>
     </section>
 
@@ -350,11 +323,10 @@
         <p>&copy; 2026 Old-School.Gamerx. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Script de Funcionalidad -->
+    <!-- Script de Funcionalidad y Navegación por Pestañas -->
     <script>
-        const seccionInicio = document.getElementById('seccion-inicio');
-        const seccionCatalogo = document.getElementById('catalogo');
-        
+        // Lógica de Pestañas
+        const vistas = document.querySelectorAll('.vista-seccion');
         const linkInicio = document.getElementById('link-inicio');
         const navInicio = document.getElementById('nav-inicio');
         const linkCatalogo = document.getElementById('link-catalogo');
@@ -362,53 +334,46 @@
         const linkSorteo = document.getElementById('link-sorteo');
         const linkFaq = document.getElementById('link-faq');
 
-        function irAInicio(e) {
-            e.preventDefault();
-            seccionCatalogo.style.display = 'none';
-            seccionInicio.style.display = 'flex';
+        function cambiarVista(idVista) {
+            vistas.forEach(v => v.classList.remove('activa'));
+            document.getElementById(idVista).classList.add('activa');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function irACatalogo(e) {
-            e.preventDefault();
-            seccionInicio.style.display = 'none';
-            seccionCatalogo.style.display = 'block';
-            seccionCatalogo.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        linkInicio.addEventListener('click', irAInicio);
-        navInicio.addEventListener('click', irAInicio);
+        linkInicio.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('seccion-inicio'); });
+        navInicio.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('seccion-inicio'); });
         
-        linkCatalogo.addEventListener('click', irACatalogo);
-        btnIrCatalogo.addEventListener('click', irACatalogo);
+        linkCatalogo.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('catalogo'); });
+        btnIrCatalogo.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('catalogo'); });
 
-        linkSorteo.addEventListener('click', (e) => {
-            e.preventDefault();
-            seccionInicio.style.display = 'none';
-            seccionCatalogo.style.display = 'block';
-            document.getElementById('sorteo').scrollIntoView({ behavior: 'smooth' });
+        linkSorteo.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('sorteo'); });
+
+        linkFaq.addEventListener('click', (e) => { 
+            e.preventDefault(); 
+            // Si quieres que el FAQ se muestre bajo el catálogo o en su propia vista, lo llevamos al catálogo
+            cambiarVista('catalogo');
+            setTimeout(() => {
+                document.getElementById('faq').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
         });
 
-        linkFaq.addEventListener('click', (e) => {
-            e.preventDefault();
-            seccionInicio.style.display = 'none';
-            seccionCatalogo.style.display = 'block';
-            document.getElementById('faq').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        // Generar números del sorteo (1 al 50) de forma interactiva con el número oficial
-        const gridNumeros = document.getElementById('cuadricula-numeros');
+        // Generar Sobres Misteriosos Interactivos con tu Logo (1 al 50)
+        const gridSobres = document.getElementById('cuadricula-sobres');
         const numeroWp = "573103720162";
 
         for (let i = 1; i <= 50; i++) {
-            const btn = document.createElement('button');
-            btn.className = 'num-btn';
-            btn.textContent = i;
-            btn.addEventListener('click', () => {
-                const mensaje = `¡Hola Old-School! 🎲 Quiero apartar el *número ${i}* para el gran sorteo de la cuenta chetada. ¿Cómo hago el pago?`;
+            const sobre = document.createElement('div');
+            sobre.className = 'sobre-card';
+            sobre.innerHTML = `
+                <img src="img/logo.png" alt="Logo Old School" class="sobre-logo">
+                <div class="sobre-numero">Sobre #${i}</div>
+                <div class="sobre-estado">🔒 Sellado (24 Dic)</div>
+            `;
+            sobre.addEventListener('click', () => {
+                const mensaje = `¡Hola Old-School! 🃏 Me interesa apartar el *Sobre Misterioso #${i}* para el sorteo del 24 de diciembre. ¿Cómo hago el pago para asegurarlo?`;
                 window.open(`https://wa.me/${numeroWp}?text=${encodeURIComponent(mensaje)}`, '_blank');
             });
-            gridNumeros.appendChild(btn);
+            gridSobres.appendChild(sobre);
         }
 
         // Filtros de categorías
@@ -431,7 +396,7 @@
             });
         });
 
-        // Lógica del Modal con el número oficial
+        // Lógica del Modal de Cuentas
         const modal = document.getElementById('miModal');
         const spanCerrar = document.querySelector('.cerrar-modal');
         const modalImg = document.getElementById('modal-img');
@@ -456,7 +421,7 @@
             modalPrecio.textContent = precio;
 
             const urlImagenAbsoluta = new URL(imgSrc, window.location.href).href;
-            const textoMensaje = `¡Hola Old-School! Me interesa la *${titulo}* que cuesta *${precio}*.\n\n📸 Ver foto de la cuenta:\n${urlImagenAbsoluta}\n\n¿Está disponible para concretar la compra?`;
+            const textoMensaje = `¡Hola Old-School! Me interesa la *${titulo}* que cuesta *${precio}*.\n\n📸 Ver foto de la cuenta:\n${urlImagenAbsolual || urlImagenAbsoluta}\n\n¿Está disponible para concretar la compra?`;
             
             modalBtnWp.href = `https://wa.me/${numeroWp}?text=${encodeURIComponent(textoMensaje)}`;
         });
