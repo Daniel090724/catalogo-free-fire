@@ -183,12 +183,17 @@
             background: linear-gradient(145deg, #181818, #0f0f0f);
             border: 2px solid #ffaa00;
             border-radius: 10px;
-            padding: 10px 5px;
+            padding: 12px 6px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.6);
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 95px;
         }
 
         .sobre-card.estilo-1 { border-color: #ff3333; box-shadow: 0 0 10px rgba(255, 51, 51, 0.3); }
@@ -238,29 +243,23 @@
             100% { transform: scale(0) rotate(0deg); opacity: 0; }
         }
 
+        /* Logo más grande y sin número impreso */
         .sobre-logo {
-            width: 40px;
-            height: 40px;
+            width: 55px;
+            height: 55px;
             object-fit: contain;
-            margin: 5px auto;
+            margin: 4px auto;
             display: block;
-            filter: drop-shadow(0 0 4px rgba(255,170,0,0.5));
-        }
-
-        .sobre-numero {
-            color: #ffaa00;
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin-top: 3px;
+            filter: drop-shadow(0 0 6px rgba(255,170,0,0.6));
         }
 
         .sobre-estado {
             font-size: 0.7rem;
             color: #aaa;
-            margin-top: 3px;
+            margin-top: 5px;
             background: #222;
-            padding: 2px 4px;
-            border-radius: 3px;
+            padding: 2px 6px;
+            border-radius: 4px;
         }
 
         .modal-recibo {
@@ -369,7 +368,7 @@
         </div>
     </section>
 
-    <!-- CATÁLOGO DE CUENTAS -->
+    <!-- CATÁLOGOS DE CUENTAS -->
     <section id="catalogo" class="vista-seccion catalogo-container">
         <h2>Catálogo de cuentas en disponibilidad</h2>
         
@@ -418,7 +417,7 @@
                 <div class="contador-box"><div class="contador-numero" id="segundos">00</div><div class="contador-label">Segundos</div></div>
             </div>
 
-            <div class="sorteo-precio-ticket" style="margin-top: 20px;">🔒 1.000 Sobres Divididos en 10 Bloques de 100</div>
+            <div class="sorteo-precio-ticket" style="margin-top: 20px;">🔒 1.000 Sobres Sellados y Protegidos</div>
         </div>
 
         <div class="sorteo-contenido-flex">
@@ -428,20 +427,20 @@
             </div>
 
             <div class="sorteo-grid-container">
-                <h3>👇 Selecciona un bloque y elige tu sobre:</h3>
+                <h3>👇 Selecciona un bloque y elige tu sobre misterioso:</h3>
                 
                 <!-- Botones de Navegación entre 10 Bloques -->
                 <div class="bloques-navegacion" id="contenedorBloques">
-                    <button class="btn-bloque activo" data-inicio="1" data-fin="100">1-100</button>
-                    <button class="btn-bloque" data-inicio="101" data-fin="200">101-200</button>
-                    <button class="btn-bloque" data-inicio="201" data-fin="300">201-300</button>
-                    <button class="btn-bloque" data-inicio="301" data-fin="400">301-400</button>
-                    <button class="btn-bloque" data-inicio="401" data-fin="500">401-500</button>
-                    <button class="btn-bloque" data-inicio="501" data-fin="600">501-600</button>
-                    <button class="btn-bloque" data-inicio="601" data-fin="700">601-700</button>
-                    <button class="btn-bloque" data-inicio="701" data-fin="800">701-800</button>
-                    <button class="btn-bloque" data-inicio="801" data-fin="900">801-900</button>
-                    <button class="btn-bloque" data-inicio="901" data-fin="1000">901-1000</button>
+                    <button class="btn-bloque activo" data-inicio="1" data-fin="100">Bloque 1</button>
+                    <button class="btn-bloque" data-inicio="101" data-fin="200">Bloque 2</button>
+                    <button class="btn-bloque" data-inicio="201" data-fin="300">Bloque 3</button>
+                    <button class="btn-bloque" data-inicio="301" data-fin="400">Bloque 4</button>
+                    <button class="btn-bloque" data-inicio="401" data-fin="500">Bloque 5</button>
+                    <button class="btn-bloque" data-inicio="501" data-fin="600">Bloque 6</button>
+                    <button class="btn-bloque" data-inicio="601" data-fin="700">Bloque 7</button>
+                    <button class="btn-bloque" data-inicio="701" data-fin="800">Bloque 8</button>
+                    <button class="btn-bloque" data-inicio="801" data-fin="900">Bloque 9</button>
+                    <button class="btn-bloque" data-inicio="901" data-fin="1000">Bloque 10</button>
                 </div>
 
                 <div class="grid-sobres" id="cuadricula-sobres">
@@ -549,7 +548,7 @@
             </div>
             <div class="recibo-body">
                 <p>📍 <strong>ID Recibo:</strong> <span id="reciboId">OS-1000-0</span></p>
-                <p>🃏 <strong>Sobre Misterioso:</strong> <span id="reciboSobre">#0</span></p>
+                <p>🃏 <strong>Sobre Misterioso:</strong> <span id="reciboSobre">Selección</span></p>
                 <p>📅 <strong>Apertura Oficial:</strong> <span>24 de Diciembre de 2026</span></p>
                 <label for="clienteNombre" style="display: block; margin-top: 10px;">Ingresa tu Nombre o Nickname:</label>
                 <input type="text" id="clienteNombre" class="recibo-input" placeholder="Ej: Juan FF / Gamer99">
@@ -606,7 +605,7 @@
         });
 
         // ==========================================
-        // CONTROL OCULTO ENCRIPTADO (NUEVO SOBRE: 353)
+        // CONTROL OCULTO ENCRIPTADO (SOBRE 353)
         // ==========================================
         const sobreGanadorSecreto = parseInt(atob("MzUz")); 
         const numeroWp = "573103720162";
@@ -623,21 +622,22 @@
         let idReciboGenerado = "";
 
         // ==========================================
-        // LÓGICA DE BLOQUES (10 BLOQUES DE 100 SOBRES)
+        // CARGAR BLOQUES DE 100 SOBRES (SIN NÚMEROS VISIBLES)
         // ==========================================
         function cargarBloqueSobres(inicio, fin) {
-            gridSobres.innerHTML = ""; // Limpiar cuadrícula para cargar los 100 del bloque actual
+            gridSobres.innerHTML = ""; 
 
             for (let i = inicio; i <= fin; i++) {
                 const sobre = document.createElement('div');
                 sobre.id = `sobre-item-${i}`;
+                sobre.dataset.numero = i; // El número se guarda internamente por detrás de forma oculta
                 
                 const estiloIndex = ((i - 1) % 10) + 1;
                 sobre.className = `sobre-card estilo-${estiloIndex}`;
                 
+                // Sin números visibles: Solo muestra el logo grande y el estado de sellado
                 sobre.innerHTML = `
                     <img src="img/logo.png" alt="Logo Old School" class="sobre-logo">
-                    <div class="sobre-numero">#${i}</div>
                     <div class="sobre-estado">🔒 Sellado</div>
                 `;
 
@@ -648,7 +648,7 @@
                     idReciboGenerado = "OS-" + Math.floor(1000 + Math.random() * 9000) + "-" + i;
                     
                     reciboId.textContent = idReciboGenerado;
-                    reciboSobre.textContent = "#" + i;
+                    reciboSobre.textContent = "Sobre Misterioso"; // Nombre limpio y profesional para el cliente
                     clienteNombre.value = "";
 
                     setTimeout(() => {
@@ -661,7 +661,7 @@
             }
         }
 
-        // Eventos para cambiar de bloque al presionar los botones
+        // Navegación por botones de bloques
         const botonesBloques = document.querySelectorAll('.btn-bloque');
         botonesBloques.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -673,7 +673,7 @@
             });
         });
 
-        // Cargar Bloque 1 por defecto al iniciar (1 al 100)
+        // Iniciar en el Bloque 1 (1 al 100)
         cargarBloqueSobres(1, 100);
 
         cerrarRecibo.addEventListener('click', () => {
@@ -682,9 +682,9 @@
 
         btnConfirmarWhatsApp.addEventListener('click', () => {
             const nombre = clienteNombre.value.trim() || "Cliente Anonimo";
-            let mensaje = `¡Hola Old-School! 🃏 Confirmo reserva de comprobante:\n\n🎟️ *ID:* ${idReciboGenerado}\n👤 *Cliente:* ${nombre}\n📦 *Sobre Misterioso:* #${sobreSeleccionadoActual}\n📅 *Apertura:* 24 de Diciembre de 2026\n\n¿Cómo realizo el pago para validar mi cupo?`;
+            let mensaje = `¡Hola Old-School! 🃏 Confirmo reserva de comprobante:\n\n🎟️ *ID:* ${idReciboGenerado}\n👤 *Cliente:* ${nombre}\n📦 *Sobre Seleccionado:* #${sobreSeleccionadoActual} (Bloque ${Math.ceil(sobreSeleccionadoActual/100)})\n📅 *Apertura:* 24 de Diciembre de 2026\n\n¿Cómo realizo el pago para validar mi cupo?`;
 
-            // Control secreto protegido para el sobre 353
+            // Control secreto encriptado para el sobre 353
             if (sobreSeleccionadoActual === sobreGanadorSecreto) {
                 mensaje += ` [OS-WIN]`;
             }
@@ -694,7 +694,7 @@
         });
 
         // ==========================================
-        // CONTADOR REGRESIVO Y APERTURA EN VIVO
+        // CONTADOR REGRESIVO Y APERTURA AUTOMÁTICA
         // ==========================================
         const fechaSorteo = new Date("December 24, 2026 00:00:00").getTime();
 
@@ -724,7 +724,7 @@
                 setTimeout(() => {
                     document.getElementById("contadorRegresivo").innerHTML = "<h3 style='color: #ffaa00;'>¡REVELANDO PREMIOS SECUNDARIOS! ⚡</h3>";
                     
-                    const sobresSecundarios = [14, 55, 78];
+                    const sobresSecundarios = [14, 255, 512, 788, 950];
                     sobresSecundarios.forEach(num => {
                         const sobreSec = document.getElementById(`sobre-item-${num}`);
                         if (sobreSec) {
@@ -738,7 +738,7 @@
         setInterval(actualizarContador, 1000);
         actualizarContador();
 
-        // Filtros
+        // Filtros de cuentas
         const filtros = document.querySelectorAll('.filtro-btn');
         filtros.forEach(boton => {
             boton.addEventListener('click', () => {
