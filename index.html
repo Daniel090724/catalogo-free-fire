@@ -18,11 +18,30 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     
     <style>
-        .hero { display: flex; justify-content: center; align-items: center; text-align: center; }
-        .hero-contenido { max-width: 800px; margin: 0 auto; padding: 0 20px; }
         .vista-seccion { display: none; }
         .vista-seccion.activa { display: block; }
 
+        /* SECCIÓN INICIO / CUENTAS */
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 20px;
+            background: radial-gradient(circle, #1a1a1a 0%, #0d0d0d 100%);
+            min-height: 70vh;
+        }
+        .hero-contenido { max-width: 800px; margin: 0 auto; }
+        .hero-contenido h1 { color: #ffaa00; font-size: 2.8rem; margin-bottom: 20px; text-transform: uppercase; }
+        .hero-contenido p { color: #ccc; font-size: 1.2rem; line-height: 1.6; margin-bottom: 30px; }
+        .btn-principal {
+            background: #ffaa00; color: #000; padding: 12px 30px; font-weight: 700;
+            border-radius: 8px; text-decoration: none; display: inline-block; box-shadow: 0 0 15px rgba(255,170,0,0.4);
+            transition: 0.3s;
+        }
+        .btn-principal:hover { background: #ff8800; box-shadow: 0 0 25px rgba(255,170,0,0.8); }
+
+        /* SECCIÓN SORTEO */
         .sorteo-section {
             padding: 50px 20px;
             background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
@@ -97,7 +116,7 @@
             padding-right: 5px;
         }
 
-        /* Estilos base de las tarjetas de sobres */
+        /* Estilos de las tarjetas de sobres */
         .sobre-card {
             background: linear-gradient(145deg, #181818, #0f0f0f);
             border: 2px solid #ffaa00;
@@ -115,7 +134,6 @@
             min-height: 95px;
         }
 
-        /* Estados sincronizados desde Firebase */
         .sobre-card.estado-libre { border-color: #ffaa00; }
         .sobre-card.estado-pendiente { border-color: #ffcc00; background: linear-gradient(145deg, #332b00, #1a1500); opacity: 0.85; }
         .sobre-card.estado-pagado { border-color: #00ff66; background: linear-gradient(145deg, #003311, #001105); cursor: not-allowed; opacity: 0.7; }
@@ -168,8 +186,17 @@
         </nav>
     </header>
 
-    <!-- SORTEO MEGA INSANO -->
-    <section id="sorteo" class="vista-seccion activa sorteo-section">
+    <!-- SECCIÓN DE CUENTAS FREE (INICIO) -->
+    <section id="inicio" class="vista-seccion activa hero">
+        <div class="hero-contenido">
+            <h1>Cuentas & Ofertas Exclusivas 🔥</h1>
+            <p>Bienvenido a Old-School.Gamerx. Aquí encontrarás las mejores cuentas de Free Fire y servicios gaming asegurados. ¡Participa en nuestros mega eventos y llévate premios insanos!</p>
+            <a href="#sorteo" class="btn-principal" id="irAlSorteo">Ir al Sorteo de Sobres ⚡</a>
+        </div>
+    </section>
+
+    <!-- SECCIÓN SORTEO MEGA INSANO -->
+    <section id="sorteo" class="vista-seccion sorteo-section">
         <div class="sorteo-banner">
             <h2>🔥 Mega Sorteo Insano: 1.000 Sobres en Tiempo Real ⚡</h2>
             <p>Selecciona tu sobre misterioso. Los sobres apartados o pagados se actualizan solos al instante para todo el mundo.</p>
@@ -230,7 +257,7 @@
 
     <script>
         // ==========================================
-        // 1. CONFIGURACIÓN DE FIREBASE (Tus credenciales)
+        // 1. CONFIGURACIÓN DE FIREBASE
         // ==========================================
         const firebaseConfig = {
             apiKey: "AzaSyCHV93_r8VGjnAITOgf3ZU2Re3C6D62q_w",
@@ -261,7 +288,37 @@
         let estadosSobresGlobal = {}; 
 
         // ==========================================
-        // 2. ESCUCHA EN TIEMPO REAL DESDE FIREBASE
+        // 2. NAVEGACIÓN ENTRE VISTAS (INICIO / SORTEO)
+        // ==========================================
+        const linkInicio = document.getElementById('link-inicio');
+        const linkSorteo = document.getElementById('link-sorteo');
+        const navInicio = document.getElementById('nav-inicio');
+        const irAlSorteo = document.getElementById('irAlSorteo');
+        const seccionInicio = document.getElementById('inicio');
+        const seccionSorteo = document.getElementById('sorteo');
+
+        function cambiarVista(vistaDestino) {
+            if (vistaDestino === 'inicio') {
+                seccionInicio.classList.add('activa');
+                seccionSorteo.classList.remove('activa');
+                linkInicio.classList.add('activo');
+                linkSorteo.classList.remove('activo');
+            } else {
+                seccionSorteo.classList.add('activa');
+                seccionInicio.classList.remove('activa');
+                linkSorteo.classList.add('activo');
+                linkInicio.classList.remove('activo');
+            }
+            window.scrollTo(0, 0);
+        }
+
+        linkInicio.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('inicio'); });
+        navInicio.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('inicio'); });
+        linkSorteo.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('sorteo'); });
+        irAlSorteo.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('sorteo'); });
+
+        // ==========================================
+        // 3. ESCUCHA EN TIEMPO REAL DESDE FIREBASE
         // ==========================================
         function iniciarEscuchaFirebase() {
             db.collection("sobres").onSnapshot((snapshot) => {
@@ -274,7 +331,7 @@
         }
 
         // ==========================================
-        // 3. CARGAR PÁGINA DE SOBRES
+        // 4. CARGAR PÁGINA DE SOBRES
         // ==========================================
         function cargarPaginaSobres(inicio, fin) {
             paginaActualInicio = inicio;
@@ -344,7 +401,7 @@
         cerrarRecibo.addEventListener('click', () => { modalRecibo.style.display = "none"; });
 
         // ==========================================
-        // 4. GUARDAR EN FIREBASE AL SELECCIONAR
+        // 5. GUARDAR EN FIREBASE AL SELECCIONAR
         // ==========================================
         btnConfirmarWhatsApp.addEventListener('click', () => {
             const nombre = clienteNombre.value.trim() || "Cliente Anonimo";
