@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Old-School.Gamerx - Mega Sorteo Insano</title>
+    <title>Old-School.Gamerx - Catálogo & Mega Sorteo Insano</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -12,57 +12,28 @@
     <meta name="theme-color" content="#ffaa00">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
-    <!-- SDKs de Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
     <style>
-        .vista-seccion { display: none; }
-        .vista-seccion.activa { display: block; }
-
-        /* SECCIÓN INICIO / CUENTAS */
         .hero {
-            padding: 50px 20px;
-            background: radial-gradient(circle, #1a1a1a 0%, #0d0d0d 100%);
-            min-height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
         }
-        .hero-contenido { max-width: 1100px; margin: 0 auto; }
-        .hero-contenido h1 { color: #ffaa00; font-size: 2.5rem; margin-bottom: 15px; text-transform: uppercase; }
-        .hero-contenido p { color: #ccc; font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; }
-
-        .catalogo-cuentas-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-            gap: 10px;
-            background: #111;
-            padding: 20px;
-            border-radius: 12px;
-            border: 2px solid #ffaa00;
-            max-height: 450px;
-            overflow-y: auto;
-            margin-bottom: 30px;
+        .hero-contenido {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .cuenta-miniatura {
-            background: #1c1c1c;
-            border: 1px solid #333;
-            border-radius: 6px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .cuenta-miniatura:hover { border-color: #ffaa00; transform: scale(1.05); }
-        .cuenta-miniatura img { width: 100%; height: 70px; object-fit: cover; display: block; }
 
-        .btn-principal {
-            background: #ffaa00; color: #000; padding: 12px 30px; font-weight: 700;
-            border-radius: 8px; text-decoration: none; display: inline-block; box-shadow: 0 0 15px rgba(255,170,0,0.4);
-            transition: 0.3s;
+        .vista-seccion {
+            display: none;
         }
-        .btn-principal:hover { background: #ff8800; box-shadow: 0 0 25px rgba(255,170,0,0.8); }
+        .vista-seccion.activa {
+            display: block;
+        }
 
-        /* SECCIÓN SORTEO */
         .sorteo-section {
             padding: 50px 20px;
             background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
@@ -80,13 +51,48 @@
             box-shadow: 0 0 20px rgba(255, 170, 0, 0.2);
         }
 
-        .sorteo-banner h2 { color: #ffaa00; font-size: 2.3rem; margin-bottom: 15px; text-transform: uppercase; }
-        .sorteo-banner p { color: #ddd; font-size: 1.1rem; line-height: 1.6; margin-bottom: 10px; }
+        .sorteo-banner h2 {
+            color: #ffaa00;
+            font-size: 2.3rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-        .contador-container { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
-        .contador-box { background: #111; border: 2px solid #ffaa00; padding: 10px 15px; border-radius: 8px; min-width: 70px; }
-        .contador-numero { font-size: 1.5rem; font-weight: 700; color: #ffaa00; }
-        .contador-label { font-size: 0.75rem; color: #aaa; text-transform: uppercase; }
+        .sorteo-banner p {
+            color: #ddd;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .contador-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .contador-box {
+            background: #111;
+            border: 2px solid #ffaa00;
+            padding: 10px 15px;
+            border-radius: 8px;
+            min-width: 70px;
+            box-shadow: 0 4px 10px rgba(255, 170, 0, 0.2);
+        }
+
+        .contador-numero {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffaa00;
+        }
+
+        .contador-label {
+            font-size: 0.75rem;
+            color: #aaa;
+            text-transform: uppercase;
+        }
 
         .sorteo-contenido-flex {
             display: flex;
@@ -107,8 +113,20 @@
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
         }
-        .sorteo-img-card img { width: 100%; display: block; object-fit: cover; }
-        .sorteo-img-info { padding: 15px; background: #181818; color: #fff; font-size: 0.95rem; font-weight: 600; }
+
+        .sorteo-img-card img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .sorteo-img-info {
+            padding: 15px;
+            background: #181818;
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
 
         .sorteo-grid-container {
             flex: 1 1 450px;
@@ -118,15 +136,39 @@
             border-radius: 12px;
             border: 1px solid #333;
         }
-        .sorteo-grid-container h3 { color: #fff; margin-bottom: 15px; font-size: 1.2rem; }
 
-        /* Navegación por Páginas (1 a 10) */
-        .bloques-navegacion { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 15px; }
-        .btn-bloque {
-            background: #222; color: #ffaa00; border: 1px solid #ffaa00;
-            padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: all 0.2s ease;
+        .sorteo-grid-container h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
         }
-        .btn-bloque:hover, .btn-bloque.activo { background: #ffaa00; color: #000; box-shadow: 0 0 10px rgba(255, 170, 0, 0.5); }
+
+        /* Navegación por Páginas (10 Páginas) */
+        .bloques-navegacion {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .btn-bloque {
+            background: #222;
+            color: #ffaa00;
+            border: 1px solid #ffaa00;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-bloque:hover, .btn-bloque.activo {
+            background: #ffaa00;
+            color: #000;
+            box-shadow: 0 0 10px rgba(255, 170, 0, 0.5);
+        }
 
         .grid-sobres {
             display: grid;
@@ -137,7 +179,6 @@
             padding-right: 5px;
         }
 
-        /* Estilos de las tarjetas de sobres tradicionales */
         .sobre-card {
             background: linear-gradient(145deg, #181818, #0f0f0f);
             border: 2px solid #ffaa00;
@@ -155,10 +196,17 @@
             min-height: 95px;
         }
 
-        .sobre-card.estado-libre { border-color: #ffaa00; }
-        .sobre-card.estado-pendiente { border-color: #ffcc00; background: linear-gradient(145deg, #332b00, #1a1500); opacity: 0.85; }
-        .sobre-card.estado-pagado { border-color: #00ff66; background: linear-gradient(145deg, #003311, #001105); cursor: not-allowed; opacity: 0.7; }
-        
+        .sobre-card.estilo-1 { border-color: #ff3333; box-shadow: 0 0 10px rgba(255, 51, 51, 0.3); }
+        .sobre-card.estilo-2 { border-color: #9933ff; box-shadow: 0 0 10px rgba(153, 51, 255, 0.3); }
+        .sobre-card.estilo-3 { border-color: #00ccff; box-shadow: 0 0 10px rgba(0, 204, 255, 0.3); }
+        .sobre-card.estilo-4 { border-color: #ff9900; box-shadow: 0 0 10px rgba(255, 153, 0, 0.3); }
+        .sobre-card.estilo-5 { border-color: #33cc33; box-shadow: 0 0 10px rgba(51, 204, 51, 0.3); }
+        .sobre-card.estilo-6 { border-color: #ff00ff; box-shadow: 0 0 10px rgba(255, 0, 255, 0.3); }
+        .sobre-card.estilo-7 { border-color: #ffff33; box-shadow: 0 0 10px rgba(255, 255, 51, 0.3); }
+        .sobre-card.estilo-8 { border-color: #00ffff; box-shadow: 0 0 10px rgba(0, 255, 255, 0.3); }
+        .sobre-card.estilo-9 { border-color: #ff6666; box-shadow: 0 0 10px rgba(255, 102, 102, 0.3); }
+        .sobre-card.estilo-10 { border-color: #cc66ff; box-shadow: 0 0 10px rgba(204, 102, 255, 0.3); }
+
         .sobre-card.ganador-revelado {
             border-color: #00ff66 !important;
             background: linear-gradient(145deg, #003311, #001105) !important;
@@ -167,132 +215,209 @@
             animation: pulsoGanador 1.5s infinite alternate;
         }
 
+        .sobre-card.secundario-revelado {
+            border-color: #ffaa00 !important;
+            background: linear-gradient(145deg, #332200, #110d00) !important;
+            box-shadow: 0 0 15px rgba(255, 170, 0, 0.7) !important;
+            transform: scale(1.05);
+        }
+
         @keyframes pulsoGanador {
             0% { box-shadow: 0 0 10px rgba(0, 255, 102, 0.5); }
             100% { box-shadow: 0 0 25px rgba(0, 255, 102, 1); }
         }
 
-        .sobre-logo { width: 58px; height: 58px; object-fit: contain; margin: 4px auto; display: block; filter: drop-shadow(0 0 6px rgba(255,170,0,0.6)); }
-        .sobre-estado { font-size: 0.7rem; color: #aaa; margin-top: 5px; background: #222; padding: 2px 6px; border-radius: 4px; }
+        .sobre-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            background: #252525;
+        }
 
-        /* Modales */
+        .sobre-card.abriendo {
+            animation: abrirSobre 0.8s ease forwards;
+        }
+
+        @keyframes abrirSobre {
+            0% { transform: scale(1) rotate(0deg); filter: brightness(1); }
+            30% { transform: scale(1.2) rotate(-5deg); filter: brightness(1.5); }
+            60% { transform: scale(1.3) rotate(5deg); filter: brightness(2); }
+            100% { transform: scale(0) rotate(0deg); opacity: 0; }
+        }
+
+        /* Logo limpio y grande, sin número impreso */
+        .sobre-logo {
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
+            margin: 4px auto;
+            display: block;
+            filter: drop-shadow(0 0 6px rgba(255,170,0,0.6));
+        }
+
+        .sobre-estado {
+            font-size: 0.7rem;
+            color: #aaa;
+            margin-top: 5px;
+            background: #222;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
         .modal-recibo {
-            display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.85); justify-content: center; align-items: center; padding: 20px;
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
+
         .recibo-card {
-            background: linear-gradient(135deg, #181818, #0a0a0a); border: 2px solid #ffaa00; border-radius: 15px;
-            width: 100%; max-width: 420px; padding: 25px; box-shadow: 0 0 30px rgba(255, 170, 0, 0.3); position: relative; text-align: center; color: #fff;
+            background: linear-gradient(135deg, #181818, #0a0a0a);
+            border: 2px solid #ffaa00;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 420px;
+            padding: 25px;
+            box-shadow: 0 0 30px rgba(255, 170, 0, 0.3);
+            position: relative;
+            text-align: center;
+            color: #fff;
         }
-        .recibo-header { border-bottom: 2px dashed #ffaa00; padding-bottom: 15px; margin-bottom: 15px; }
-        .recibo-header h3 { color: #ffaa00; font-size: 1.4rem; margin: 5px 0; }
-        .recibo-body { text-align: left; font-size: 0.95rem; line-height: 1.8; }
-        .recibo-body span { color: #ffaa00; font-weight: 600; }
-        .recibo-input { width: 100%; padding: 10px; margin-top: 10px; border-radius: 6px; border: 1px solid #ffaa00; background: #111; color: #fff; font-family: inherit; }
-        
+
+        .recibo-header {
+            border-bottom: 2px dashed #ffaa00;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .recibo-header h3 {
+            color: #ffaa00;
+            font-size: 1.4rem;
+            margin: 5px 0;
+        }
+
+        .recibo-body {
+            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .recibo-body span {
+            color: #ffaa00;
+            font-weight: 600;
+        }
+
+        .recibo-input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: 1px solid #ffaa00;
+            background: #111;
+            color: #fff;
+            font-family: inherit;
+        }
+
         .btn-enviar-recibo {
-            display: block; width: 100%; background: #25d366; color: #fff; font-weight: bold;
-            padding: 12px; border-radius: 8px; text-decoration: none; margin-top: 20px; text-align: center; cursor: pointer; border: none;
+            display: block;
+            width: 100%;
+            background: #25d366;
+            color: #fff;
+            font-weight: bold;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            border: none;
         }
-        .btn-enviar-recibo:hover { background: #1eb856; }
+
+        .btn-enviar-recibo:hover {
+            background: #1eb856;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="logo-link" id="nav-inicio"><img src="img/logo.png" alt="Logo Old School" class="logo-img"></a>
+        <a href="#" class="logo-link" id="nav-inicio">
+            <img src="img/logo.png" alt="Logo Old School" class="logo-img">
+        </a>
         <nav>
             <a href="#" id="link-inicio" class="activo">Inicio</a>
-            <a href="#sorteo" id="link-sorteo">Mega Sorteo 🃏</a>
+            <a href="#catalogo" id="link-catalogo">Catálogo de Cuentas</a>
+            <a href="#sorteo" id="link-sorteo">Sorteo Mega Insano 🃏</a>
+            <a href="#faq" id="link-faq">Preguntas Frecuentes</a>
         </nav>
     </header>
 
-    <!-- SECCIÓN DE INICIO / CATÁLOGO COMPLETO -->
-    <section id="inicio" class="vista-seccion activa hero">
+    <!-- INICIO -->
+    <section id="seccion-inicio" class="vista-seccion activa hero">
+        <div class="hero-overlay"></div>
         <div class="hero-contenido">
-            <h1>Cuentas & Catálogo Free Fire 🔥</h1>
-            <p>Bienvenido a Old-School.Gamerx. Explora nuestro catálogo completo de cuentas exclusivas o salta directo al Mega Sorteo de Sobres.</p>
-            
-            <div class="catalogo-cuentas-grid" id="gridCuentasOriginal">
-                <!-- 60 Cuentas explícitas escritas una a una -->
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 1"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 2"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 3"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 4"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 5"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 6"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 7"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 8"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 9"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 10"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 11"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 12"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 13"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 14"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 15"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 16"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 17"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 18"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 19"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 20"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 21"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 22"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 23"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 24"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 25"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 26"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 27"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 28"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 29"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 30"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 31"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 32"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 33"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 34"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 35"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 36"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 37"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 38"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 39"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 40"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 41"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 42"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 43"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 44"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 45"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 46"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 47"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 48"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 49"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 50"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 51"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 52"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 53"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 54"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 55"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 56"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 57"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 58"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 59"></div>
-                <div class="cuenta-miniatura"><img src="img/foto3.jpg" alt="Cuenta 60"></div>
-            </div>
-
-            <a href="#sorteo" class="btn-principal" id="irAlSorteo">Ir al Sorteo de Sobres ⚡</a>
+            <h1>¡Bienvenido a Old-School Gamerx!</h1>
+            <p>Las mejores cuentas de Free Fire Veteranas, Súper Top y el nuevo Sorteo Mega Insano de Sobres.</p>
+            <a href="#catalogo" id="btn-ir-catalogo" class="btn-cta">Ver Catálogo de Cuentas ⚡</a>
         </div>
     </section>
 
-    <!-- SECCIÓN SORTEO MEGA INSANO -->
+    <!-- CATÁLOGO DE CUENTAS -->
+    <section id="catalogo" class="vista-seccion catalogo-container">
+        <h2>Catálogo de cuentas en disponibilidad</h2>
+        
+        <div class="categorias-filtro">
+            <button class="filtro-btn activo" data-filtro="todos">Todas</button>
+            <button class="filtro-btn" data-filtro="top">Súper Top ⚡</button>
+            <button class="filtro-btn" data-filtro="veteranas">Veteranas 🔥</button>
+        </div>
+        
+        <div class="grid-cuentas" id="contenedor-tarjetas">
+            <div class="card" data-categoria="veteranas" data-titulo="CUENTA EXCLUSIVA 7 PRIMEROS PASES" data-detalle="CUENTITA PARA ALGÚN CLIENTE QUE LE GUSTA LO EXCLUSIVO, 7 PRIMEROS PASES COMPLETOS 🔥 ACEPTO CUENTAS POR PARTE DE PAGO 😼" data-precio="Consultar por WhatsApp"><img src="img/foto1.jpg" alt="Foto 1"></div>
+            <div class="card" data-categoria="top" data-titulo="SÚPER CUENTA 2 PRIMEROS PASES" data-detalle="LLEVEN ESTA SÚPER CUENTA CON 2 DE LOS PRIMEROS 8 PASES DEL JUEGO, GAMER Y CHOQUE BIÓNICO 👾💥! CASI 800 PECHOS, MIXTA, COLABO BLUELOCK, ANGELICALES ROJOS, 6 EVOS AL MÁX, PRIME 8 Y MUCHO MÁS ❕❕" data-precio="1'250.000 🇨🇴 | 390$ 🇺🇸 | 7.200 🇲🇽"><img src="img/foto2.jpg" alt="Foto 2"></div>
+            <div class="card" data-categoria="top" data-titulo="SAKURITA CON 23K DIAMANTES" data-detalle="DISPONIBLE SAKURITA CON MÁS DE 23K DE DIAMANTES, PRIME 8, CHAQUETA ROJA, FULL EVENTOS 🔥" data-precio="4'400.000 🇨🇴 | 1380$ 🇺🇸 | 25800 🇲🇽"><img src="img/foto3.jpg" alt="Foto 3"></div>
+            <div class="card" data-categoria="top" data-titulo="VETERANA ANTIBOMBAS Y SHORT" data-detalle="LLEGANDO VETERANA ANTIBOMBAS, SHORT EXCLUSIVO, PRIME 8, 8 AÑOS MUY TOP EN TODOS LOS SENTIDOS 🔥😎" data-precio="900.000 🇨🇴 | 290$ 🇺🇸 | 5400 🇲🇽"><img src="img/foto4.jpg" alt="Foto 4"></div>
+            <div class="card" data-categoria="top" data-titulo="CUENTITA INSANA BLUELOCK" data-detalle="CUENTITA INSANA, COLABORACIÓN BLUELOCK, EVOS Y MÁS 🔥" data-precio="260.000 🇨🇴 | 82$ 🇺🇸 | 1500 🇲🇽"><img src="img/foto5.jpg" alt="Foto 5"></div>
+            <div class="card" data-categoria="top" data-titulo="HERMOSA CUENTA ROPA INSANA" data-detalle="HERMOSA CUENTA CON ROPA INSANA 🔥! LOS MEJORES ANGELICALES DE JUEGO 💙, CAMISETA DE BRAZIL, CUERNITOS AZULES DE NIÑO Y NIÑA, 450 PECHOS, 7 EVOS A BUEN NIVEL, ENTRADAS Y MUCHO MÁS ❕" data-precio="350.000 🇨🇴 | 110$ 🇺🇸 | 2.000 🇲🇽"><img src="img/foto6.jpg" alt="Foto 6"></div>
+            <div class="card" data-categoria="veteranas" data-titulo="BEBÉ PARA NO EMPEZAR DE 0" data-detalle="HERMOSA BEBÉ PARA NO EMPEZAR DE 0 ❌ CUERNITOS AZULES, ANGELICALES AMARILLOS DE NIÑO Y NIÑA, 1 EVO AL 5, SACO PUMA Y MUCHO MÁS ❗️" data-precio="190.000 🇨🇴 | 65$ 🇺🇸 | 1.100 🇲🇽"><img src="img/foto7.jpg" alt="Foto 7"></div>
+            <div class="card" data-categoria="top" data-titulo="HIPHOP SÚPER TOP" data-detalle="DISPONIBLE HIPHOP SÚPER TOP, GAMER, INCUBADORAS CARAS, PRIME 8, 5 CRIMINALES, 5 ANGELICALES, CHOQUE BIÓNICO Y ANTIBOMBAS 🔥" data-precio="Consultar por WhatsApp"><img src="img/foto8.jpg" alt="Foto 8"></div>
+            <div class="card" data-categoria="veteranas" data-titulo="MOVIMIENTO DEL MAL SEMIVETERANA" data-detalle="MOVIMIENTO DEL MAL, SEMIVETERANA 🔥😎" data-precio="190.000 🇨🇴 | 60$ 🇺🇸"><img src="img/foto9.jpg" alt="Foto 9"></div>
+            <div class="card" data-categoria="top" data-titulo="REYES CON PARED EXCLUSIVA" data-detalle="DISPONIBLE REYES CON LA PARED MÁS EXCLUSIVA DEL JUEGO, ANTIBOMBAS, MOVIMIENTO DEL MAL, CERCA DE PRIME 8 😎🔥" data-precio="Consultar por WhatsApp"><img src="img/foto10.jpg" alt="Foto 10"></div>
+            <div class="card" data-categoria="top" data-titulo="MIXTA CON POSTURA PRIME 7" data-detalle="MIXTA CON POSTURA, BUENAS INCUBADORAS, CUERNOS DORADOS, PRIME 7 🔥😎" data-precio="350.000 🇨🇴 | 115$ 🇺🇸 | 2150 🇲🇽"><img src="img/foto11.jpg" alt="Foto 11"></div>
+            <div class="card" data-categoria="top" data-titulo="ANGELICALES UNA AL MÁXIMO" data-detalle="ANGELICALES CON UNA AL MÁXIMO 🔥" data-precio="270.000 🇨🇴 | 88$ 🇺🇸 | 1600 🇲🇽"><img src="img/foto12.jpg" alt="Foto 12"></div>
+            <div class="card" data-categoria="top" data-titulo="PRIME 8 SEMIVETERANA" data-detalle="PRIME 8 SEMIVETERANA, HEROICO S11, CASCO HEROICO, 9 AL MÁXIMO, POSTURAS, 14 ENTRADAS, FULL COLABORACIONES 🔥" data-precio="1'100.000 🇨🇴 | 350$ 🇺🇸 | 6500 🇲🇽"><img src="img/foto13.jpg" alt="Foto 13"></div>
+            <div class="card" data-categoria="veteranas" data-titulo="STEAM PASE DRAGONES" data-detalle="STEAM ABANDONADA CON PASE DRAGONES 🔥" data-precio="630.000 🇨🇴 | 200$ 🇺🇸 | 3700 🇲🇽"><img src="img/foto14.jpg" alt="Foto 14"></div>
+            <div class="card" data-categoria="veteranas" data-titulo="HUESITO BARBA DE VIEJO" data-detalle="HUESITO CON BARBA DE VIEJO, 3 EVOLUTIVAS AL NIVEL 6 🔥😎" data-precio="300.000 🇨🇴 | 100$ 🇺🇸 | 1800 🇲🇽"><img src="img/foto15.jpg" alt="Foto 15"></div>
+            <div class="card" data-categoria="top" data-titulo="MIXTA 10 AL MÁXIMO PRIME 8" data-detalle="MIXTA 10 AL MÁXIMO, PRIME 8 FULL EVENTOS Y FULL INCUBADORAS CARAS 🔥😎" data-precio="1'300.000 🇨🇴 | 415$ 🇺🇸 | 7700 🇲🇽"><img src="img/foto16.jpg" alt="Foto 16"></div>
+            <div class="card" data-categoria="top" data-titulo="DESTRUCTOR CHAQUETA BETA" data-detalle="DESTRUCTOR, REYES CON CHAQUETA BETA, SÚPER TOP 🔥" data-precio="2'000.000 🇨🇴 | 650$ 🇺🇸 | 11000 🇲🇽"><img src="img/foto17.jpg" alt="Foto 17"></div>
+            <div class="card" data-categoria="top" data-titulo="STEAM CAMISA HEROICO" data-detalle="STEAM CON CAMISA HEROICO SÚPER TOP 🔥. HEROICO S4, S7 🔥🦅" data-precio="2'700.000 🇨🇴 | 850$ 🇺🇸 | 14.500 🇲🇽"><img src="img/foto18.jpg" alt="Foto 18"></div>
+            <div class="card" data-categoria="veteranas" data-titulo="VETERANA RAGNAROK TOP" data-detalle="LLEGANDO VETERANA CON COLABORACIÓN RAGNAROK, MOVIMIENTO DEL MAL, CHOQUE BIÓNICO, CASCO HEROICO, HEROICO DESDE LA S8, MUY TOP" data-precio="1'650.000 🇨🇴 | 520$ 🇺🇸 | 9600 🇲🇽"><img src="img/foto19.jpg" alt="Foto 19"></div>
+            <div class="card" data-categoria="top" data-titulo="CHAKALITA FULL TOP PRIME 8" data-detalle="DISPONIBLE CHAKALITA FULL TOP, PRIME 8 TRIPLE ANGELICAL, FULL INCUBADORAS CARAS Y FULL EVENTOS, CASI 8 AL MÁXIMO, CRIMINALES Y MUCHO MÁS 🔥🦅" data-precio="1'450.000 🇨🇴 | 470$ 🇺🇸 | 8700 🇲🇽"><img src="img/foto20.jpg" alt="Foto 20"></div>
+            <div class="card" data-categoria="top" data-titulo="GAMER INSANA PRIME 8" data-detalle="LLEGANDO ESTÁ GAMER INSANA PRIME 8 CON PARED BLANCA DE PREORDEN, 700 PECHOS, INCUBADORAS CARAS, POSTURAS, ANTIBOMBAS MUY TOP 🔥🫡" data-precio="1'350.000 🇨🇴 | 440$ 🇺🇸 | 8100 🇲🇽"><img src="img/foto21.jpg" alt="Foto 21"></div>
+        </div>
+    </section>
+
+    <!-- SORTEO MEGA INSANO CON PÁGINAS -->
     <section id="sorteo" class="vista-seccion sorteo-section">
         <div class="sorteo-banner">
-            <h2>🔥 Mega Sorteo Insano: 1.000 Sobres en Tiempo Real ⚡</h2>
-            <p>Selecciona tu sobre misterioso. Los sobres apartados o pagados se actualizan solos al instante para todo el mundo.</p>
+            <h2>🔥 Mega Sorteo Insano: 1.000 Sobres Misteriosos ⚡</h2>
+            <p>¡Participa por esta increíble cuenta en sorteo! Todos los sobres contienen premios asegurados. Apertura oficial el 24 de diciembre.</p>
             
+            <!-- CONTADOR REGRESIVO EN VIVO -->
             <div class="contador-container" id="contadorRegresivo">
                 <div class="contador-box"><div class="contador-numero" id="dias">00</div><div class="contador-label">Días</div></div>
                 <div class="contador-box"><div class="contador-numero" id="horas">00</div><div class="contador-label">Horas</div></div>
                 <div class="contador-box"><div class="contador-numero" id="minutos">00</div><div class="contador-label">Minutos</div></div>
                 <div class="contador-box"><div class="contador-numero" id="segundos">00</div><div class="contador-label">Segundos</div></div>
             </div>
+
+            <div class="sorteo-precio-ticket" style="margin-top: 20px;">🔒 1.000 Sobres Sellados y Protegidos</div>
         </div>
 
         <div class="sorteo-contenido-flex">
@@ -304,6 +429,7 @@
             <div class="sorteo-grid-container">
                 <h3>👇 Selecciona una página y elige tu sobre:</h3>
                 
+                <!-- Botones de Navegación limpios (Página 1 a 10) -->
                 <div class="bloques-navegacion" id="contenedorBloques">
                     <button class="btn-bloque activo" data-inicio="1" data-fin="100">Página 1</button>
                     <button class="btn-bloque" data-inicio="101" data-fin="200">Página 2</button>
@@ -317,7 +443,96 @@
                     <button class="btn-bloque" data-inicio="901" data-fin="1000">Página 10</button>
                 </div>
 
-                <div class="grid-sobres" id="cuadricula-sobres"></div>
+                <div class="grid-sobres" id="cuadricula-sobres">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MÉTODOS DE PAGO -->
+    <section id="metodos-pago" class="pago-container">
+        <h2>Métodos de Pago Disponibles 💳</h2>
+        <p class="pago-sub">¡Transacciones rápidas, seguras y con garantía total en Old-School.Gamerx!</p>
+        
+        <div class="grid-pagos">
+            <div class="pago-card">
+                <div class="pago-icono">🇨🇴</div>
+                <h3>Colombia</h3>
+                <p>Nequi / Daviplata / Bancolombia / Efectivo</p>
+            </div>
+            
+            <div class="pago-card">
+                <div class="pago-icono">🇺🇸</div>
+                <h3>Internacional / USA</h3>
+                <p>Binance (USDT) / Zelle / PayPal</p>
+            </div>
+            
+            <div class="pago-card">
+                <div class="pago-icono">🇲🇽</div>
+                <h3>México</h3>
+                <p>Transferencia SPEI / OXXO / Binance</p>
+            </div>
+        </div>
+        
+        <div class="pago-aviso">
+            <p>💡 ¿Usas otro método o tienes dudas? Escríbenos directamente al botón de compra de cualquier cuenta o al WhatsApp para coordinar.</p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq-container">
+        <h2>Preguntas Frecuentes ❓</h2>
+        <p class="faq-sub">Todo lo que necesitas saber antes de comprar tu cuenta con nosotros.</p>
+
+        <div class="acordeon-faq">
+            <div class="faq-item">
+                <button class="faq-pregunta">
+                    <span>1. ¿Cómo es el proceso de compra y entrega?</span>
+                    <span class="faq-icono">+</span>
+                </button>
+                <div class="faq-respuesta">
+                    <p>Una vez confirmes tu pago por WhatsApp, te hacemos la entrega inmediata de los datos de acceso (correo y contraseña). Te guiamos paso a paso por llamada o mensaje para que cambies el correo de recuperación, clave y asegures la cuenta al 100% a tu nombre.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-pregunta">
+                    <span>2. ¿Las cuentas tienen garantía de no recuperación?</span>
+                    <span class="faq-icono">+</span>
+                </button>
+                <div class="faq-respuesta">
+                    <p>¡Sí, totalmente! En Old-School.Gamerx todas las cuentas son verificadas antes de publicarse. Ofrecemos garantía de por vida contra recuperaciones, asegurando que tu compra sea 100% segura y libre de riesgos.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-pregunta">
+                    <span>3. ¿Qué vinculo o método de inicio de sesión tienen las cuentas?</span>
+                    <span class="faq-icono">+</span>
+                </button>
+                <div class="faq-respuesta">
+                    <p>Manejamos cuentas vinculadas principalmente a Google o Facebook. En el chat de WhatsApp te especificamos exactamente la vinculación de la cuenta que te interese para realizar la migración completa a tus datos.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-pregunta">
+                    <span>4. ¿Puedo dar una cuenta como parte de pago o hacer un cambio?</span>
+                    <span class="faq-icono">+</span>
+                </button>
+                <div class="faq-respuesta">
+                    <p>Aceptamos cambios únicamente bajo revisión previa. Si tienes una cuenta de tu interés, escríbenos al WhatsApp enviando las fotos o video de tu cuenta para valorarla y decirte si aplica para retoma o cambio.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-pregunta">
+                    <span>5. ¿Cuánto tiempo tarda la entrega después de pagar?</span>
+                    <span class="faq-icono">+</span>
+                </button>
+                <div class="faq-respuesta">
+                    <p>El proceso es casi inmediato. Tan pronto como validemos el comprobante de transferencia, el proceso de entrega y aseguramiento toma de 5 a 15 minutos.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -334,28 +549,64 @@
             <div class="recibo-body">
                 <p>📍 <strong>ID Recibo:</strong> <span id="reciboId">OS-1000-0</span></p>
                 <p>🃏 <strong>Sobre Misterioso:</strong> <span id="reciboSobre">Selección</span></p>
-                <label for="clienteNombre" style="display: block; margin-top: 10px;">Tu Nombre o Nickname:</label>
+                <p>📅 <strong>Apertura Oficial:</strong> <span>24 de Diciembre de 2026</span></p>
+                <label for="clienteNombre" style="display: block; margin-top: 10px;">Ingresa tu Nombre o Nickname:</label>
                 <input type="text" id="clienteNombre" class="recibo-input" placeholder="Ej: Juan FF / Gamer99">
             </div>
             <button id="btnConfirmarWhatsApp" class="btn-enviar-recibo">📲 Confirmar reserva por WhatsApp</button>
         </div>
     </div>
 
-    <script>
-        // ==========================================
-        // 1. CONFIGURACIÓN DE FIREBASE
-        // ==========================================
-        const firebaseConfig = {
-            apiKey: "AzaSyCHV93_r8VGjnAITOgf3ZU2Re3C6D62q_w",
-            authDomain: "sorteoecuento-bbcb7.firebaseapp.com",
-            projectId: "sorteoecuento-bbcb7",
-            storageBucket: "sorteoecuento-bbcb7.firebasestorage.app",
-            messagingSenderId: "579899387532",
-            appId: "1:579899387532:web:158fb7e0a2b0aa447385f0"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
+    <!-- MODAL DE CUENTAS -->
+    <div id="miModal" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar-modal">&times;</span>
+            <img id="modal-img" src="" alt="Cuenta Detalle">
+            <h3 id="modal-titulo">Título</h3>
+            <p id="modal-detalle">Detalle</p>
+            <p id="modal-precio">Precio</p>
+            <a id="modal-btn-whatsapp" href="#" target="_blank" class="btn-comprar">Comprar por WhatsApp</a>
+        </div>
+    </div>
 
+    <footer id="contacto">
+        <p>&copy; 2026 Old-School.Gamerx. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const vistas = document.querySelectorAll('.vista-seccion');
+        const linkInicio = document.getElementById('link-inicio');
+        const navInicio = document.getElementById('nav-inicio');
+        const linkCatalogo = document.getElementById('link-catalogo');
+        const btnIrCatalogo = document.getElementById('btn-ir-catalogo');
+        const linkSorteo = document.getElementById('link-sorteo');
+        const linkFaq = document.getElementById('link-faq');
+
+        function cambiarVista(idVista) {
+            vistas.forEach(v => v.classList.remove('activa'));
+            document.getElementById(idVista).classList.add('activa');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        linkInicio.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('seccion-inicio'); });
+        navInicio.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('seccion-inicio'); });
+        
+        linkCatalogo.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('catalogo'); });
+        btnIrCatalogo.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('catalogo'); });
+
+        linkSorteo.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('sorteo'); });
+
+        linkFaq.addEventListener('click', (e) => { 
+            e.preventDefault(); 
+            cambiarVista('catalogo');
+            setTimeout(() => {
+                document.getElementById('faq').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        });
+
+        // ==========================================
+        // CONTROL OCULTO ENCRIPTADO (SOBRE 353)
+        // ==========================================
         const sobreGanadorSecreto = parseInt(atob("MzUz")); 
         const numeroWp = "573103720162";
 
@@ -369,95 +620,29 @@
 
         let sobreSeleccionadoActual = 0;
         let idReciboGenerado = "";
-        let paginaActualInicio = 1;
-        let paginaActualFin = 100;
-        let estadosSobresGlobal = {}; 
 
         // ==========================================
-        // 2. NAVEGACIÓN ENTRE VISTAS
+        // CARGAR PÁGINAS DE 100 SOBRES (SIN NÚMEROS VISIBLES)
         // ==========================================
-        const linkInicio = document.getElementById('link-inicio');
-        const linkSorteo = document.getElementById('link-sorteo');
-        const navInicio = document.getElementById('nav-inicio');
-        const irAlSorteo = document.getElementById('irAlSorteo');
-        const seccionInicio = document.getElementById('inicio');
-        const seccionSorteo = document.getElementById('sorteo');
-
-        function cambiarVista(vistaDestino) {
-            if (vistaDestino === 'inicio') {
-                seccionInicio.classList.add('activa');
-                seccionSorteo.classList.remove('activa');
-                linkInicio.classList.add('activo');
-                linkSorteo.classList.remove('activo');
-            } else {
-                seccionSorteo.classList.add('activa');
-                seccionInicio.classList.remove('activa');
-                linkSorteo.classList.add('activo');
-                linkInicio.classList.remove('activo');
-            }
-            window.scrollTo(0, 0);
-        }
-
-        linkInicio.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('inicio'); });
-        navInicio.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('inicio'); });
-        linkSorteo.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('sorteo'); });
-        irAlSorteo.addEventListener('click', (e) => { e.preventDefault(); cambiarVista('sorteo'); });
-
-        // ==========================================
-        // 3. ESCUCHA EN TIEMPO REAL (FIREBASE)
-        // ==========================================
-        function iniciarEscuchaFirebase() {
-            db.collection("sobres").onSnapshot((snapshot) => {
-                estadosSobresGlobal = {};
-                snapshot.forEach((doc) => {
-                    estadosSobresGlobal[doc.id] = doc.data(); 
-                });
-                cargarPaginaSobres(paginaActualInicio, paginaActualFin);
-            });
-        }
-
-        // ==========================================
-        // 4. CARGAR PÁGINA DE SOBRES
-        // ==========================================
-        function cargarPaginaSobres(inicio, fin) {
-            paginaActualInicio = inicio;
-            paginaActualFin = fin;
+        function cargarBloqueSobres(inicio, fin) {
             gridSobres.innerHTML = ""; 
 
             for (let i = inicio; i <= fin; i++) {
                 const sobre = document.createElement('div');
                 sobre.id = `sobre-item-${i}`;
+                sobre.dataset.numero = i;
                 
                 const estiloIndex = ((i - 1) % 10) + 1;
-                let estadoInfo = estadosSobresGlobal[i] || { estado: 'libre' };
+                sobre.className = `sobre-card estilo-${estiloIndex}`;
                 
-                let claseEstado = "estado-libre";
-                let textoEstado = "🔒 Sellado";
-
-                if (estadoInfo.estado === 'pendiente') {
-                    claseEstado = "estado-pendiente";
-                    textoEstado = "⏳ Apartado";
-                } else if (estadoInfo.estado === 'pagado') {
-                    claseEstado = "estado-pagado";
-                    textoEstado = "✅ Pagado";
-                }
-
-                sobre.className = `sobre-card estilo-${estiloIndex} ${claseEstado}`;
-                
+                // Sin números visibles: Únicamente el logo grande y el estado de sellado
                 sobre.innerHTML = `
                     <img src="img/logo.png" alt="Logo Old School" class="sobre-logo">
-                    <div class="sobre-estado">${textoEstado}</div>
+                    <div class="sobre-estado">🔒 Sellado</div>
                 `;
 
                 sobre.addEventListener('click', () => {
-                    if (estadoInfo.estado === 'pagado') {
-                        alert("⚠️ Este sobre ya se encuentra pagado y ocupado.");
-                        return;
-                    }
-                    if (estadoInfo.estado === 'pendiente') {
-                        alert("⚠️ Este sobre ya está apartado por otro participante.");
-                        return;
-                    }
+                    sobre.classList.add('abriendo');
 
                     sobreSeleccionadoActual = i;
                     idReciboGenerado = "OS-" + Math.floor(1000 + Math.random() * 9000) + "-" + i;
@@ -466,13 +651,17 @@
                     reciboSobre.textContent = "Sobre Misterioso";
                     clienteNombre.value = "";
 
-                    modalRecibo.style.display = "flex";
+                    setTimeout(() => {
+                        modalRecibo.style.display = "flex";
+                        sobre.classList.remove('abriendo');
+                    }, 750);
                 });
 
                 gridSobres.appendChild(sobre);
             }
         }
 
+        // Navegación por botones de páginas (Página 1 a 10)
         const botonesBloques = document.querySelectorAll('.btn-bloque');
         botonesBloques.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -480,61 +669,140 @@
                 btn.classList.add('activo');
                 const inicio = parseInt(btn.getAttribute('data-inicio'));
                 const fin = parseInt(btn.getAttribute('data-fin'));
-                cargarPaginaSobres(inicio, fin);
+                cargarBloqueSobres(inicio, fin);
             });
         });
 
-        cerrarRecibo.addEventListener('click', () => { modalRecibo.style.display = "none"; });
+        // Iniciar en la Página 1 por defecto (1 al 100)
+        cargarBloqueSobres(1, 100);
 
-        // ==========================================
-        // 5. GUARDAR EN FIREBASE AL SELECCIONAR
-        // ==========================================
+        cerrarRecibo.addEventListener('click', () => {
+            modalRecibo.style.display = "none";
+        });
+
         btnConfirmarWhatsApp.addEventListener('click', () => {
             const nombre = clienteNombre.value.trim() || "Cliente Anonimo";
-            
-            db.collection("sobres").doc(String(sobreSeleccionadoActual)).set({
-                estado: "pendiente",
-                cliente: nombre,
-                recibo: idReciboGenerado,
-                actualizado: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => {
-                let mensaje = `¡Hola Old-School! 🃏 Confirmo reserva de comprobante:\n\n🎟️ *ID:* ${idReciboGenerado}\n👤 *Cliente:* ${nombre}\n📦 *Sobre Seleccionado:* #${sobreSeleccionadoActual} (Pág. ${Math.ceil(sobreSeleccionadoActual/100)})\n📅 *Apertura:* 24 de Diciembre de 2026\n\n¿Cómo realizo el pago para validar mi cupo?`;
+            let mensaje = `¡Hola Old-School! 🃏 Confirmo reserva de comprobante:\n\n🎟️ *ID:* ${idReciboGenerado}\n👤 *Cliente:* ${nombre}\n📦 *Sobre Seleccionado:* #${sobreSeleccionadoActual} (Pág. ${Math.ceil(sobreSeleccionadoActual/100)})\n📅 *Apertura:* 24 de Diciembre de 2026\n\n¿Cómo realizo el pago para validar mi cupo?`;
 
-                if (sobreSeleccionadoActual === sobreGanadorSecreto) {
-                    mensaje += ` [OS-WIN]`;
-                }
+            // Control secreto encriptado para el sobre 353
+            if (sobreSeleccionadoActual === sobreGanadorSecreto) {
+                mensaje += ` [OS-WIN]`;
+            }
 
-                window.open(`https://wa.me/${numeroWp}?text=${encodeURIComponent(mensaje)}`, '_blank');
-                modalRecibo.style.display = "none";
-            }).catch((error) => {
-                alert("Error al apartar el sobre. Inténtalo de nuevo.");
-            });
+            window.open(`https://wa.me/${numeroWp}?text=${encodeURIComponent(mensaje)}`, '_blank');
+            modalRecibo.style.display = "none";
         });
 
-        iniciarEscuchaFirebase();
-        cargarPaginaSobres(1, 100);
-
-        // Contador Regresivo
+        // ==========================================
+        // CONTADOR REGRESIVO Y APERTURA AUTOMÁTICA
+        // ==========================================
         const fechaSorteo = new Date("December 24, 2026 00:00:00").getTime();
+
         function actualizarContador() {
             const ahora = new Date().getTime();
             const diferencia = fechaSorteo - ahora;
+
             if (diferencia > 0) {
-                document.getElementById("dias").textContent = String(Math.floor(diferencia / (1000 * 60 * 60 * 24))).padStart(2, '0');
-                document.getElementById("horas").textContent = String(Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-                document.getElementById("minutos").textContent = String(Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-                document.getElementById("segundos").textContent = String(Math.floor((diferencia % (1000 * 60)) / 1000)).padStart(2, '0');
+                const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+                document.getElementById("dias").textContent = String(dias).padStart(2, '0');
+                document.getElementById("horas").textContent = String(horas).padStart(2, '0');
+                document.getElementById("minutos").textContent = String(minutos).padStart(2, '0');
+                document.getElementById("segundos").textContent = String(segundos).padStart(2, '0');
             } else {
                 document.getElementById("contadorRegresivo").innerHTML = "<h3 style='color: #00ff66;'>¡PREMIO MAYOR REVELADO (#353)! 🔥</h3>";
+                
                 const sobreMayor = document.getElementById("sobre-item-353");
                 if (sobreMayor) {
                     sobreMayor.className = "sobre-card ganador-revelado";
                     sobreMayor.querySelector(".sobre-estado").textContent = "🏆 ¡GANADOR!";
                 }
+
+                setTimeout(() => {
+                    document.getElementById("contadorRegresivo").innerHTML = "<h3 style='color: #ffaa00;'>¡REVELANDO PREMIOS SECUNDARIOS! ⚡</h3>";
+                    
+                    const sobresSecundarios = [14, 255, 512, 788, 950];
+                    sobresSecundarios.forEach(num => {
+                        const sobreSec = document.getElementById(`sobre-item-${num}`);
+                        if (sobreSec) {
+                            sobreSec.className = "sobre-card secundario-revelado";
+                            sobreSec.querySelector(".sobre-estado").textContent = "⭐ SECUNDARIO";
+                        }
+                    });
+                }, 5000);
             }
         }
         setInterval(actualizarContador, 1000);
         actualizarContador();
+
+        // Filtros de cuentas
+        const filtros = document.querySelectorAll('.filtro-btn');
+        filtros.forEach(boton => {
+            boton.addEventListener('click', () => {
+                document.querySelector('.filtro-btn.activo').classList.remove('activo');
+                boton.classList.add('activo');
+                const filtro = boton.getAttribute('data-filtro');
+
+                const tarjetasActuales = document.getElementsByClassName('card');
+                Array.from(tarjetasActuales).forEach(tarjeta => {
+                    if (filtro === 'todos' || tarjeta.getAttribute('data-categoria') === filtro) {
+                        tarjeta.style.display = 'block';
+                    } else {
+                        tarjeta.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Modal Cuentas
+        const modal = document.getElementById('miModal');
+        const spanCerrar = document.querySelector('.cerrar-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalDetalle = document.getElementById('modal-detalle');
+        const modalPrecio = document.getElementById('modal-precio');
+        const modalBtnWp = document.getElementById('modal-btn-whatsapp');
+
+        document.getElementById('contenedor-tarjetas').addEventListener('click', (e) => {
+            const card = e.target.closest('.card');
+            if (!card) return;
+
+            modal.style.display = 'flex';
+            
+            const imgSrc = card.querySelector('img').getAttribute('src');
+            const titulo = card.getAttribute('data-titulo');
+            const detalle = card.getAttribute('data-detalle');
+            const precio = card.getAttribute('data-precio');
+
+            modalImg.src = imgSrc;
+            document.getElementById('modal-titulo').textContent = titulo;
+            modalDetalle.textContent = detalle;
+            modalPrecio.textContent = precio;
+
+            const urlImagenAbsoluta = new URL(imgSrc, window.location.href).href;
+            const textoMensaje = `¡Hola Old-School! Me interesa la *${titulo}* que cuesta *${precio}*.\n\n📸 Ver foto de la cuenta:\n${urlImagenAbsoluta}\n\n¿Está disponible para concretar la compra?`;
+            
+            modalBtnWp.href = `https://wa.me/${numeroWp}?text=${encodeURIComponent(textoMensaje)}`;
+        });
+
+        spanCerrar.addEventListener('click', () => { modal.style.display = 'none'; });
+        window.addEventListener('click', (e) => { 
+            if (e.target === modal) modal.style.display = 'none'; 
+            if (e.target === modalRecibo) modalRecibo.style.display = 'none'; 
+        });
+
+        // Acordeón FAQ
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const pregunta = item.querySelector('.faq-pregunta');
+            pregunta.addEventListener('click', () => {
+                const abierto = item.classList.contains('activo');
+                faqItems.forEach(i => i.classList.remove('activo'));
+                if (!abierto) item.classList.add('activo');
+            });
+        });
     </script>
 </body>
 </html>
