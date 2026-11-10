@@ -21,19 +21,41 @@
         .vista-seccion { display: none; }
         .vista-seccion.activa { display: block; }
 
-        /* SECCIÓN INICIO / CUENTAS */
+        /* SECCIÓN INICIO / CUENTAS FREE FIRE */
         .hero {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 80px 20px;
+            padding: 50px 20px;
             background: radial-gradient(circle, #1a1a1a 0%, #0d0d0d 100%);
-            min-height: 70vh;
+            min-height: 80vh;
+            text-align: center;
         }
-        .hero-contenido { max-width: 800px; margin: 0 auto; }
-        .hero-contenido h1 { color: #ffaa00; font-size: 2.8rem; margin-bottom: 20px; text-transform: uppercase; }
-        .hero-contenido p { color: #ccc; font-size: 1.2rem; line-height: 1.6; margin-bottom: 30px; }
+        .hero-contenido { max-width: 1100px; margin: 0 auto; }
+        .hero-contenido h1 { color: #ffaa00; font-size: 2.5rem; margin-bottom: 15px; text-transform: uppercase; }
+        .hero-contenido p { color: #ccc; font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; }
+
+        /* Cuadrícula de cuentas de Free Fire del catálogo original */
+        .catalogo-cuentas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            gap: 10px;
+            background: #111;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #ffaa00;
+            max-height: 450px;
+            overflow-y: auto;
+            margin-bottom: 30px;
+        }
+        .cuenta-miniatura {
+            background: #1c1c1c;
+            border: 1px solid #333;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .cuenta-miniatura:hover { border-color: #ffaa00; transform: scale(1.05); }
+        .cuenta-miniatura img { width: 100%; height: 70px; object-fit: cover; display: block; }
+
         .btn-principal {
             background: #ffaa00; color: #000; padding: 12px 30px; font-weight: 700;
             border-radius: 8px; text-decoration: none; display: inline-block; box-shadow: 0 0 15px rgba(255,170,0,0.4);
@@ -186,11 +208,15 @@
         </nav>
     </header>
 
-    <!-- SECCIÓN DE CUENTAS FREE (INICIO) -->
+    <!-- SECCIÓN DE CUENTAS FREE FIRE (INICIO) -->
     <section id="inicio" class="vista-seccion activa hero">
         <div class="hero-contenido">
-            <h1>Cuentas & Ofertas Exclusivas 🔥</h1>
-            <p>Bienvenido a Old-School.Gamerx. Aquí encontrarás las mejores cuentas de Free Fire y servicios gaming asegurados. ¡Participa en nuestros mega eventos y llévate premios insanos!</p>
+            <h1>Cuentas & Catálogo Free Fire 🔥</h1>
+            <p>Bienvenido a Old-School.Gamerx. Explora nuestro catálogo de cuentas exclusivas o salta directo al Mega Sorteo de Sobres.</p>
+            
+            <!-- Cuadrícula automática de cuentas de Free Fire -->
+            <div class="catalogo-cuentas-grid" id="gridCuentasFree"></div>
+
             <a href="#sorteo" class="btn-principal" id="irAlSorteo">Ir al Sorteo de Sobres ⚡</a>
         </div>
     </section>
@@ -273,6 +299,7 @@
         const sobreGanadorSecreto = parseInt(atob("MzUz")); 
         const numeroWp = "573103720162";
 
+        const gridCuentasFree = document.getElementById('gridCuentasFree');
         const gridSobres = document.getElementById('cuadricula-sobres');
         const modalRecibo = document.getElementById('modalRecibo');
         const cerrarRecibo = document.getElementById('cerrarRecibo');
@@ -286,6 +313,19 @@
         let paginaActualInicio = 1;
         let paginaActualFin = 100;
         let estadosSobresGlobal = {}; 
+
+        // Generar dinámicamente las miniaturas de cuentas de Free Fire (ejemplo 60 cuentas)
+        function cargarCuentasFreeFire() {
+            if (!gridCuentasFree) return;
+            gridCuentasFree.innerHTML = "";
+            for (let c = 1; c <= 60; c++) {
+                const div = document.createElement('div');
+                div.className = 'cuenta-miniatura';
+                div.innerHTML = `<img src="img/foto3.jpg" alt="Cuenta FF ${c}">`;
+                gridCuentasFree.appendChild(div);
+            }
+        }
+        cargarCuentasFreeFire();
 
         // ==========================================
         // 2. NAVEGACIÓN ENTRE VISTAS (INICIO / SORTEO)
@@ -412,7 +452,7 @@
                 recibo: idReciboGenerado,
                 actualizado: firebase.firestore.FieldValue.serverTimestamp()
             }).then(() => {
-                let mensaje = `¡Hola Old-School! 🃏 Confirmo reserva de comprobante:\n\n🎟️ *ID:* ${idReciboGenerado}\n👤 *Cliente:* ${nombre}\n📦 *Sobre Seleccionado:* #${sobreSeleccionadoActual} (Pág. ${Math.ceil(sobreSeleccionadoActual/100)})\n📅 *Apertura:* 24 de Diciembre de 2026\n\n¿Cómo realizo el pago para validar mi cupo?`;
+                let mensaje = `¡Hola Old-School! 🃏 Confirmo reserva de comprobante:\n\n🎟️ *ID:* ${idReciboGenerado}\n👤 *Cliente:* ${nombre}\n📦 *Sobre Seleccionado:* #${sobreSeleccionadoActual} (Pág. ${Math.ceil(sobreSeleccionadoActual/100)})\n📅 *Apertura:* 24 de Deciembre de 2026\n\n¿Cómo realizo el pago para validar mi cupo?`;
 
                 if (sobreSeleccionadoActual === sobreGanadorSecreto) {
                     mensaje += ` [OS-WIN]`;
@@ -431,8 +471,8 @@
         // Contador Regresivo
         const fechaSorteo = new Date("December 24, 2026 00:00:00").getTime();
         function actualizarContador() {
-            const ahora = new Date().getTime();
-            const diferencia = fechaSorteo - ahora;
+            const nahora = new Date().getTime();
+            const diferencia = fechaSorteo - nahora;
             if (diferencia > 0) {
                 document.getElementById("dias").textContent = String(Math.floor(diferencia / (1000 * 60 * 60 * 24))).padStart(2, '0');
                 document.getElementById("horas").textContent = String(Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
